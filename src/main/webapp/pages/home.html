@@ -25,6 +25,13 @@ body {font-family: Tahoma, Geneva, sans-serif;}
     min-height: 50%;
 }
 
+.bgimg1 {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("images/background1.jpg");
+    min-height: 50%;
+}
+
 
 .input-container {
     display: -ms-flexbox; /* IE10 */
@@ -102,6 +109,7 @@ form.find::after {
 <div class="w3-top w3-hide-small">
   <div class="w3-bar w3-xlarge w3-opacity " id="navbar">
     <a href="#" class="w3-bar-item w3-button">Home</a>
+    <a href="#about" class="w3-bar-item w3-button">About</a>
     <a href="#create" class="w3-bar-item w3-button">Create a event</a>
     <a href="#find" class="w3-bar-item w3-button">Find a event</a>
   </div>
@@ -110,13 +118,21 @@ form.find::after {
 <!-- Header with background image -->
 <header class="homeimg w3-display-container" id="home">
   <div class="w3-display-bottommiddle w3-center">
-    <p><a href="#create" class="w3-button w3-round w3-xlarge">Create a event</a></p>
-    <p><a href="#find" class="w3-button w3-round w3-xlarge">Look for a event</a></p>
+    <p><a href="#create" class="w3-button w3-round w3-text-white w3-xlarge w3-amber">Create a event</a></p>
+    <p><a href="#find" class="w3-button w3-round w3-text-white w3-xlarge w3-amber">Look for a event</a></p>
   </div>
 </header>
 
+
+<!-- About -->
+<div class="bgimg w3-text-white w3-container w3-padding-64 w3-xlarge" id="about">
+  <center><h2><b>About</b></h2></center>
+  <center><p><b>This application is cool</b></p></center>
+
+</div>
+
 <!-- Create events form -->
-<div class="bgimg w3-container w3-padding-64 w3-large" id="create">
+<div class="w3-container w3-padding-64 w3-large" id="create">
   <div class="container">
     <form action="/create_event.php" style="max-width:500px;margin:auto">
       <center><h2>Create a event</h2></center>
@@ -151,8 +167,8 @@ form.find::after {
 </div>
 
 <!-- Find a event -->
-<div class="w3-container w3-padding-64 w3-xlarge" id="find">
-  <center><h2>Find a event</h2></center>
+<div class="bgimg1 w3-text-white w3-container w3-padding-64 w3-xlarge" id="find">
+  <center><h2><b>Find a event</b></h2></center>
   <form class="find" action="/find_event.php" style="margin:auto;max-width:300px">
     <input type="text" placeholder="Search a event name..." name="search">
     <button type="submit"><i class="fa fa-search"></i></button>
@@ -161,7 +177,7 @@ form.find::after {
 
 
 <!-- Footer -->
-<footer class="w3-center w3-padding-48 w3-xxlarge">
+<footer class="w3-center w3-padding-48 w3-small">
   <p>Webapp-Evena</p>
 </footer>
 
