@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h2>Event Details from JSON</h2>
+<p id="demoEvent"></p>
+<p id="demoEventAlt"></p>
+
+
+<script>
+
+//get data from server using XMLHttpRequest
+
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+if (this.readyState == 4 && this.status == 200) {
+var myEvent = JSON.parse(this.responseText);
+document.getElementById("demoEvent").innerHTML = myEvent.id;
+}
+};
+xmlhttp.open("GET", "Event.txt", true);
+xmlhttp.send();
+
+//convert JSON to JavaScript
+var obj = JSON.parse('{ "id":"1", "name":"DemoEvent", "date": "30-05-2018", "time":"1900", "location":"Imperial", "capacity":"100" }' );
+document.getElementById("demoEvent").innerHTML = "Welcome to " + obj.name + ", Held on " + obj.date + ", At " + obj.location;
+
+//convert JSON to string
+var jason =  JSON.stringify(obj);
+document.getElementById("demoEventAlt").innerHTML = jason;
+
+<!--//Store data-->
+<!--myObj = { "id":"1", "name":"DemoEvent", "Date": "30-05-2018, "Time":"1900", "location":"Imperial", "Capacity":"100" };-->
+<!--myJSON = JSON.stringify(myObj);-->
+<!--localStorage.setItem("testJSON", myJSON);-->
+
+<!--//Retrieve data-->
+<!--text = localStorage.getItem("testJSON");-->
+<!--obj = JSON.parse(text);-->
+<!--document.getElementById("demo").innerHTML = obj.name;-->
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
