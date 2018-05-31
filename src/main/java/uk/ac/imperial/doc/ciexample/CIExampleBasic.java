@@ -27,9 +27,9 @@ public class CIExampleBasic {
     return this.name;
   }
 
-  public int runSelect() throws SQLException {
+  public int runSelect(String name) throws SQLException {
     DataServiceAPI dsa = new DataServiceAPI();
-    return dsa.select();
+    return dsa.select(name);
   }
 
   public boolean runInsert(int id,String name) throws SQLException {

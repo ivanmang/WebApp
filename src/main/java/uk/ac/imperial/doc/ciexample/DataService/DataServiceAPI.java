@@ -9,7 +9,7 @@ import java.util.Properties;
 
 public class DataServiceAPI {
 
-  public int select() throws SQLException {
+  public int select(String name) throws SQLException {
     Connection conn = null;
     String url = "jdbc:postgresql://db.doc.ic.ac.uk:5432/g1727106_u";
     Properties connectionProps = new Properties();
@@ -19,7 +19,7 @@ public class DataServiceAPI {
     int i = 0;
 
     try {
-      String sql =  "Select * From \"Event\"";
+      String sql =  "Select \"Event Id\" From \"Event\" Where \"Event Name\" = '" + name + "' ";
       //String sql = new SelectQueryBuilder().setTable("Event").createSelectQuery().ReturnQuerry();
       PreparedStatement pstmt = conn.prepareStatement(sql);
       ResultSet result = pstmt.executeQuery();

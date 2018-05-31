@@ -30,7 +30,7 @@ public class CIExampleController extends AbstractController {
       if (paramAction.equals("insert")) {
         cibasic.runInsert(2,paramA);
       } else if (paramAction.equals("select")) {
-        model.addObject("id", cibasic.runSelect());
+        model.addObject("Result", cibasic.runSelect(paramA));
       }
     }
 

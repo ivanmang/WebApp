@@ -169,26 +169,16 @@ form.find::after {
   </div>
 </div>
 
-<script>
+<h3>Terrence = ${Result}</h3>
 
 
-	<c:choose>
-		<c:when test="${not empty ernm && not empty date && not empty time && not empty eventcapacity && not empty about1}" >
-			<h3>${ernm}= ${result}</h3>
-			<br/>
-		</c:when>
-		<c:otherwise>
-			<h3>Please enter a valid event</h3>
-		</c:otherwise>
-	</c:choose>
-</script>
 
 <!-- Find a event -->
 <div class="bgimg1 w3-text-white w3-container w3-padding-64 w3-xlarge w3-center" id="find">
   <h2><b>Find a event</b></h2>
-  <form class="find" action="/find_event.php" style="margin:auto;max-width:300px">
+  <form class="find" action="/index.htm" style="margin:auto;max-width:300px">
     <input type="text" placeholder="Search a event name..." name="search">
-    <button type="submit"><i class="fa fa-search"></i></button>
+    <button type="submit" name="action" value="select"><i class="fa fa-search"></i></button>
   </form>
 </div>
 
