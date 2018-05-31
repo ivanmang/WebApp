@@ -4,6 +4,7 @@ stages:
   - deploy_staging_server
 
 before_script:
+  - whoami
   - eval $(ssh-agent -s)
   - ssh-add ~/.ssh/id_rsa
 
