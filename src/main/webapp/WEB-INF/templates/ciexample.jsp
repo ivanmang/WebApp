@@ -164,12 +164,14 @@ form.find::after {
         <input class="input-field" type="text"  placeholder="About this event..." name="About" id="about1">
       </div>
 
-      <button type="submit" class="btn">Submit</button>
+      <button type="submit" name="action" value="insert" class="btn">Submit</button>
     </form>
   </div>
 </div>
 
 <script>
+
+
 	<c:choose>
 		<c:when test="${not empty ernm && not empty date && not empty time && not empty eventcapacity && not empty about1}" >
 			<h3>${ernm}= ${result}</h3>

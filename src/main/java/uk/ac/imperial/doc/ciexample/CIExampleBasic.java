@@ -1,46 +1,51 @@
 package uk.ac.imperial.doc.ciexample;
 
-import java.util.Arrays;
-import java.util.List;
+import uk.ac.imperial.doc.ciexample.DataService.DataServiceAPI;
+
+import java.sql.SQLException;
 
 public class CIExampleBasic {
 
-  private String id, name;
+  private String name;
+
 
   public CIExampleBasic() { }
 
   public CIExampleBasic(String[] args) {
-    if(args.length != 2) {
+    if(args.length != 1) {
       printUsage();
     }
-
-    this.id = args[1];
-    this.name = args[2];
+    this.name = args[1];
   }
 
-  public void setParams(String id, String name) {
-    this.id = id;
+  public void setParams(String name) {
     this.name = name;
   }
 
-  public String getId() {
-    return this.id;
-  }
 
   public String getName() {
     return this.name;
   }
 
+  public int runSelect() throws SQLException {
+    DataServiceAPI dsa = new DataServiceAPI();
+    return dsa.select();
+  }
+
+  public boolean runInsert(int id,String name) throws SQLException {
+    DataServiceAPI dsa = new DataServiceAPI();
+    return dsa.insert(id,name);
+  }
+
 
   public static void main(String[] args) {
-    CIExampleBasic basic = new CIExampleBasic(args);
-    String id = basic.getId();
-    String name = basic.getName();
-    System.out.println("Result is: " + id + ", " + name);
+//    CIExampleBasic basic = new CIExampleBasic(args);
+//    int idResponse = basic.runSelect();
+//    System.out.println("Selected: " + idResponse);
   }
 
   public void printUsage() {
-    System.err.println("Usage: CIExampleBasic <string id> <string name>");
+    System.err.println("Usage: CIExampleBasic <string name>");
     System.exit(-1);
   }
 }

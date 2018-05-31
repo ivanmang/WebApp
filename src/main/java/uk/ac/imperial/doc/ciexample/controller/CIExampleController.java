@@ -10,25 +10,28 @@ import uk.ac.imperial.doc.ciexample.CIExampleBasic;
 
 public class CIExampleController extends AbstractController {
 
+  private int count;
+
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
                                                HttpServletResponse response) throws Exception {
 
-    String paramA = request.getParameter("id");
-    String paramB = request.getParameter("name");
+    String paramA = request.getParameter("ernm");
+    String paramAction = request.getParameter("action");
 
     ModelAndView model = new ModelAndView("ciexample");
-    if(paramA != null)
-      model.addObject("id", request.getParameter("id"));
-
-    if(paramB != null)
-      model.addObject("name", request.getParameter("name"));
 
 
     CIExampleBasic cibasic = new CIExampleBasic();
-    if(paramA != null && paramB != null) {
-      cibasic.setParams(paramA, paramB);
-      model.addObject("result");
+
+
+
+    if(paramAction != null && paramA!= null) {
+      if (paramAction.equals("insert")) {
+        cibasic.runInsert(2,paramA);
+      } else if (paramAction.equals("select")) {
+        model.addObject("id", cibasic.runSelect());
+      }
     }
 
     return model;

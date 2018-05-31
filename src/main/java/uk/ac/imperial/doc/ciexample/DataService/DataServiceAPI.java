@@ -35,7 +35,7 @@ public class DataServiceAPI {
     return i;
   }
 
-  public boolean insert() throws SQLException {
+  public boolean insert(int id, String name) throws SQLException {
     Connection conn = null;
     String url = "jdbc:postgresql://db.doc.ic.ac.uk:5432/g1727106_u";
     Properties connectionProps = new Properties();
@@ -44,7 +44,7 @@ public class DataServiceAPI {
     conn = DriverManager.getConnection(url, connectionProps);
 
     try {
-      String sql = "Insert Into \"Event\"(\"Event Id\", \"Event Name\") Values (123,'Hello')";
+      String sql = "Insert Into \"Event\"(\"Event Id\", \"Event Name\") Values (" + id +" , '" + name + "')";
       PreparedStatement pstmt = conn.prepareStatement(sql);
       int i = pstmt.executeUpdate();
       System.out.println(i);
