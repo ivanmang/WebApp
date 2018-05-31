@@ -22,5 +22,5 @@ deploy:
   script:
     - pwd
     - scp -o StrictHostKeyChecking=no \ ~/.m2/repository/webapps-evena/1.0-SNAPSHOT \ /webapps-evena-1.0-SNAPSHOT.war \ g1727106@146.169.45.63:/opt/tomcat/webapps/evena.war
-only:
-  - master
+  only:
+    - master
