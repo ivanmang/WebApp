@@ -4,7 +4,6 @@ stages:
   - deploy_staging_server
 
 before_script:
-  - env
   - eval $(ssh-agent -s)
   - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
 
