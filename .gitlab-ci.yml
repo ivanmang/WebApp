@@ -22,6 +22,6 @@ deploy:
   stage: deploy_staging_server
   script:
     - pwd
-    - scp -o StrictHostKeyChecking=no \ ~/.m2/repository/webapps-evena/1.0-SNAPSHOT \ /webapps-evena-1.0-SNAPSHOT.war \ root@146.169.45.63:/opt/tomcat/webapps/evena.war
+    - scp -o StrictHostKeyChecking=no \ ~/.m2/repository/webapps-evena/1.0-SNAPSHOT \ /webapps-evena-1.0-SNAPSHOT.war \ gitlab-runner@146.169.45.63:/opt/tomcat/webapps/evena.war
   only:
     - master
