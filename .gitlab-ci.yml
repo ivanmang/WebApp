@@ -5,8 +5,7 @@ stages:
 
 before_script:
   - eval $(ssh-agent -s)
-  - echo "$TEST"
-  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+  - ssh-add ~/.ssh/id_rsa
 
 build:
   stage: build
