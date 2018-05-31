@@ -7,8 +7,8 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Webapps CI Example Webapp</name>
 	<properties>
-	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	    <spring.version>4.3.1.RELEASE</spring.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring.version>4.3.1.RELEASE</spring.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -38,6 +38,12 @@
 			<version>3.0-alpha-1</version>
 			<scope>provided</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/postgresql/postgresql -->
+		<dependency>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.1-901-1.jdbc4</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>ciexample</finalName>
@@ -47,26 +53,27 @@
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>3.1.0</version>
 				<configuration>
-				    <archive>
-				        <manifest>
-				            <addClasspath>true</addClasspath>
-				            <classpathPrefix>${user.home}/.m2/repository</classpathPrefix>
-				            <mainClass>uk.ac.imperial.doc.ciexample.CIExampleBasic</mainClass>
-				        </manifest>
-				    </archive>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>${user.home}/.m2/repository</classpathPrefix>
+							<mainClass>uk.ac.imperial.doc.ciexample.CIExampleBasic</mainClass>
+						</manifest>
+					</archive>
 				</configuration>
 			</plugin>
 			<plugin>
-			  <artifactId>maven-war-plugin</artifactId>
-			  <version>3.0.0</version>
-			  <configuration>
-			  </configuration>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.0.0</version>
+				<configuration>
+				</configuration>
 			</plugin>
-            <plugin>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.2.11.v20150529</version>
-            </plugin>
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.2.11.v20150529</version>
+			</plugin>
+
 		</plugins>
 	</build>
 </project>
