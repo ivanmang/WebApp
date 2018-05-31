@@ -1,13 +1,25 @@
 stages:
   - build
   - test
-  
+  - deploy_staging_server
+
+before_script:
+  - eval $(ssh-agent -s)
+  - echo "SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+
 build:
   stage: build
-  script: 
-    - mvn compile
+  script:
+    - mvn install
 
 test:
   stage: test
-  script: 
+  script:
     - mvn test
+
+deploy:
+  stage: deploy_staging_server
+  script:
+    - pwd
+    - scp -o StrictHostKeyChecking=no \ ~/.m2/repository/webapps-evena/1.0-SNAPSHOT \ /webapps-evena-1.0-SNAPSHOT.war \ g1727106@146.169.45.63:/opt/tomcat/webapps/evena.war
+only:master
