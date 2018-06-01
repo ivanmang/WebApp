@@ -1,6 +1,5 @@
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotEquals;
 
-import Evena.DataService.DataServiceAPI;
 import Evena.Functions;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,11 +7,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Properties;
 import junit.framework.TestCase;
-import org.junit.Assert;
 
 public class Test extends TestCase{
 
-  public void testDatabaseConnectedToBackEnd() throws SQLException {
+  public void testDatabaseConnectedToBackEnd() throws SQLException, ClassNotFoundException {
+    Class.forName("org.postgresql.Driver");
+
     Connection conn = null;
     String url = "jdbc:postgresql://db.doc.ic.ac.uk/g1727106_u?&ssl=true" + "&sslfactory=org.postgresql.ssl.NonValidatingFactory";
     Properties connectionProps = new Properties();
@@ -22,7 +22,9 @@ public class Test extends TestCase{
     assertNotEquals(conn, null);
   }
 
-  public void testSelectAndInsertFunction() throws SQLException {
+  public void testSelectAndInsertFunction() throws SQLException, ClassNotFoundException {
+    Class.forName("org.postgresql.Driver");
+
     int var = 3;
     Functions func = new Functions();
     func.runInsert(257, "cat", "09-09-2019", null);
