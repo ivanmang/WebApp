@@ -29,20 +29,20 @@ th {
 
 .homeimg {
     background-size: cover;
-    background: url("/resources/images/homepage.png") no-repeat;
+    background: url("/evena/resources/images/homepage.png") no-repeat;
     min-height: 100%;
 }
 
 
 .bgimg {
     background-size: cover;
-    background: url("/resources/images/background.jpg") no-repeat;
+    background: url("/evena/resources/images/background.jpg") no-repeat;
     min-height: 50%;
 }
 
 .bgimg1 {
     background-size: cover;
-    background: url("/resources/images/background1.jpg") no-repeat;
+    background: url("/evena/resources/images/background1.jpg") no-repeat;
     min-height: 50%;
 }
 
