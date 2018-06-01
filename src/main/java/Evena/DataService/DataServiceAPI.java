@@ -14,7 +14,9 @@ import java.util.Properties;
 
 public class DataServiceAPI {
 
-    public EventList selectall() throws SQLException {
+    public EventList selectall() throws SQLException, ClassNotFoundException {
+        Class.forName("org.postgresql.Driver");
+
         Connection conn = null;
         String url = "jdbc:postgresql://db.doc.ic.ac.uk/g1727106_u?&ssl=true" + "&sslfactory=org.postgresql.ssl.NonValidatingFactory";
         Properties connectionProps = new Properties();
