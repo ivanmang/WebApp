@@ -9,26 +9,42 @@
 <style>
 body, html {height: 100%}
 body {font-family: Tahoma, Geneva, sans-serif;}
+table, td, th {
+    border: 1px solid #ddd;
+    text-align: left;
+    color:white;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 40px;
+}
+
+th {
+    background-color: #FE642E;
+}
 
 .homeimg {
-    background-repeat: no-repeat;
     background-size: cover;
-    background-image: url("images/homepage.png");
+    background: url("/resources/images/homepage.png") no-repeat;
     min-height: 100%;
 }
 
 
 .bgimg {
-    background-repeat: no-repeat;
     background-size: cover;
-    background-image: url("images/background.jpg");
+    background: url("/resources/images/background.jpg") no-repeat;
     min-height: 50%;
 }
 
 .bgimg1 {
-    background-repeat: no-repeat;
     background-size: cover;
-    background-image: url("images/background1.jpg");
+    background: url("/resources/images/background1.jpg") no-repeat;
     min-height: 50%;
 }
 
@@ -110,16 +126,16 @@ form.find::after {
   <div class="w3-bar w3-xlarge w3-opacity " id="navbar">
     <a href="#" class="w3-bar-item w3-button">Home</a>
     <a href="#about" class="w3-bar-item w3-button">About</a>
-    <a href="#create" class="w3-bar-item w3-button">Create a event</a>
-    <a href="#find" class="w3-bar-item w3-button">Find a event</a>
+    <a href="#create" class="w3-bar-item w3-button">Create an Event</a>
+    <a href="#find" class="w3-bar-item w3-button">List of Events</a>
   </div>
 </div>
 
 <!-- Header with background image -->
 <header class="homeimg w3-display-container" id="home">
   <div class="w3-display-bottommiddle w3-center">
-    <p><a href="#create" class="w3-button w3-round w3-text-white w3-xlarge w3-amber">Create a event</a></p>
-    <p><a href="#find" class="w3-button w3-round w3-text-white w3-xlarge w3-amber">Look for a event</a></p>
+    <p><a href="#create" class="w3-button w3-round w3-text-white w3-xlarge w3-amber">Create an Event</a></p>
+    <p><a href="#find" class="w3-button w3-round w3-text-white w3-xlarge w3-amber">Ongoing Events</a></p>
   </div>
 </header>
 
@@ -129,7 +145,7 @@ form.find::after {
   <h2><b>About</b></h2>
   <p>Evena is a personal event organiser aimed at connecting the student community.</p>
   <p>Unlike other Event organising platforms for business use, </p>
-  <p>we focus on small groups and emphasis on the interaction between the event organiser and participants.</p>
+  <p>we focus on small groups and emphasis on decreasing the workload of the organisers.</p>
   <p>No matter who you are, as long as you are passionate in organising an event,</p>
   <p><b>try Evena now to connect with the student community.</b></p>
 
@@ -151,16 +167,6 @@ form.find::after {
       </div>
 
       <div class="input-container">
-        <i class="fa fa-clock-o icon"></i>
-        <input class="input-field" type="time"  name="Starting Time" id="time">
-      </div>
-
-      <div class="input-container">
-        <i class="fa fa-user-o icon"></i>
-        <input class="input-field" type="text"  placeholder="Maximum participants" name="eventcapacity" id="eventcapacity">
-      </div>
-
-      <div class="input-container">
         <i class="fa fa-bullhorn icon"></i>
         <input class="input-field" type="text"  placeholder="About this event..." name="About" id="about1">
       </div>
@@ -170,33 +176,32 @@ form.find::after {
   </div>
 </div>
 
-<c:choose>
-  <c:when test="${not empty result}" >
-    <h3>Terrence = ${result}</h3>
-    <br/>
-  </c:when>
-  <c:otherwise>
-    <h3>Set query string parameters <b>a</b> and <b>b</b> to integers and <b>action</b> to <em>add</em> or <em>sub</em> to see a result.</h3>
-  </c:otherwise>
-</c:choose>
 
-
-
-<!-- Find a event -->
 <div class="bgimg1 w3-text-white w3-container w3-padding-64 w3-xlarge w3-center" id="find">
-  <h2><b>Find a event</b></h2>
-  <form class="find" action="/index.htm" style="margin:auto;max-width:300px" method="GET">
-    <input type="text" placeholder="Search a event name..." name="search">
-    <button type="submit" name="action" value="select"><i class="fa fa-search"></i></button>
-  </form>
+    <table width="50%"  align="center">
+     <tr>
+        <th>Event Id</th>
+        <th>Event Name</th>
+        <th>Date</th>
+         <th>About</th>
+    </tr>
+    <c:forEach items="${eventList.events}" var="event" varStatus="status">
+        <tr>
+            <td>${event.id}</td>
+            <td>${event.name}</td>
+            <td>${event.date}</td>
+            <td>${event.about}</td>
+        </tr>
+    </c:forEach>
+</table>
 </div>
+
 
 
 <!-- Footer -->
 <footer class="w3-center w3-padding-48 w3-small">
   <p>Webapp-Evena</p>
 </footer>
-
 
 </body>
 </html>

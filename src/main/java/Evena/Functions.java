@@ -1,17 +1,17 @@
-package uk.ac.imperial.doc.ciexample;
+package Evena;
 
-import uk.ac.imperial.doc.ciexample.DataService.DataServiceAPI;
+import Evena.DataService.DataServiceAPI;
 
 import java.sql.SQLException;
 
-public class CIExampleBasic {
+public class Functions {
 
   private String name;
 
 
-  public CIExampleBasic() { }
+  public Functions() { }
 
-  public CIExampleBasic(String[] args) {
+  public Functions(String[] args) {
     if(args.length != 1) {
       printUsage();
     }
@@ -32,20 +32,20 @@ public class CIExampleBasic {
     return dsa.select(name);
   }
 
-  public boolean runInsert(int id,String name) throws SQLException {
+  public boolean runInsert(int id,String name,String date,String about) throws SQLException {
     DataServiceAPI dsa = new DataServiceAPI();
-    return dsa.insert(id,name);
+    return dsa.insert(id,name,date,about);
   }
 
 
   public static void main(String[] args) {
-//    CIExampleBasic basic = new CIExampleBasic(args);
+//    Functions basic = new Functions(args);
 //    int idResponse = basic.runSelect();
 //    System.out.println("Selected: " + idResponse);
   }
 
   public void printUsage() {
-    System.err.println("Usage: CIExampleBasic <string name>");
+    System.err.println("Usage: Functions <string name>");
     System.exit(-1);
   }
 }

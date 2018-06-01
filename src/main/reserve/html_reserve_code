@@ -1,0 +1,20 @@
+<!-- Find a event -->
+<div class="bgimg1 w3-text-white w3-container w3-padding-64 w3-xlarge w3-center" id="find">
+    <h2><b>Find an event</b></h2>
+    <form class="find" action="/index.htm" style="margin:auto;max-width:300px" method="GET">
+        <input type="text" placeholder="Search a event name..." name="search">
+        <button type="submit" name="action" value="select"><i class="fa fa-search"></i></button>
+    </form>
+
+    <c:choose>
+        <c:when test="${not empty result}" >
+            <h3>Event ID = ${result}</h3>
+            <br/>
+        </c:when>
+    </c:choose>
+</div>
+
+ <div class="input-container">
+        <i class="fa fa-clock-o icon"></i>
+        <input class="input-field" type="time"  name="Starting Time" id="time">
+      </div>

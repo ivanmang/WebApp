@@ -57,7 +57,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>${user.home}/.m2/repository</classpathPrefix>
-							<mainClass>uk.ac.imperial.doc.ciexample.CIExampleBasic</mainClass>
+							<mainClass>Evena.Functions</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
@@ -73,7 +73,15 @@
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>9.2.11.v20150529</version>
 			</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>7</source>
+                    <target>7</target>
+                </configuration>
+            </plugin>
 
-		</plugins>
+        </plugins>
 	</build>
 </project>
