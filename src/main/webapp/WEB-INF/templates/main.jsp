@@ -11,8 +11,6 @@ body, html {height: 100%}
 body {font-family: Tahoma, Geneva, sans-serif;}
 table, td, th {
     border: 1px solid #ddd;
-    text-align: left;
-    color:white;
 }
 
 table {
@@ -26,7 +24,7 @@ th, td {
 }
 
 th {
-    background-color: #FE642E;
+    background-color: orange;
 }
 
 .homeimg {
@@ -178,8 +176,8 @@ form.find::after {
 
 
 <div class="bgimg1 w3-text-white w3-container w3-padding-64 w3-xlarge w3-center" id="find">
-    <table width="50%"  align="center">
-     <tr>
+    <table class="w3-table-all w3-hoverable w3-table w3-centered"width="50%"  align="center">
+     <tr class="w3-orange">
         <th>Event Id</th>
         <th>Event Name</th>
         <th>Date</th>
