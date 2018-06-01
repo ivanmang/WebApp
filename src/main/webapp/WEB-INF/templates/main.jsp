@@ -152,7 +152,7 @@ form.find::after {
 <!-- Create events form -->
 <div class="w3-container w3-padding-64 w3-large" id="create">
   <div class="container">
-    <form action="/index.htm" style="max-width:500px;margin:auto" method="GET">
+    <form action="/evena" style="max-width:500px;margin:auto" method="GET">
       <center><h2>Create a event</h2></center>
       <div class="input-container">
         <i class="fa fa-pencil-square-o icon"></i>
