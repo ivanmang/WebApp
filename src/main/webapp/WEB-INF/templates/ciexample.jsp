@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <title>WebApps-Evena</title>
 <meta charset="UTF-8">
@@ -169,14 +170,22 @@ form.find::after {
   </div>
 </div>
 
-<h3>Terrence = ${Result}</h3>
+<c:choose>
+  <c:when test="${not empty result}" >
+    <h3>Terrence = ${result}</h3>
+    <br/>
+  </c:when>
+  <c:otherwise>
+    <h3>Set query string parameters <b>a</b> and <b>b</b> to integers and <b>action</b> to <em>add</em> or <em>sub</em> to see a result.</h3>
+  </c:otherwise>
+</c:choose>
 
 
 
 <!-- Find a event -->
 <div class="bgimg1 w3-text-white w3-container w3-padding-64 w3-xlarge w3-center" id="find">
   <h2><b>Find a event</b></h2>
-  <form class="find" action="/index.htm" style="margin:auto;max-width:300px">
+  <form class="find" action="/index.htm" style="margin:auto;max-width:300px" method="GET">
     <input type="text" placeholder="Search a event name..." name="search">
     <button type="submit" name="action" value="select"><i class="fa fa-search"></i></button>
   </form>

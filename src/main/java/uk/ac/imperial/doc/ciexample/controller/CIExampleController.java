@@ -26,11 +26,16 @@ public class CIExampleController extends AbstractController {
 
 
 
-    if(paramAction != null && paramA!= null) {
-      if (paramAction.equals("insert")) {
-        cibasic.runInsert(2,paramA);
+
+    if(paramAction != null) {
+      if (paramAction.equals("insert") && paramA!= null ) {
+        cibasic.runInsert(3,paramA);
       } else if (paramAction.equals("select")) {
-        model.addObject("Result", cibasic.runSelect(paramA));
+        String query = request.getParameter("search");
+        System.out.println(query);
+        int i = cibasic.runSelect(query);
+        System.out.println(i);
+        model.addObject("result", i);
       }
     }
 

@@ -11,7 +11,7 @@ public class DataServiceAPI {
 
   public int select(String name) throws SQLException {
     Connection conn = null;
-    String url = "jdbc:postgresql://db.doc.ic.ac.uk:5432/g1727106_u";
+    String url = "jdbc:postgresql://db.doc.ic.ac.uk/g1727106_u?&ssl=true" + "&sslfactory=org.postgresql.ssl.NonValidatingFactory";
     Properties connectionProps = new Properties();
     connectionProps.setProperty("user", "g1727106_u");
     connectionProps.setProperty("password", "Rjfz8pWxZM");
@@ -37,7 +37,7 @@ public class DataServiceAPI {
 
   public boolean insert(int id, String name) throws SQLException {
     Connection conn = null;
-    String url = "jdbc:postgresql://db.doc.ic.ac.uk:5432/g1727106_u";
+    String url = "jdbc:postgresql://db.doc.ic.ac.uk/g1727106_u?&ssl=true" + "&sslfactory=org.postgresql.ssl.NonValidatingFactory";
     Properties connectionProps = new Properties();
     connectionProps.setProperty("user", "g1727106_u");
     connectionProps.setProperty("password", "Rjfz8pWxZM");
