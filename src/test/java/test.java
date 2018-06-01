@@ -1,9 +1,14 @@
-import junit.framework.TestCase;
+import Evena.Functions;
 
-public class test extends TestCase{
+public class test {
 
-  public void testSomething() {
-    //TODO:Add test cases
+  public static void main(String[] args) {
+    Functions d = new Functions();
+    try{
+      System.out.println(d.runSelect("Dog"));
+    }
+    catch(Exception e){}
+
 
   }
 }
