@@ -1,23 +1,36 @@
 package Evena.DataService;
 
+import java.util.ArrayList;
 import java.util.List;
 
-class SelectQuery {
-  List<String> column = null;
-  String table = null;
+class SelectQuery implements Query{
+  private List<String> columns = new ArrayList<>();
+  private String table;
+  private List<WhereClause> whereClauses = new ArrayList<>();
 
-  SelectQuery(List<String> column, String table) {
-    this.column = column;
+
+  public SelectQuery(String table) {
     this.table = table;
   }
 
-  String ReturnQuerry(){
+  SelectQuery addColumn(String column){
+    columns.add(column);
+    return this;
+  }
+
+  SelectQuery addWhereClause(String Object, String Variable){
+    WhereClause whereClause = new WhereClause(Object,Variable);
+    whereClauses.add(whereClause);
+    return this;
+  }
+
+  public String build(){
     String query= "Select ";
-    if (column.size() == 0){
+    if (columns.size() == 0){
       query = query.concat("* ");
     }
     else{
-      for (String c : column) {
+      for (String c : columns) {
         query = query.concat("\"" + c + "\" ");
       }
     }

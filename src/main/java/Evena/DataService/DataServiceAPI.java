@@ -14,15 +14,24 @@ import java.util.Properties;
 
 public class DataServiceAPI {
 
+    private static String database = "jdbc:postgresql://db.doc.ic.ac.uk/g1727106_u?&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory";
+    private static String user = "g1727106_u";
+    private static String password = "Rjfz8pWxZM";
+
+    public static Connection connect() throws SQLException {
+        String url = database;
+        Properties connectionProps = new Properties();
+        connectionProps.setProperty("user", user);
+        connectionProps.setProperty("password", password);
+        return DriverManager.getConnection(url, connectionProps);
+
+
+    }
+
     public EventList selectall() throws SQLException, ClassNotFoundException {
         Class.forName("org.postgresql.Driver");
 
-        Connection conn = null;
-        String url = "jdbc:postgresql://db.doc.ic.ac.uk/g1727106_u?&ssl=true" + "&sslfactory=org.postgresql.ssl.NonValidatingFactory";
-        Properties connectionProps = new Properties();
-        connectionProps.setProperty("user", "g1727106_u");
-        connectionProps.setProperty("password", "Rjfz8pWxZM");
-        conn = DriverManager.getConnection(url, connectionProps);
+        Connection conn = connect();
 
         List<Event> events = new ArrayList<>();
         EventList eventList = new EventList();
@@ -56,12 +65,7 @@ public class DataServiceAPI {
     }
 
   public int select(String name) throws SQLException {
-    Connection conn = null;
-    String url = "jdbc:postgresql://db.doc.ic.ac.uk/g1727106_u?&ssl=true" + "&sslfactory=org.postgresql.ssl.NonValidatingFactory";
-    Properties connectionProps = new Properties();
-    connectionProps.setProperty("user", "g1727106_u");
-    connectionProps.setProperty("password", "Rjfz8pWxZM");
-    conn = DriverManager.getConnection(url, connectionProps);
+    Connection conn = connect();
     int i = 0;
 
     try {
@@ -82,12 +86,7 @@ public class DataServiceAPI {
   }
 
   public boolean insert(int id, String name,String Date,String about) throws SQLException {
-    Connection conn = null;
-    String url = "jdbc:postgresql://db.doc.ic.ac.uk/g1727106_u?&ssl=true" + "&sslfactory=org.postgresql.ssl.NonValidatingFactory";
-    Properties connectionProps = new Properties();
-    connectionProps.setProperty("user", "g1727106_u");
-    connectionProps.setProperty("password", "Rjfz8pWxZM");
-    conn = DriverManager.getConnection(url, connectionProps);
+    Connection conn = connect();
 
     try {
       String sql = "Insert Into \"Event\"(\"Event Id\", \"Event Name\" , \"Date\",\"About\") Values (" + id +" , '" + name + "', '"+ Date + "', '" + about +"')";
@@ -105,12 +104,7 @@ public class DataServiceAPI {
   }
 
     public boolean exist(int i) throws SQLException {
-        Connection conn = null;
-        String url = "jdbc:postgresql://db.doc.ic.ac.uk/g1727106_u?&ssl=true" + "&sslfactory=org.postgresql.ssl.NonValidatingFactory";
-        Properties connectionProps = new Properties();
-        connectionProps.setProperty("user", "g1727106_u");
-        connectionProps.setProperty("password", "Rjfz8pWxZM");
-        conn = DriverManager.getConnection(url, connectionProps);
+        Connection conn = connect();
 
         try {
             String sql =  "Select \"Event Id\" From \"Event\" Where \"Event Id\" = '" + i + "' ";

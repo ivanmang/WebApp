@@ -29,20 +29,20 @@ th {
 
 .homeimg {
     background-size: cover;
-    background: url("/evena/resources/images/homepage.png") no-repeat;
+    background: url("/resources/images/homepage.png") no-repeat;
     min-height: 100%;
 }
 
 
 .bgimg {
     background-size: cover;
-    background: url("/evena/resources/images/background.jpg") no-repeat;
+    background: url("/resources/images/background.jpg") no-repeat;
     min-height: 50%;
 }
 
 .bgimg1 {
     background-size: cover;
-    background: url("/evena/resources/images/background1.jpg") no-repeat;
+    background: url("/resources/images/background1.jpg") no-repeat;
     min-height: 50%;
 }
 
@@ -116,8 +116,22 @@ form.find::after {
     display: table;
 }
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+    function disableF5(e) {
+        if (e.which === 116 || e.keyCode === 116) {
+            e.preventDefault();
+            window.location = window.location.pathname
+        }
+    }
+
+    $(function() {
+        $(document).on("keydown", disableF5);
+    });
+</script>
 
 <body>
+
 
 <!-- Navbar (on top) -->
 <div class="w3-top w3-hide-small">
@@ -152,7 +166,7 @@ form.find::after {
 <!-- Create events form -->
 <div class="w3-container w3-padding-64 w3-large" id="create">
   <div class="container">
-    <form action="/evena" style="max-width:500px;margin:auto" method="GET">
+    <form action="/index" style="max-width:500px;margin:auto" method="GET">
       <center><h2>Create a event</h2></center>
       <div class="input-container">
         <i class="fa fa-pencil-square-o icon"></i>
@@ -178,17 +192,21 @@ form.find::after {
 <div class="bgimg1 w3-text-white w3-container w3-padding-64 w3-xlarge w3-center" id="find">
     <table class="w3-table-all w3-hoverable w3-table w3-centered"width="50%"  align="center">
      <tr class="w3-orange">
-        <th>Event Id</th>
         <th>Event Name</th>
         <th>Date</th>
-         <th>About</th>
+        <th>About</th>
+         <th></th>
     </tr>
     <c:forEach items="${eventList.events}" var="event" varStatus="status">
         <tr>
-            <td>${event.id}</td>
             <td>${event.name}</td>
             <td>${event.date}</td>
             <td>${event.about}</td>
+            <td>
+                <form action="/event" style="max-width:500px;margin:auto" method="GET">
+                <button type="submit" name="event" value=${event.name} class="btn">Details</button>
+                </form>
+            </td>
         </tr>
     </c:forEach>
 </table>

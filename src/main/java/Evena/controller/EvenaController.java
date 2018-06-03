@@ -6,14 +6,21 @@ import javax.servlet.http.HttpServletResponse;
 import Evena.Event;
 import Evena.DataService.DataServiceAPI;
 import Evena.Functions;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class EvenaController extends AbstractController {
+@Controller
+public class EvenaController {
 
   private static List<Event> events = new ArrayList<Event>();
 
@@ -24,13 +31,37 @@ public class EvenaController extends AbstractController {
 //    events.add(new Event("Ronald", "Reagan"));
 //  }
 
-  @Override
-  protected ModelAndView handleRequestInternal(HttpServletRequest request,
+  @RequestMapping(value = "/event")
+  protected ModelAndView redirect(HttpServletRequest request) {
+    ModelAndView model = new ModelAndView("event");
+    String event_name = request.getParameter("event");
+
+    try {
+      Connection conn = DataServiceAPI.connect();
+      String sql =  "Select * From \"Event\" Where \"Event Name\" = '" + event_name + "' ";
+      PreparedStatement pstmt = conn.prepareStatement(sql);
+      ResultSet result = pstmt.executeQuery();
+      if(result.next()) {
+        model.addObject("id",result.getInt("Event Id"));
+        model.addObject("name",result.getString("Event Name"));
+        model.addObject("date",result.getString("Date"));
+        model.addObject("about",result.getString("About"));
+      }
+      pstmt.close();
+
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+      e.printStackTrace();
+    }
+    return model;
+  }
+
+
+  @RequestMapping(value = "/index")
+  protected ModelAndView main(HttpServletRequest request,
                                                HttpServletResponse response) throws Exception {
 
-
-
-
+    String paramAction = request.getParameter("action");
 
     ModelAndView model = new ModelAndView("main");
 
@@ -39,7 +70,7 @@ public class EvenaController extends AbstractController {
     String event_name = request.getParameter("ernm");
     String event_date = request.getParameter("date");
     String event_about = request.getParameter("About");
-    String paramAction = request.getParameter("action");
+
 
 
     if(paramAction != null) {
