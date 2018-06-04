@@ -141,11 +141,11 @@ form.find::after {
 <!-- About -->
 <div class="bgimg w3-text-white w3-container w3-padding-64 w3-xlarge w3-center" id="about">
   <h2><b>About</b></h2>
-  <p>TEST is a personal event organiser aimed at connecting the student community.</p>
-  <p>Unlike other Event organising platforms for business use, </p>
-  <p>we focus on small groups and emphasis on decreasing the workload of the organisers.</p>
-  <p>No matter who you are, as long as you are passionate in organising an event,</p>
-  <p><b>try Evena now to connect with the student community.</b></p>
+  <p>Evena is a personal event organiser aimed at connecting the student community.
+  Unlike other Event organising platforms for business use,
+  we focus on small groups and emphasis on decreasing the workload of the organisers.
+  No matter who you are, as long as you are passionate in organising an event,
+  <b>Try Evena now to connect with the student community.</b></p>
 
 </div>
 
