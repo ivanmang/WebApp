@@ -31,6 +31,7 @@ th {
     background-size: cover;
     background: url("/evena/resources/images/homepage.png") no-repeat;
     min-height: 100%;
+    width: 100%;
 }
 
 
@@ -38,12 +39,14 @@ th {
     background-size: cover;
     background: url("/evena/resources/images/background.jpg") no-repeat;
     min-height: 50%;
+    width: 100%;
 }
 
 .bgimg1 {
     background-size: cover;
     background: url("/evena/resources/images/background1.jpg") no-repeat;
     min-height: 50%;
+    width: 100%;
 }
 
 
