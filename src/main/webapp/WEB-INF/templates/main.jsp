@@ -9,23 +9,6 @@
 <style>
 body, html {height: 100%}
 body {font-family:"Lato", sans-serif;}
-table, td, th {
-    border: 1px solid #ddd;
-}
-
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-th, td {
-    text-align: left;
-    padding: 40px;
-}
-
-th {
-    background-color: orange;
-}
 
 .homeimg {
     background-size: cover;
@@ -33,7 +16,6 @@ th {
     min-height: 70%;
     width: 100%;
 }
-
 
 .bgimg {
     background-size: cover;
@@ -46,7 +28,7 @@ th {
     min-height: 50%;
 }
 
-/* Set a style for the submit button */
+/* Set a style for the buttons */
 .btn {
     background-color: orange;
     color: white;
@@ -61,36 +43,6 @@ th {
     opacity: 2;
 }
 
-form.find input[type=text] {
-    padding: 10px;
-    font-size: 17px;
-    border: 1px solid grey;
-    float: left;
-    width: 80%;
-    background: #f1f1f1;
-}
-
-form.find button {
-    float: left;
-    width: 20%;
-    padding: 10px;
-    background: orange;
-    color: white;
-    font-size: 17px;
-    border: 1px solid grey;
-    border-left: none;
-    cursor: pointer;
-}
-
-form.find button:hover {
-    background: orange;
-}
-
-form.find::after {
-    content: "";
-    clear: both;
-    display: table;
-}
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript">
@@ -165,7 +117,7 @@ form.find::after {
             <div class="w3-container w3-white">
               <p><b>Join a event</b></p>
               <p>You can join a event by a simple click</p>
-              <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Join Tickets</button>
+              <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Join</button>
             </div>
           </div>
           <div class="w3-third w3-margin-bottom">
@@ -173,7 +125,7 @@ form.find::after {
             <div class="w3-container w3-white">
               <p><b>Find some interesting event</b></p>
               <p>You can find some upcoming cool events</p>
-              <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Browse Event</button>
+              <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Browse Events</button>
             </div>
           </div>
         </div>
