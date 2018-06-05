@@ -12,31 +12,33 @@ body {font-family:"Lato", sans-serif;}
 
 .homeimg {
     background-size: cover;
-    background: url("${pageContext.request.contextPath}/resources/images/concert.png") no-repeat;
-    min-height: 70%;
+    background: url("${pageContext.request.contextPath}/resources/images/concert2.png") no-repeat center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    min-height: 75%;
     width: 100%;
 }
 
-.bgimg {
-    background-size: cover;
-    background: url("${pageContext.request.contextPath}/resources/images/background.jpg") no-repeat;
-    min-height: 50%;
-}
 .bgimg1 {
     background-size: cover;
-    background: url("${pageContext.request.contextPath}/resources/images/background1.jpg") no-repeat;
-    min-height: 50%;
+    background: url("${pageContext.request.contextPath}/resources/images/background1.jpg") no-repeat center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    min-height: 30%;
+    width: 100%;
 }
 
 /* Set a style for the buttons */
 .btn {
-    background-color: orange;
+    background-color: #ffc315;
     color: white;
     padding: 15px 20px;
     border: none;
     cursor: pointer;
     width: 100%;
-    opacity: 0.9;
+    opacity: 0.8;
 }
 
 .btn:hover {
