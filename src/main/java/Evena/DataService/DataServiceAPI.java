@@ -65,6 +65,8 @@ public class DataServiceAPI {
     }
 
   public int select(String name) throws SQLException {
+    Class.forName("org.postgresql.Driver");
+
     Connection conn = connect();
     int i = 0;
 
@@ -86,6 +88,8 @@ public class DataServiceAPI {
   }
 
   public boolean insert(int id, String name,String Date,String about) throws SQLException {
+    Class.forName("org.postgresql.Driver");
+
     Connection conn = connect();
 
     try {
@@ -104,7 +108,9 @@ public class DataServiceAPI {
   }
 
     public boolean exist(int i) throws SQLException {
-        Connection conn = connect();
+      Class.forName("org.postgresql.Driver");
+
+      Connection conn = connect();
 
         try {
             String sql =  "Select \"Event Id\" From \"Event\" Where \"Event Id\" = '" + i + "' ";
