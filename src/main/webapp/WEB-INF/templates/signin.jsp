@@ -86,7 +86,7 @@
 
             <c:choose>
                 <c:when test = "${action == 'create'}">
-                    <form action="/create" style="max-width:500px;margin:auto" method="GET">
+                    <form action="${pageContext.request.contextPath}/create" style="max-width:500px;margin:auto" method="GET">
                         <button type="submit" class="btn">Sign In</button>
                     </form>
                 </c:when>

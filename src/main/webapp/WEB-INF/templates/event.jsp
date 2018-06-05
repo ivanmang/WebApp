@@ -8,8 +8,23 @@
 <style>
     body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
     body {font-size: 16px;}
-    img {margin-bottom: -8px;}
     .eventSlides {display: none;}
+
+    /* Set a style for the submit button */
+    .btn {
+        background-color: orange;
+        color: white;
+        padding: 15px 20px;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;
+    }
+
+    .btn:hover {
+        opacity: 2;
+    }
+
 </style>
 <body class="w3-content w3-black" style="max-width:1500px;">
 
@@ -43,7 +58,7 @@
         <img class="w3-image" src="${pageContext.request.contextPath}/resources/images/test2.jpg" alt="Image 3" style="min-width:500px">
     </div>
     <a class="w3-button w3-black w3-display-right w3-margin-right w3-round w3-hide-small w3-hover-light-grey" onclick="plusDivs(1)">More photos <i class="fa fa-angle-right"></i></a>
-    <a class="w3-button w3-block w3-black w3-hide-large w3-hide-medium" onclick="plusDivs(1)">Take Tour <i class="fa fa-angle-right"></i></a>
+    <a class="w3-button w3-block w3-black w3-hide-large w3-hide-medium" onclick="plusDivs(1)">More photos <i class="fa fa-angle-right"></i></a>
 </header>
 
 <!-- The Event Section -->
@@ -55,6 +70,9 @@
             <p>${about}</p>
         </div>
     </div>
+    <form action="${pageContext.request.contextPath}/register" style="max-width:500px;margin:auto" method="GET">
+        <button type="submit" class="btn">Join Event</button>
+    </form>
 </div>
 
 

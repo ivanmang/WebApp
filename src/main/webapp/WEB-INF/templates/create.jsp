@@ -11,8 +11,6 @@
         min-height: 45%;
     }
 
-
-
     .input-container {
         display: -ms-flexbox; /* IE10 */
         display: flex;
