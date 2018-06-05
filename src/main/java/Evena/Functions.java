@@ -27,12 +27,12 @@ public class Functions {
     return this.name;
   }
 
-  public int runSelect(String name) throws SQLException {
+  public int runSelect(String name) throws SQLException, ClassNotFoundException {
     DataServiceAPI dsa = new DataServiceAPI();
     return dsa.select(name);
   }
 
-  public boolean runInsert(int id,String name,String date,String about) throws SQLException {
+  public boolean runInsert(int id,String name,String date,String about) throws SQLException, ClassNotFoundException {
     DataServiceAPI dsa = new DataServiceAPI();
     return dsa.insert(id,name,date,about);
   }
