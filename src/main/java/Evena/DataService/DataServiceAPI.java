@@ -64,7 +64,7 @@ public class DataServiceAPI {
         return eventList;
     }
 
-  public int select(String name) throws SQLException {
+  public int select(String name) throws SQLException, ClassNotFoundException {
     Class.forName("org.postgresql.Driver");
 
     Connection conn = connect();
@@ -87,7 +87,7 @@ public class DataServiceAPI {
     return i;
   }
 
-  public boolean insert(int id, String name,String Date,String about) throws SQLException {
+  public boolean insert(int id, String name,String Date,String about) throws SQLException, ClassNotFoundException {
     Class.forName("org.postgresql.Driver");
 
     Connection conn = connect();
@@ -107,7 +107,7 @@ public class DataServiceAPI {
 
   }
 
-    public boolean exist(int i) throws SQLException {
+    public boolean exist(int i) throws SQLException, ClassNotFoundException {
       Class.forName("org.postgresql.Driver");
 
       Connection conn = connect();
