@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Tim
-  Date: 6/5/2018
-  Time: 1:49 AM
-  To change this template use File | Settings | File Templates.
---%>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -64,9 +57,6 @@
 
 <body>
 
-<!-- Top header -->
-<header class="w3-container bgimg"></header>
-
 <!-- Navbar (on top) -->
 <div class="w3-top w3-hide-small w3-text-white">
     <div class="w3-bar w3-xlarge w3-opacity " id="navbar">
@@ -77,6 +67,8 @@
     </div>
 </div>
 
+<!-- Top header -->
+<header class="w3-container bgimg"></header>
 
 <div class="w3-container w3-padding-64 w3-large" id="create">
     <div class="container">
