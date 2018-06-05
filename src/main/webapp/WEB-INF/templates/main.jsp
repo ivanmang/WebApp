@@ -29,8 +29,8 @@ th {
 
 .homeimg {
     background-size: cover;
-    background: url("/resources/images/homepage.png") no-repeat;
-    min-height: 100%;
+    background: url("/resources/images/concert.png") no-repeat;
+    min-height: 70%;
     width: 100%;
 }
 
@@ -38,6 +38,11 @@ th {
 .bgimg {
     background-size: cover;
     background: url("/resources/images/background.jpg") no-repeat;
+    min-height: 50%;
+}
+.bgimg1 {
+    background-size: cover;
+    background: url("/resources/images/background1.jpg") no-repeat;
     min-height: 50%;
 }
 
@@ -104,7 +109,7 @@ form.find::after {
 <body>
 
 <!-- Navbar (on top) -->
-<div class="w3-top w3-hide-small">
+<div class="w3-top w3-hide-small w3-text-white">
   <div class="w3-bar w3-xlarge w3-opacity " id="navbar">
     <a href="#" class="w3-bar-item w3-button">Home</a>
     <a href="#about" class="w3-bar-item w3-button">About</a>
@@ -121,7 +126,7 @@ form.find::after {
       <button type="submit" class="btn">Browse Events</button>
         </form>
       </p>
-    <p><form action="/signin" style="max-width:500px;margin:auto" method="GET">
+    <p><form action="/create" style="max-width:500px;margin:auto" method="GET">
       <button type="submit" name = "action" value = "create" class="btn">Create</button>
   </form></p>
       <p><form action="/signin" style="max-width:500px;margin:auto" method="GET">
@@ -141,10 +146,10 @@ form.find::after {
   </div>
 
    <!-- The What you can do Section -->
-    <div class="w3-orange" id="whatyoucando">
+    <div class="bgimg1" id="whatyoucando">
       <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
-        <h2 class="w3-wide w3-center">What you can do</h2>
-        <p class="w3-opacity w3-center"><i>These are what we implemented so far!</i></p><br>
+        <h2 class="w3-text-white w3-wide w3-center">What you can do</h2>
+        <p class="w3-text-white w3-opacity w3-center"><i>These are what we have implemented so far!</i></p><br>
 
         <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
           <div class="w3-third w3-margin-bottom">
