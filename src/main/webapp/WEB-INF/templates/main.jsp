@@ -12,19 +12,19 @@ body {font-family:"Lato", sans-serif;}
 
 .homeimg {
     background-size: cover;
-    background: url("/resources/images/concert.png") no-repeat;
+    background: url("${pageContext.request.contextPath}/resources/images/concert.png") no-repeat;
     min-height: 70%;
     width: 100%;
 }
 
 .bgimg {
     background-size: cover;
-    background: url("/resources/images/background.jpg") no-repeat;
+    background: url("${pageContext.request.contextPath}/resources/images/background.jpg") no-repeat;
     min-height: 50%;
 }
 .bgimg1 {
     background-size: cover;
-    background: url("/resources/images/background1.jpg") no-repeat;
+    background: url("${pageContext.request.contextPath}/resources/images/background1.jpg") no-repeat;
     min-height: 50%;
 }
 
@@ -105,7 +105,7 @@ body {font-family:"Lato", sans-serif;}
 
         <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
           <div class="w3-third w3-margin-bottom">
-            <img src="/resources/images/create.jpg" alt="Create" style="width:100%" class="w3-hover-opacity">
+            <img src="${pageContext.request.contextPath}/resources/images/create.jpg" alt="Create" style="width:100%" class="w3-hover-opacity">
             <div class="w3-container w3-white">
               <p><b>Create a event</b></p>
               <p>You can create a event and share it to others</p>
@@ -113,7 +113,7 @@ body {font-family:"Lato", sans-serif;}
             </div>
           </div>
           <div class="w3-third w3-margin-bottom">
-            <img src="/resources/images/join.jpg" alt="Join" style="width:100%" class="w3-hover-opacity">
+            <img src="${pageContext.request.contextPath}/resources/images/join.jpg" alt="Join" style="width:100%" class="w3-hover-opacity">
             <div class="w3-container w3-white">
               <p><b>Join a event</b></p>
               <p>You can join a event by a simple click</p>
@@ -121,7 +121,7 @@ body {font-family:"Lato", sans-serif;}
             </div>
           </div>
           <div class="w3-third w3-margin-bottom">
-            <img src="/resources/images/find.jpg" alt="Find" style="width:100%" class="w3-hover-opacity">
+            <img src="${pageContext.request.contextPath}/resources/images/find.jpg" alt="Find" style="width:100%" class="w3-hover-opacity">
             <div class="w3-container w3-white">
               <p><b>Find some interesting event</b></p>
               <p>You can find some upcoming cool events</p>
