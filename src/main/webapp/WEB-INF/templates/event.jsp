@@ -1,4 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <title>WebApps-Evena</title>
 <meta charset="UTF-8">
@@ -7,67 +6,83 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-    body, html {height: 100%}
-    body {font-family: Tahoma, Geneva, sans-serif;}
-
-    .homeimg {
-        background-size: cover;
-        background: url("${pageContext.request.contextPath}/resources/images/homepage.png") no-repeat;
-        min-height: 100%;
-    }
-
-    table, th, td {
-        border: 1px solid black;
-        border-collapse: collapse;
-    }
-    th, td {
-        padding: 5px;
-        text-align: center;
-    }
-
+    body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+    body {font-size: 16px;}
+    img {margin-bottom: -8px;}
+    .eventSlides {display: none;}
 </style>
-
-<body>
+<body class="w3-content w3-black" style="max-width:1500px;">
 
 <!-- Navbar (on top) -->
-<div class="w3-top w3-hide-small">
-    <div class="w3-bar w3-xlarge w3-opacity " id="navbar">
+<div class="w3-display-container w3-top w3-hide-small w3-text-grey">
+    <div class="w3-bar w3-xlarge w3-opacity " id="navbar"><b>
         <a href="#" class="w3-bar-item w3-button">Home</a>
         <a href="#about" class="w3-bar-item w3-button">About</a>
         <a href="#create" class="w3-bar-item w3-button">Create an Event</a>
+        <a href="#find" class="w3-bar-item w3-button">List of Events</a></b>
     </div>
 </div>
 
-<!-- Header with background image -->
-<header class="homeimg w3-container w3-padding-64 w3-large " id="home">
-    <table style="width:75%">
-        <tr>
-            <th>Event ID:</th>
-            <td>${id}</td>
-        </tr>
-        <tr>
-            <th>Event Name:</th>
-            <td>${name}</td>
-        </tr>
-        <tr>
-            <th>Date:</th>
-            <td>${date}</td>
-        </tr>
-        <tr>
-            <th>About:</th>
-            <td>${about}</td>
-        </tr>
-    </table>
-    <form action="${pageContext.request.contextPath}/register" style="max-width:500px;margin:auto" method="GET">
-        <button type="submit" class="btn">Event</button>
-    </form>
+<!-- Header with Slideshow -->
+<header class="w3-display-container w3-center">
+    <button class="w3-button w3-block w3-green w3-hide-large w3-hide-medium" onclick="document.getElementById('download').style.display='block'">Download <i class="fa fa-android"></i> <i class="fa fa-apple"></i> <i class="fa fa-windows"></i></button>
+    <div class="eventSlides w3-animate-opacity">
+        <img class="w3-image" src="${pageContext.request.contextPath}/resources/images/test.jpg" alt="Image 1" style="min-width:500px">
+        <div class="w3-display-left w3-padding w3-hide-small" style="width:35%">
+            <div class="w3-opacity w3-hover-opacity-off w3-padding-large w3-round-large">
+                <h1 class="w3-xlarge">Organiser's Name</h1>
+                <hr class="w3-opacity">
+                <p><button class="w3-button w3-block w3-amber w3-round" onclick="document.getElementById('organiserId').style.display='block'">About the organiser <i class="fa fa-search"></i> <i class="fa fa-male"></i></button></p>
+            </div>
+        </div>
+    </div>
+    <div class="eventSlides w3-animate-opacity">
+        <img class="w3-image" src="${pageContext.request.contextPath}/resources/images/test1.jpg" alt="Image 2" style="min-width:500px">
+    </div>
+    <div class="eventSlides w3-animate-opacity">
+        <img class="w3-image" src="${pageContext.request.contextPath}/resources/images/test2.jpg" alt="Image 3" style="min-width:500px">
+    </div>
+    <a class="w3-button w3-black w3-display-right w3-margin-right w3-round w3-hide-small w3-hover-light-grey" onclick="plusDivs(1)">More photos <i class="fa fa-angle-right"></i></a>
+    <a class="w3-button w3-block w3-black w3-hide-large w3-hide-medium" onclick="plusDivs(1)">Take Tour <i class="fa fa-angle-right"></i></a>
 </header>
 
+<!-- The Event Section -->
+<div class="w3-padding-64 w3-white">
+    <div class="w3-row-padding">
+        <div class="w3-col l8 m6">
+            <h1 class="w3-jumbo"><b>${name}</b></h1>
+            <h1 class="w3-xxxlarge w3-text-amber"><b>${date}</b></h1>
+            <p>${about}</p>
+        </div>
+    </div>
+</div>
 
+
+
+<script>
+    // Slideshow
+    var slideIndex = 1;
+    showDivs(slideIndex);
+
+    function plusDivs(n) {
+        showDivs(slideIndex += n);
+    }
+
+    function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("eventSlides");
+        if (n > x.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = x.length}
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[slideIndex-1].style.display = "block";
+    }
+</script>
 
 <!-- Footer -->
-<footer class="w3-center w3-padding-48 w3-small">
-    <p>Webapp-Evena</p>
+<footer class="w3-container w3-light-grey w3-center w3-padding-48 w3-small">
+    <p>Webapp-Evena @2018</p>
 </footer>
 
 </body>

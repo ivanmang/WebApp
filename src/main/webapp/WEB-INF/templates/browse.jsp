@@ -46,6 +46,7 @@
     </p>
   </header>
 
+
  <!-- Events grid -->
 <c:forEach items="${eventList.events}" var="event" varStatus="status">
     <div class="w3-col l3 s6">
@@ -64,6 +65,7 @@
 </c:forEach>
 
 </div>
+
 
 
 </body>
