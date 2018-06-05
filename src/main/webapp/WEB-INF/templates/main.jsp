@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 body, html {height: 100%}
-body {font-family: Tahoma, Geneva, sans-serif;}
+body {font-family:"Lato", sans-serif;}
 table, td, th {
     border: 1px solid #ddd;
 }
@@ -131,16 +131,49 @@ form.find::after {
 </header>
 
 
-<!-- About -->
-<div class="bgimg w3-text-white w3-container w3-padding-64 w3-xlarge w3-center" id="about">
-  <h2><b>About</b></h2>
-  <p>Evena is a personal event organiser aimed at connecting the student community.
-  Unlike other Event organising platforms for business use,
-  we focus on small groups and emphasis on decreasing the workload of the organisers.
-  No matter who you are, as long as you are passionate in organising an event,
-  <b>Try Evena now to connect with the student community.</b></p>
+  <!-- About Section -->
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="about">
+    <h2 class="w3-wide">About</h2>
+    <p class="w3-opacity"><i>Evena - a personal event organiser</i></p>
+    <p class="w3-justify">Evena is a personal event organiser aimed at connecting the student community. Unlike other Event organising platforms for business use, we focus on small groups and emphasis on decreasing the workload of the organisers.
+    No matter who you are, as long as you are passionate in organising an event,
+    <b>Try Evena now to connect with the student community.</b></p>
+  </div>
 
-</div>
+   <!-- The What you can do Section -->
+    <div class="w3-orange" id="whatyoucando">
+      <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
+        <h2 class="w3-wide w3-center">What you can do</h2>
+        <p class="w3-opacity w3-center"><i>These are what we implemented so far!</i></p><br>
+
+        <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
+          <div class="w3-third w3-margin-bottom">
+            <img src="/resources/images/create.jpg" alt="Create" style="width:100%" class="w3-hover-opacity">
+            <div class="w3-container w3-white">
+              <p><b>Create a event</b></p>
+              <p>You can create a event and share it to others</p>
+              <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Create</button>
+            </div>
+          </div>
+          <div class="w3-third w3-margin-bottom">
+            <img src="/resources/images/join.jpg" alt="Join" style="width:100%" class="w3-hover-opacity">
+            <div class="w3-container w3-white">
+              <p><b>Join a event</b></p>
+              <p>You can join a event by a simple click</p>
+              <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Join Tickets</button>
+            </div>
+          </div>
+          <div class="w3-third w3-margin-bottom">
+            <img src="/resources/images/find.jpg" alt="Find" style="width:100%" class="w3-hover-opacity">
+            <div class="w3-container w3-white">
+              <p><b>Find some interesting event</b></p>
+              <p>You can find some upcoming cool events</p>
+              <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Browse Event</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
 <!-- Footer -->
 <footer class="w3-center w3-padding-48 w3-small">
