@@ -29,7 +29,7 @@ th {
 
 .homeimg {
     background-size: cover;
-    background: url("/evena/resources/images/homepage.png") no-repeat;
+    background: url("/resources/images/homepage.png") no-repeat;
     min-height: 100%;
     width: 100%;
 }
@@ -37,41 +37,9 @@ th {
 
 .bgimg {
     background-size: cover;
-    background: url("/evena/resources/images/background.jpg") no-repeat;
+    background: url("/resources/images/background.jpg") no-repeat;
     min-height: 50%;
-    width: 100%;
 }
-
-.bgimg1 {
-    background-size: cover;
-    background: url("/evena/resources/images/background1.jpg") no-repeat;
-    min-height: 50%;
-    width: 100%;
-}
-
-
-.input-container {
-    display: -ms-flexbox; /* IE10 */
-    display: flex;
-    width: 100%;
-    margin-bottom: 15px;
-}
-
-/*Set style for the icons*/
-.icon {
-    padding: 20px;
-    background: orange;
-    color: white;
-    min-width: 50px;
-    text-align: center;
-}
-
-.input-field {
-    width: 100%;
-    padding: 10px;
-    outline: none;
-}
-
 
 /* Set a style for the submit button */
 .btn {
@@ -119,6 +87,19 @@ form.find::after {
     display: table;
 }
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+    function disableF5(e) {
+        if (e.which === 116 || e.keyCode === 116) {
+            e.preventDefault();
+            window.location = window.location.pathname
+        }
+    }
+
+    $(function() {
+        $(document).on("keydown", disableF5);
+    });
+</script>
 
 <body>
 
@@ -135,8 +116,17 @@ form.find::after {
 <!-- Header with background image -->
 <header class="homeimg w3-display-container" id="home">
   <div class="w3-display-bottommiddle w3-center">
-    <p><a href="#create" class="w3-button w3-round w3-text-white w3-xlarge w3-amber">Create an Event</a></p>
-    <p><a href="#find" class="w3-button w3-round w3-text-white w3-xlarge w3-amber">Ongoing Events</a></p>
+      <p>
+      <form action="/browse" style="max-width:500px;margin:auto" method="GET">
+      <button type="submit" class="btn">Browse Events</button>
+        </form>
+      </p>
+    <p><form action="/signin" style="max-width:500px;margin:auto" method="GET">
+      <button type="submit" name = "action" value = "create" class="btn">Create</button>
+  </form></p>
+      <p><form action="/signin" style="max-width:500px;margin:auto" method="GET">
+      <button type="submit" name = "action" value = "signin" class="btn">Sign in</button>
+  </form></p>
   </div>
 </header>
 
@@ -151,53 +141,6 @@ form.find::after {
   <b>Try Evena now to connect with the student community.</b></p>
 
 </div>
-
-<!-- Create events form -->
-<div class="w3-container w3-padding-64 w3-large" id="create">
-  <div class="container">
-    <form action="/evena" style="max-width:500px;margin:auto" method="GET">
-      <center><h2>Create a event</h2></center>
-      <div class="input-container">
-        <i class="fa fa-pencil-square-o icon"></i>
-        <input class="input-field" type="text" placeholder="Name of the event?" name="ernm" id="ernm">
-      </div>
-
-      <div class="input-container">
-        <i class="fa fa-calendar icon"></i>
-        <input class="input-field" type="date" name="date" id="date">
-      </div>
-
-      <div class="input-container">
-        <i class="fa fa-bullhorn icon"></i>
-        <input class="input-field" type="text"  placeholder="About this event..." name="About" id="about1">
-      </div>
-
-      <button type="submit" name="action" value="insert" class="btn">Submit</button>
-    </form>
-  </div>
-</div>
-
-
-<div class="bgimg1 w3-text-white w3-container w3-padding-64 w3-xlarge w3-center" id="find">
-    <table class="w3-table-all w3-hoverable w3-table w3-centered"width="50%"  align="center">
-     <tr class="w3-orange">
-        <th>Event Id</th>
-        <th>Event Name</th>
-        <th>Date</th>
-         <th>About</th>
-    </tr>
-    <c:forEach items="${eventList.events}" var="event" varStatus="status">
-        <tr>
-            <td>${event.id}</td>
-            <td>${event.name}</td>
-            <td>${event.date}</td>
-            <td>${event.about}</td>
-        </tr>
-    </c:forEach>
-</table>
-</div>
-
-
 
 <!-- Footer -->
 <footer class="w3-center w3-padding-48 w3-small">

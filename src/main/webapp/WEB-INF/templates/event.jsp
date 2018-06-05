@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+<%--
+  Created by IntelliJ IDEA.
+  User: Tim
+  Date: 6/3/2018
+  Time: 1:51 AM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <title>WebApps-Evena</title>
 <meta charset="UTF-8">
@@ -12,7 +19,7 @@
 
     .homeimg {
         background-size: cover;
-        background: url("evena/resources/images/homepage.png") no-repeat;
+        background: url("/resources/images/homepage.png") no-repeat;
         min-height: 100%;
     }
 
@@ -43,23 +50,26 @@
     <table style="width:75%">
         <tr>
             <th>Event ID:</th>
-            <td>1</td>
+            <td>${id}</td>
         </tr>
         <tr>
             <th>Event Name:</th>
-            <td>Save the Cats</td>
+            <td>${name}</td>
         </tr>
         <tr>
             <th>Date:</th>
-            <td>1/1/1997</td>
+            <td>${date}</td>
         </tr>
         <tr>
             <th>About:</th>
-            <td>My birthday</td>
+            <td>${about}</td>
         </tr>
     </table>
+    <form action="/register" style="max-width:500px;margin:auto" method="GET">
+        <button type="submit" class="btn">Event</button>
+    </form>
 </header>
-<input type="submit" value="Event" />
+
 
 
 <!-- Footer -->
