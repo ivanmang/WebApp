@@ -51,9 +51,9 @@
     <div class="w3-col l3 s6">
       <div class="w3-container">
         <div class="w3-display-container">
-          <img src="/resources/images/photoinvalid.jpeg" style="width:100%">
+          <img src="${pageContext.request.contextPath}/resources/images/photoinvalid.jpeg" style="width:100%">
             <div class="w3-display-middle w3-display-hover">
-              <form action="/event" style="max-width:500px;margin:auto" method="GET">
+              <form action="${pageContext.request.contextPath}/event" style="max-width:500px;margin:auto" method="GET">
               <button type="submit" name="event"value=${event.name} class="w3-button w3-black btn">Join Now <i class="fa fa-edit"></i></button>
               </form>
              </div>
