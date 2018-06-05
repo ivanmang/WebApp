@@ -25,7 +25,7 @@
                 <td>${event.date}</td>
                 <td>${event.about}</td>
                 <td>
-                    <form action="/eventdir" style="max-width:500px;margin:auto" method="GET">
+                    <form action="${pageContext.request.contextPath}/eventdir" style="max-width:500px;margin:auto" method="GET">
                         <button type="submit" name="event" value=${event.name} class="btn">Details</button>
                     </form>
                 </td>

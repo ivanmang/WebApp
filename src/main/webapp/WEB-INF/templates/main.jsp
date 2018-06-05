@@ -74,14 +74,14 @@ body {font-family:"Lato", sans-serif;}
 <header class="homeimg w3-display-container" id="home">
   <div class="w3-display-bottommiddle w3-center">
       <p>
-      <form action="/browse" style="max-width:500px;margin:auto" method="GET">
+      <form action="${pageContext.request.contextPath}/browse" style="max-width:500px;margin:auto" method="GET">
       <button type="submit" class="btn">Browse Events</button>
         </form>
       </p>
-    <p><form action="/create" style="max-width:500px;margin:auto" method="GET">
+    <p><form action="${pageContext.request.contextPath}/create" style="max-width:500px;margin:auto" method="GET">
       <button type="submit" name = "action" value = "create" class="btn">Create</button>
   </form></p>
-      <p><form action="/signin" style="max-width:500px;margin:auto" method="GET">
+      <p><form action="${pageContext.request.contextPath}/signin" style="max-width:500px;margin:auto" method="GET">
       <button type="submit" name = "action" value = "signin" class="btn">Sign in</button>
   </form></p>
   </div>

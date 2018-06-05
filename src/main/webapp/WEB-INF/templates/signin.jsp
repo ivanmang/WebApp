@@ -30,20 +30,20 @@
 
     .homeimg {
         background-size: cover;
-        background: url("/resources/images/homepage.png") no-repeat;
+        background: url("${pageContext.request.contextPath}/resources/images/homepage.png") no-repeat;
         min-height: 100%;
     }
 
 
     .bgimg {
         background-size: cover;
-        background: url("/resources/images/background.jpg") no-repeat;
+        background: url("${pageContext.request.contextPath}/resources/images/background.jpg") no-repeat;
         min-height: 50%;
     }
 
     .bgimg1 {
         background-size: cover;
-        background: url("/resources/images/background1.jpg") no-repeat;
+        background: url("${pageContext.request.contextPath}/resources/images/background1.jpg") no-repeat;
         min-height: 50%;
     }
 
@@ -108,7 +108,7 @@
     </c:when>
 
     <c:otherwise>
-        <form action="/orgdir" style="max-width:500px;margin:auto" method="GET">
+        <form action="${pageContext.request.contextPath}/orgdir" style="max-width:500px;margin:auto" method="GET">
             <button type="submit" class="btn">Sign In</button>
         </form>
     </c:otherwise>

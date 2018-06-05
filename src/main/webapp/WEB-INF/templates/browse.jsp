@@ -13,9 +13,9 @@
     .w3-sidebar a {font-family: "Roboto", sans-serif}
     body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     </style>
-    <body class="w3-content" style="max-width:1200px">
-</style>
 
+
+<body class="w3-content" style="max-width:1200px"
 
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-bar-block w3-light-grey w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
@@ -62,6 +62,8 @@
       </div>
     </div>
 </c:forEach>
+
+</div>
 
 
 </body>

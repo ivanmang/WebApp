@@ -12,7 +12,7 @@
 
     .homeimg {
         background-size: cover;
-        background: url("/resources/images/homepage.png") no-repeat;
+        background: url("${pageContext.request.contextPath}/resources/images/homepage.png") no-repeat;
         min-height: 100%;
     }
 
@@ -58,7 +58,7 @@
             <td>${about}</td>
         </tr>
     </table>
-    <form action="/register" style="max-width:500px;margin:auto" method="GET">
+    <form action="${pageContext.request.contextPath}/register" style="max-width:500px;margin:auto" method="GET">
         <button type="submit" class="btn">Event</button>
     </form>
 </header>

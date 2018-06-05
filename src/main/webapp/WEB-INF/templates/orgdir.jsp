@@ -11,7 +11,7 @@
     <title>Organiser Home Page</title>
 </head>
 <body>
-<form action="/manage" style="max-width:500px;margin:auto" method="GET">
+<form action="${pageContext.request.contextPath}/manage" style="max-width:500px;margin:auto" method="GET">
     <button type="submit" class="btn">Manage</button>
 </form>
 </body>

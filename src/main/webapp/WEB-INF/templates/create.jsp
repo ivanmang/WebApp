@@ -10,7 +10,7 @@
 <style>
     .bgimg1 {
         background-size: cover;
-        background: url("/resources/images/background1.jpg") no-repeat;
+        background: url("${pageContext.request.contextPath}/resources/images/background1.jpg") no-repeat;
         min-height: 50%;
     }
 
@@ -43,7 +43,7 @@
 <body class = "bgimg1">
 <div class="w3-container w3-padding-64 w3-large" id="create">
     <div class="container">
-        <form action="/event" style="max-width:500px;margin:auto" method="GET">
+        <form action="${pageContext.request.contextPath}/event" style="max-width:500px;margin:auto" method="GET">
             <h2>Create a event</h2>
             <div class="input-container">
                 <i class="fa fa-pencil-square-o icon"></i>
