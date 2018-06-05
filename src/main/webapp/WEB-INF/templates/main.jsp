@@ -36,6 +36,7 @@ body {font-family:"Lato", sans-serif;}
     color: white;
     padding: 15px 20px;
     border: none;
+    border-radius: 12px;
     cursor: pointer;
     width: 100%;
     opacity: 0.8;

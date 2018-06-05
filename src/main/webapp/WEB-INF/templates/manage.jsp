@@ -16,6 +16,17 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <body>
+
+<!-- Navbar (on top) -->
+<div class="w3-top w3-hide-small w3-text-white">
+    <div class="w3-bar w3-xlarge w3-opacity " id="navbar">
+        <a href="#" class="w3-bar-item w3-button">Home</a>
+        <a href="#about" class="w3-bar-item w3-button">About</a>
+        <a href="#create" class="w3-bar-item w3-button">Create an Event</a>
+        <a href="#find" class="w3-bar-item w3-button">List of Events</a>
+    </div>
+</div>
+
 <div class="bgimg1 w3-text-white w3-container w3-padding-64 w3-xlarge w3-center" id="find">
     <table class="w3-table-all w3-hoverable w3-table w3-centered"width="50%"  align="center">
         <tr class="w3-orange">

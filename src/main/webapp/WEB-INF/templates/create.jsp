@@ -5,13 +5,17 @@
   Time: 1:49 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <html>
 <style>
-    .bgimg1 {
-        background-size: cover;
-        background: url("${pageContext.request.contextPath}/resources/images/background1.jpg") no-repeat;
-        min-height: 50%;
+    .bgimg {
+        background-size: auto;
+        background: url("${pageContext.request.contextPath}/resources/images/create.png") no-repeat center;
+        min-height: 45%;
     }
 
 
@@ -36,15 +40,47 @@
         padding: 10px;
         outline: none;
     }
+
+    /* Set a style for the submit button */
+    .btn {
+        background-color: orange;
+        color: white;
+        padding: 15px 20px;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;
+    }
+
+    .btn:hover {
+        opacity: 2;
+    }
+
 </style>
 <head>
     <title>Create</title>
 </head>
-<body class = "bgimg1">
+
+<body>
+
+<!-- Top header -->
+<header class="w3-container bgimg"></header>
+
+<!-- Navbar (on top) -->
+<div class="w3-top w3-hide-small w3-text-white">
+    <div class="w3-bar w3-xlarge w3-opacity " id="navbar">
+        <a href="#" class="w3-bar-item w3-button">Home</a>
+        <a href="#about" class="w3-bar-item w3-button">About</a>
+        <a href="#create" class="w3-bar-item w3-button">Create an Event</a>
+        <a href="#find" class="w3-bar-item w3-button">List of Events</a>
+    </div>
+</div>
+
+
 <div class="w3-container w3-padding-64 w3-large" id="create">
     <div class="container">
         <form action="${pageContext.request.contextPath}/event" style="max-width:500px;margin:auto" method="GET">
-            <h2>Create a event</h2>
+            <h2>Create a new event</h2>
             <div class="input-container">
                 <i class="fa fa-pencil-square-o icon"></i>
                 <input class="input-field" type="text" placeholder="Name of the event?" name="ernm" id="ernm">
@@ -64,6 +100,7 @@
         </form>
     </div>
 </div>
+
 
 </body>
 </html>
