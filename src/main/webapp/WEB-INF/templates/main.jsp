@@ -29,7 +29,7 @@ th {
 
 .homeimg {
     background-size: cover;
-    background: url("/resources/images/concert.png") no-repeat;
+    background: url("${pageContext.request.contextPath}/resources/images/concert.png") no-repeat;
     min-height: 70%;
     width: 100%;
 }
@@ -37,12 +37,12 @@ th {
 
 .bgimg {
     background-size: cover;
-    background: url("/resources/images/background.jpg") no-repeat;
+    background: url("${pageContext.request.contextPath}/resources/images/background.jpg") no-repeat;
     min-height: 50%;
 }
 .bgimg1 {
     background-size: cover;
-    background: url("/resources/images/background1.jpg") no-repeat;
+    background: url("${pageContext.request.contextPath}/resources/images/background1.jpg") no-repeat;
     min-height: 50%;
 }
 
