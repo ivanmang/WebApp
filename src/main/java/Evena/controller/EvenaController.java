@@ -31,6 +31,55 @@ public class EvenaController {
 //    events.add(new Event("Ronald", "Reagan"));
 //  }
 
+  @RequestMapping(value = "/register")
+  protected ModelAndView register(HttpServletRequest request) throws Exception {
+    ModelAndView model = new ModelAndView("register");
+    return model;
+  }
+
+  @RequestMapping(value = "/manage")
+  protected ModelAndView manage(HttpServletRequest request) throws Exception {
+    ModelAndView model = new ModelAndView("manage");
+    DataServiceAPI a = new DataServiceAPI();
+    model.addObject("eventList", a.selectall());
+    return model;
+  }
+
+  @RequestMapping(value = "/eventdir")
+  protected ModelAndView eventdir(HttpServletRequest request) throws Exception {
+    ModelAndView model = new ModelAndView("eventdir");
+    return model;
+  }
+
+  @RequestMapping(value = "/orgdir")
+  protected ModelAndView orgdir(HttpServletRequest request) throws Exception {
+    ModelAndView model = new ModelAndView("orgdir");
+    return model;
+  }
+
+  @RequestMapping(value = "/create")
+  protected ModelAndView create(HttpServletRequest request) throws Exception {
+    ModelAndView model = new ModelAndView("create");
+    return model;
+  }
+
+
+  @RequestMapping(value = "/signin")
+  protected ModelAndView signin(HttpServletRequest request) throws Exception {
+    String action = request.getParameter("action");
+    ModelAndView model = new ModelAndView("signin");;
+    model.addObject("action",action);
+    return model;
+  }
+
+  @RequestMapping(value = "/browse")
+  protected ModelAndView browse(HttpServletRequest request) throws Exception {
+    ModelAndView model = new ModelAndView("browse");
+    DataServiceAPI a = new DataServiceAPI();
+    model.addObject("eventList", a.selectall());
+    return model;
+  }
+
   @RequestMapping(value = "/event")
   protected ModelAndView redirect(HttpServletRequest request) {
     ModelAndView model = new ModelAndView("event");

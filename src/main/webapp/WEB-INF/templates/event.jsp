@@ -65,7 +65,7 @@
             <td>${about}</td>
         </tr>
     </table>
-    <form action="/index" style="max-width:500px;margin:auto" method="GET">
+    <form action="/register" style="max-width:500px;margin:auto" method="GET">
         <button type="submit" class="btn">Event</button>
     </form>
 </header>
