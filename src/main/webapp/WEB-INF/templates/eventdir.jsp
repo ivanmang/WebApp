@@ -97,15 +97,67 @@
 </div>
 
     <div id="Info" class="w3-container manage">
-        <h2>This is info</h2>
+        <table class="w3-table-all w3-hoverable w3-table w3-centered"width="50%"  align="center">
+            <tr class="w3-orange">
+                <th>ID</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>About</th>
+            </tr>
+            <tr>
+                <td>${id}</td>
+                <td>${name}</td>
+                <td>${date}</td>
+                <td>${about}</td>
+            </tr>
+        </table>
+            <div class="container">
+                <form action="${pageContext.request.contextPath}/eventdir" style="max-width:500px;margin:auto" method="GET">
+                    <h2>Update Event</h2>
+                    <div class="input-container">
+                        <i class="fa fa-pencil-square-o icon"></i>
+                        <input class="input-field" type="text" placeholder="Name of the event?" name="name" id="name">
+                    </div>
+
+                    <div class="input-container">
+                        <i class="fa fa-calendar icon"></i>
+                        <input class="input-field" type="date" name="date" id="date">
+                    </div>
+
+                    <div class="input-container">
+                        <i class="fa fa-bullhorn icon"></i>
+                        <input class="input-field" type="text"  placeholder="About this event..." name="about" id="about1">
+                    </div>
+
+                    <button type="submit" name="update" value =${id} class="btn">Edit</button>
+                </form>
+            </div>
     </div>
 
     <div id="Parti" class="w3-container manage" style="display:none">
-        <h2>This is Parti</h2>
+        <table class="w3-table-all w3-hoverable w3-table w3-centered"width="50%"  align="center">
+            <tr class="w3-orange">
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+            <c:forEach items="${p_list.participants}" var="p" varStatus="status">
+                <tr>
+                    <td>${p.id}</td>
+                    <td>${p.name}</td>
+                </tr>
+            </c:forEach>
+        </table>
     </div>
 
     <div id="InfoBoard" class="w3-container manage" style="display:none">
-        <h2>This is info board</h2>
+        <form action="${pageContext.request.contextPath}/eventdir" style="max-width:500px;margin:auto" method="GET">
+            <h2>Add Info</h2>
+            <div class="input-container">
+                <i class="fa fa-pencil-square-o icon"></i>
+                <input class="input-field" type="text" placeholder="Info?" name="info">
+            </div>
+            <button type="submit" name="event" value=${event} class="btn">Edit</button>
+        </form>
     </div>
 
 
