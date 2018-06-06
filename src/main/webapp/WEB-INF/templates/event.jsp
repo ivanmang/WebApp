@@ -74,9 +74,10 @@
         <button type="submit" name="eventid" value = ${id} class="btn">Join Event</button>
     </form>
 </div>
+
 <table class="w3-table-all w3-hoverable w3-table w3-centered"width="50%"  align="center">
     <tr class="w3-orange">
-        <th>Info</th>
+        <th class="w3-text-white">Info</th>
     </tr>
     <c:forEach items="${infoList.infos}" var="infos" varStatus="status">
         <tr>

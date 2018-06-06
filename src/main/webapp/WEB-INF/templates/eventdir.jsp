@@ -18,7 +18,7 @@
     /* Set a style for the submit button */
     .btn {
         position: relative;
-        background-color: transparent;
+        background-color: orangered;
         color: white;
         padding: auto;
         border: none;
@@ -29,8 +29,29 @@
 
     .btn:hover {
         opacity: 2;
-        background-color: orange;
     }
+
+    .input-container {
+        display: -ms-flexbox; /* IE10 */
+        display: flex;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    /*Set style for the icons*/
+    .icon {
+        padding: 20px;
+        color: white;
+        min-width: 50px;
+        text-align: center;
+    }
+
+    .input-field {
+        width: 100%;
+        padding: 10px;
+        outline: none;
+    }
+
 
 </style>
 <body>
@@ -72,71 +93,68 @@
         <h1 class="w3-xxxlarge"><b>Manage Event: ${name}</b></h1>
 
 
-<div class="w3-row-padding w3-margin-bottom">
+<div class="w3-row-padding w3-margin-bottom" >
     <div class="w3-third">
-        <div class="w3-container w3-blue w3-padding-16">
-            <div class="w3-center"><i class="fa fa-info-circle w3-xxlarge"></i></div>
-            <button type="submit" name="event" value=${event} class="btn" onclick="changeTab('Info')">Info</button>
+        <div class="btn w3-blue w3-padding-16" onclick="changeTab('Info')">
+            <div class="w3-center"><i class="fa fa-info-circle w3-xxlarge"></i><h3>Info</h3></div>
             <div class="w3-clear"></div>
         </div>
     </div>
     <div class="w3-third">
-        <div class="w3-container w3-purple w3-padding-16">
-            <div class="w3-center"><i class="fa fa-users w3-xxlarge"></i></div>
-                <button type="submit" name="event" value=${event} class="btn" onclick="changeTab('Parti')">Parti List</button>
+        <div class="btn w3-purple w3-padding-16" onclick="changeTab('Parti')">
+            <div class="w3-center"><i class="fa fa-users w3-xxlarge"></i><h3>List of Participants</h3></div>
             <div class="w3-clear"></div>
         </div>
     </div>
     <div class="w3-third">
-        <div class="w3-container w3-teal w3-padding-16">
-            <div class="w3-center"><i class="fa fa-file-text-o w3-xxlarge"></i></div>
-                <button type="submit" name="event" value=${event} class="btn" onclick="changeTab('InfoBoard')">Info Board</button>
+        <div class="btn w3-teal w3-padding-16" onclick="changeTab('InfoBoard')">
+            <div class="w3-center"><i class="fa fa-file-text-o w3-xxlarge"></i><h3>Information board</h3></div>
             <div class="w3-clear"></div>
         </div>
     </div>
 </div>
 
     <div id="Info" class="w3-container manage">
-        <table class="w3-table-all w3-hoverable w3-table w3-centered"width="50%"  align="center">
-            <tr class="w3-orange">
+        <table class="w3-table-all w3-hoverable w3-centered w3-striped"width="50%"  align="center">
+            <tr class="w3-blue">
                 <th>ID</th>
                 <th>Name</th>
                 <th>Date</th>
                 <th>About</th>
             </tr>
-            <tr>
+            <tr class="w3-form">
                 <td>${id}</td>
                 <td>${name}</td>
                 <td>${date}</td>
                 <td>${about}</td>
             </tr>
         </table>
-            <div class="container">
+            <div class="w3-container  w3-large">
                 <form action="${pageContext.request.contextPath}/eventdir" style="max-width:500px;margin:auto" method="GET">
                     <h2>Update Event</h2>
-                    <div class="input-container">
-                        <i class="fa fa-pencil-square-o icon"></i>
+                    <div class="input-container w3-blue">
+                        <i class="fa fa-pencil-square-o icon" ></i>
                         <input class="input-field" type="text" placeholder="Name of the event?" name="name" id="name">
                     </div>
 
-                    <div class="input-container">
+                    <div class="input-container w3-blue">
                         <i class="fa fa-calendar icon"></i>
                         <input class="input-field" type="date" name="date" id="date">
                     </div>
 
-                    <div class="input-container">
+                    <div class="input-container w3-blue">
                         <i class="fa fa-bullhorn icon"></i>
                         <input class="input-field" type="text"  placeholder="About this event..." name="about" id="about1">
                     </div>
 
-                    <button type="submit" name="update" value =${id} class="btn">Edit</button>
+                    <button class="btn" type="submit" name="update" value =${id} >Edit</button>
                 </form>
             </div>
     </div>
 
     <div id="Parti" class="w3-container manage" style="display:none">
-        <table class="w3-table-all w3-hoverable w3-table w3-centered"width="50%"  align="center">
-            <tr class="w3-orange">
+        <table class="w3-table-all w3-hoverable w3-centered w3-striped"width="50%"  align="center">
+            <tr class="w3-purple">
                 <th>ID</th>
                 <th>Name</th>
             </tr>
@@ -151,9 +169,9 @@
 
     <div id="InfoBoard" class="w3-container manage" style="display:none">
         <form action="${pageContext.request.contextPath}/eventdir" style="max-width:500px;margin:auto" method="GET">
-            <h2>Add Info</h2>
+            <h2>Add Informations</h2>
             <div class="input-container">
-                <i class="fa fa-pencil-square-o icon"></i>
+                <i class="fa fa-pencil-square-o icon w3-teal"></i>
                 <input class="input-field" type="text" placeholder="Info?" name="info">
             </div>
             <button type="submit" name="event" value=${event} class="btn">Edit</button>
