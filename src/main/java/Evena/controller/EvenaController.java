@@ -30,113 +30,6 @@ public class EvenaController {
 //    events.add(new Event("Ronald", "Reagan"));
 //  }
 
-  @RequestMapping(value = "/manageinfo")
-  protected ModelAndView manageinfo(HttpServletRequest request) throws Exception {
-    ModelAndView model = new ModelAndView("manageinfo");
-    String sql;
-    String id;
-    if(request.getParameter("update")!=null){
-      Connection conn = DataServiceAPI.connect();
-      if(!request.getParameter("name").equals("")) {
-        sql = "UPDATE events SET eventName = '" + request.getParameter("name") + "' WHERE eventID = '" + request.getParameter("update")+ "'";
-        PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.executeUpdate();
-      }
-      if(!request.getParameter("date").equals("")) {
-//        System.out.println(request.getParameter("date"));
-        sql = "UPDATE events SET eventDate = '" + request.getParameter("date") + "' WHERE eventID = '" + request.getParameter("update")+ "'";
-        PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.executeUpdate();
-      }
-      if(!request.getParameter("about").equals("")) {
-        sql = "UPDATE events SET info = '" + request.getParameter("about") + "' WHERE eventID = '" + request.getParameter("update")+ "'";
-        PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.executeUpdate();
-      }
-      id = request.getParameter("update");
-    }else{
-      id = request.getParameter("event");
-    }
-    try {
-      Connection conn = DataServiceAPI.connect();
-      sql =  "Select * From events Where eventID = '" + id + "' ";
-      PreparedStatement pstmt = conn.prepareStatement(sql);
-      ResultSet result = pstmt.executeQuery();
-      if(result.next()) {
-        model.addObject("id",result.getString("eventID"));
-        model.addObject("name",result.getString("eventName"));
-        model.addObject("date",result.getString("eventDate"));
-        model.addObject("about",result.getString("info"));
-      }
-      pstmt.close();
-
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-      e.printStackTrace();
-    }
-    return model;
-  }
-
-  @RequestMapping(value = "/partilist")
-  protected ModelAndView partilist(HttpServletRequest request) throws Exception {
-    ModelAndView model = new ModelAndView("partilist");
-    try {
-      Connection conn = DataServiceAPI.connect();
-      String sql =  "Select participantID From events_Participants Where eventID = '" + request.getParameter("event") + "'" ;
-      PreparedStatement pstmt = conn.prepareStatement(sql);
-      ResultSet result = pstmt.executeQuery();
-      ParticipantList p_list = new ParticipantList();
-      List<Participant> list = new ArrayList<>();
-      while(result.next()){
-        sql =  "Select participantName From participants Where participantID = '" + result.getString("participantID") + "'" ;
-        pstmt = conn.prepareStatement(sql);
-        ResultSet p_result = pstmt.executeQuery();
-        p_result.next();
-        Participant p = new Participant(result.getString("participantID"),p_result.getString("participantName"));
-        list.add(p);
-      }
-      p_list.setParticipants(list);
-      pstmt.close();
-      model.addObject("p_list",p_list);
-
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-      e.printStackTrace();
-    }
-    return model;
-  }
-
-  @RequestMapping(value = "/manageInfoBoard")
-  protected ModelAndView manageInfoBoard(HttpServletRequest request) throws Exception {
-    ModelAndView model = new ModelAndView("manageInfoBoard");
-    if(request.getParameter("info")!=null) {
-      if (!request.getParameter("info").equals("")) {
-        int info_id = 1;
-        try {
-          Connection conn = DataServiceAPI.connect();
-          String sql = "Select * From info Where \"infoID\" = '" + info_id + "' ";
-          PreparedStatement pstmt = conn.prepareStatement(sql);
-          ResultSet result = pstmt.executeQuery();
-          while (result.next()) {
-            info_id = ThreadLocalRandom.current().nextInt(2, 255);
-            sql = "Select participantID From participants Where participantID = '" + info_id + "' ";
-            pstmt = conn.prepareStatement(sql);
-            result = pstmt.executeQuery();
-          }
-          sql = "Insert Into info Values ('" + info_id + "' , '" + request.getParameter("event") + "' , '" + request.getParameter("info") + " ')";
-          pstmt = conn.prepareStatement(sql);
-          pstmt.executeUpdate();
-          pstmt.close();
-        } catch (Exception e) {
-          System.out.println(e.getMessage());
-          e.printStackTrace();
-        }
-      }
-    }
-    model.addObject("event",request.getParameter("event"));
-    return model;
-  }
-
   @RequestMapping(value = "/register")
   protected ModelAndView register(HttpServletRequest request) throws Exception {
     ModelAndView model = new ModelAndView("register");
@@ -195,6 +88,103 @@ public class EvenaController {
   protected ModelAndView eventdir(HttpServletRequest request) throws Exception {
     ModelAndView model = new ModelAndView("eventdir");
     model.addObject("event",request.getParameter("event"));
+
+    //partilist
+      try {
+          Connection conn = DataServiceAPI.connect();
+          String sql =  "Select participantID From events_Participants Where eventID = '" + request.getParameter("event") + "'" ;
+          PreparedStatement pstmt = conn.prepareStatement(sql);
+          ResultSet result = pstmt.executeQuery();
+          ParticipantList p_list = new ParticipantList();
+          List<Participant> list = new ArrayList<>();
+          while(result.next()){
+              sql =  "Select participantName From participants Where participantID = '" + result.getString("participantID") + "'" ;
+              pstmt = conn.prepareStatement(sql);
+              ResultSet p_result = pstmt.executeQuery();
+              p_result.next();
+              Participant p = new Participant(result.getString("participantID"),p_result.getString("participantName"));
+              list.add(p);
+          }
+          p_list.setParticipants(list);
+          pstmt.close();
+          model.addObject("p_list",p_list);
+
+      } catch (Exception e) {
+          System.out.println(e.getMessage());
+          e.printStackTrace();
+      }
+
+      //manageinfo
+
+      String sql;
+      String id;
+      if(request.getParameter("update")!=null){
+          Connection conn = DataServiceAPI.connect();
+          if(!request.getParameter("name").equals("")) {
+              sql = "UPDATE events SET eventName = '" + request.getParameter("name") + "' WHERE eventID = '" + request.getParameter("update")+ "'";
+              PreparedStatement pstmt = conn.prepareStatement(sql);
+              pstmt.executeUpdate();
+          }
+          if(!request.getParameter("date").equals("")) {
+//        System.out.println(request.getParameter("date"));
+              sql = "UPDATE events SET eventDate = '" + request.getParameter("date") + "' WHERE eventID = '" + request.getParameter("update")+ "'";
+              PreparedStatement pstmt = conn.prepareStatement(sql);
+              pstmt.executeUpdate();
+          }
+          if(!request.getParameter("about").equals("")) {
+              sql = "UPDATE events SET info = '" + request.getParameter("about") + "' WHERE eventID = '" + request.getParameter("update")+ "'";
+              PreparedStatement pstmt = conn.prepareStatement(sql);
+              pstmt.executeUpdate();
+          }
+          id = request.getParameter("update");
+      }else{
+          id = request.getParameter("event");
+      }
+      try {
+          Connection conn = DataServiceAPI.connect();
+          sql =  "Select * From events Where eventID = '" + id + "' ";
+          PreparedStatement pstmt = conn.prepareStatement(sql);
+          ResultSet result = pstmt.executeQuery();
+          if(result.next()) {
+              model.addObject("id",result.getString("eventID"));
+              model.addObject("name",result.getString("eventName"));
+              model.addObject("date",result.getString("eventDate"));
+              model.addObject("about",result.getString("info"));
+          }
+          pstmt.close();
+
+      } catch (Exception e) {
+          System.out.println(e.getMessage());
+          e.printStackTrace();
+      }
+
+      //manageinfoboard
+
+      if(request.getParameter("info")!=null) {
+          if (!request.getParameter("info").equals("")) {
+              int info_id = 1;
+              try {
+                  Connection conn = DataServiceAPI.connect();
+                  sql = "Select * From info Where \"infoID\" = '" + info_id + "' ";
+                  PreparedStatement pstmt = conn.prepareStatement(sql);
+                  ResultSet result = pstmt.executeQuery();
+                  while (result.next()) {
+                      info_id = ThreadLocalRandom.current().nextInt(2, 255);
+                      sql = "Select participantID From participants Where participantID = '" + info_id + "' ";
+                      pstmt = conn.prepareStatement(sql);
+                      result = pstmt.executeQuery();
+                  }
+                  sql = "Insert Into info Values ('" + info_id + "' , '" + request.getParameter("event") + "' , '" + request.getParameter("info") + " ')";
+                  pstmt = conn.prepareStatement(sql);
+                  pstmt.executeUpdate();
+                  pstmt.close();
+              } catch (Exception e) {
+                  System.out.println(e.getMessage());
+                  e.printStackTrace();
+              }
+          }
+      }
+
     return model;
   }
 
