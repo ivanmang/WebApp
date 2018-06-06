@@ -8,24 +8,40 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <html>
-<style>
 
-    .w3-sidebar a {font-family: "Roboto", sans-serif}
-    body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
-    </style>
+<style>
+  .bgimg {
+    background-size: auto;
+    background: url("${pageContext.request.contextPath}/resources/images/browse.png") no-repeat center;
+    min-height: 30%;
+  }
+
+
+</style>
 
 
 <body class="w3-content" style="max-width:1200px">
 
+<header class="w3-container bgimg"></header>
+
+<!-- Navbar (on top) -->
+<div class="w3-top w3-hide-small w3-text-white">
+  <div class="w3-bar w3-xlarge w3-opacity " id="navbar">
+    <a href="${pageContext.request.contextPath}/index" class="w3-bar-item w3-button">Home</a>
+    <a href="${pageContext.request.contextPath}/create" class="w3-bar-item w3-button">Create an Event</a>
+    <a href="${pageContext.request.contextPath}/manage" class="w3-bar-item w3-button">Manage Your Events</a>
+  </div>
+</div>
+
 <!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-bar-block w3-light-grey w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
-  <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:250px;" id="mySidebar"><br>
+  <div class="w3-bar-block">
     <a href="${pageContext.request.contextPath}/index" class="w3-bar-item w3-button">Home  <i class="fa fa-home"></i></a>
-    <a href="#" class="w3-bar-item w3-button">Most Recent Events</a>
-    <a href="#" class="w3-bar-item w3-button">Popular Events</a>
-    <a href="#" class="w3-bar-item w3-button">Music Events</a>
-    <a href="#" class="w3-bar-item w3-button">Sports Events</a>
-    <a href="#" class="w3-bar-item w3-button">Other Events</a>
+    <a href="#" class="w3-bar-item w3-button">Most Recent Events  <i class="fa fa-clock-o"></i> </a>
+    <a href="#" class="w3-bar-item w3-button">Popular Events <i class="fa fa-heart"></i> </a>
+    <a href="#" class="w3-bar-item w3-button">Music Events <i class="fa fa-music"></i> </a>
+    <a href="#" class="w3-bar-item w3-button">Sports Events <i class="fa fa-child"></i> </a>
+    <a href="#" class="w3-bar-item w3-button">Other Events <i class="fa fa-sticky-note"></i> </a>
   </div>
 </nav>
 
@@ -33,14 +49,14 @@
 
 
 <!-- !PAGE CONTENT! -->
-<div class="w3-main" style="margin-left:250px">
+<div class="w3-main" style="margin-left:300px">
 
   <!-- Push down content on small screens -->
   <div class="w3-hide-large" style="margin-top:83px"></div>
 
   <!-- Top header -->
   <header class="w3-container w3-xlarge">
-    <p class="w3-left">Upcoming Events</p>
+    <p class="w3-center">Upcoming Events</p>
     <p class="w3-right">
       <i class="fa fa-search"></i>
     </p>
@@ -49,7 +65,7 @@
 
  <!-- Events grid -->
 <c:forEach items="${eventList.events}" var="event" varStatus="status">
-    <div class="w3-col l3 s6">
+    <div class="w3-col l3 s8">
       <div class="w3-container">
         <div class="w3-display-container">
           <img src="${pageContext.request.contextPath}/resources/images/photoinvalid.jpeg" style="width:100%">
