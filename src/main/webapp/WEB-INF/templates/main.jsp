@@ -34,7 +34,7 @@ body {font-family:"Lato", sans-serif;}
 .btn {
     background-color: #ffc315;
     color: white;
-    padding: 15px 20px;
+    padding: 15px 30px;
     border: none;
     border-radius: 12px;
     cursor: pointer;
@@ -82,10 +82,10 @@ body {font-family:"Lato", sans-serif;}
         </form>
       </p>
     <p><form action="${pageContext.request.contextPath}/signin" style="max-width:500px;margin:auto" method="GET">
-      <button type="submit" name = "action" value = "create" class="btn">Create</button>
+      <button type="submit" name = "action" value = "create" class="btn">Create Events</button>
   </form></p>
       <p><form action="${pageContext.request.contextPath}/signin" style="max-width:500px;margin:auto" method="GET">
-      <button type="submit" name = "action" value = "manage" class="btn">Manage</button>
+      <button type="submit" name = "action" value = "manage" class="btn">Manage Events</button>
   </form></p>
   </div>
 </header>
