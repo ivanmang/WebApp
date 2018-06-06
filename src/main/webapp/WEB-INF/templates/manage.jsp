@@ -80,7 +80,7 @@
     <div class="w3-right">
         <form action="${pageContext.request.contextPath}/manage" style="max-width:500px;margin:auto" method="GET">
             <button type="submit" name="deleteall" value="0" class="w3-button w3-small w3-right w3-hover-red">DELETE ALL
-                EVENTS
+                Events
             </button>
         </form>
     </div>
@@ -111,9 +111,8 @@
         </c:forEach>
     </table>
 
-
-    <!-- End page content -->
 </div>
+
 
 
 </body>

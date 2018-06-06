@@ -76,31 +76,51 @@
     <div class="w3-third">
         <div class="w3-container w3-blue w3-padding-16">
             <div class="w3-center"><i class="fa fa-info-circle w3-xxlarge"></i></div>
-        <form action="${pageContext.request.contextPath}/manageinfo" style="max-width:500px;margin:auto" method="GET">
-            <button type="submit" name="event" value=${event} class="btn">Info</button>
-        </form>
+            <button type="submit" name="event" value=${event} class="btn" onclick="changeTab('Info')">Info</button>
             <div class="w3-clear"></div>
         </div>
     </div>
     <div class="w3-third">
         <div class="w3-container w3-purple w3-padding-16">
             <div class="w3-center"><i class="fa fa-users w3-xxlarge"></i></div>
-            <form action="${pageContext.request.contextPath}/partilist" style="max-width:500px;margin:auto" method="GET">
-                <button type="submit" name="event" value=${event} class="btn">Parti List</button>
-            </form>
+                <button type="submit" name="event" value=${event} class="btn" onclick="changeTab('Parti')">Parti List</button>
             <div class="w3-clear"></div>
         </div>
     </div>
     <div class="w3-third">
         <div class="w3-container w3-teal w3-padding-16">
             <div class="w3-center"><i class="fa fa-file-text-o w3-xxlarge"></i></div>
-            <form action="${pageContext.request.contextPath}/manageInfoBoard" style="max-width:500px;margin:auto" method="GET">
-                <button type="submit" name="event" value=${event} class="btn">Info Board</button>
-            </form>
+                <button type="submit" name="event" value=${event} class="btn" onclick="changeTab('InfoBoard')">Info Board</button>
             <div class="w3-clear"></div>
         </div>
     </div>
 </div>
+
+    <div id="Info" class="w3-container manage">
+        <h2>This is info</h2>
+    </div>
+
+    <div id="Parti" class="w3-container manage" style="display:none">
+        <h2>This is Parti</h2>
+    </div>
+
+    <div id="InfoBoard" class="w3-container manage" style="display:none">
+        <h2>This is info board</h2>
+    </div>
+
+
+
+
+    <script>
+        function changeTab(manage) {
+            var i;
+            var x = document.getElementsByClassName("manage");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            document.getElementById(manage).style.display = "block";
+        }
+    </script>
 
 
 </div>
