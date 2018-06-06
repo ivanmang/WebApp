@@ -23,10 +23,12 @@
       <url-pattern>/browse</url-pattern>
       <url-pattern>/signin</url-pattern>
       <url-pattern>/create</url-pattern>
-      <url-pattern>/orgdir</url-pattern>
       <url-pattern>/manage</url-pattern>
       <url-pattern>/eventdir</url-pattern>
       <url-pattern>/register</url-pattern>
+      <url-pattern>/manageinfo</url-pattern>
+      <url-pattern>/partilist</url-pattern>
+      <url-pattern>/manageInfoBoard</url-pattern>
       <url-pattern>*.htm</url-pattern>
   </servlet-mapping>
 

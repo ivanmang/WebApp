@@ -13,10 +13,9 @@
 <!-- Navbar (on top) -->
 <div class="w3-top w3-hide-small w3-text-white">
     <div class="w3-bar w3-xlarge w3-opacity " id="navbar">
-        <a href="#" class="w3-bar-item w3-button">Home</a>
-        <a href="#about" class="w3-bar-item w3-button">About</a>
-        <a href="#create" class="w3-bar-item w3-button">Create an Event</a>
-        <a href="#find" class="w3-bar-item w3-button">List of Events</a>
+        <a href="${pageContext.request.contextPath}/index" class="w3-bar-item w3-button">Home</a>
+        <a href="${pageContext.request.contextPath}/create" class="w3-bar-item w3-button">Create an Event</a>
+        <a href="${pageContext.request.contextPath}/manage" class="w3-bar-item w3-button">Manage Your Events</a>
     </div>
 </div>
 
@@ -26,7 +25,8 @@
             <th>Event Name</th>
             <th>Date</th>
             <th>About</th>
-            <th></th>
+            <th>Manage</th>
+            <th>Delete</th>
         </tr>
         <c:forEach items="${eventList.events}" var="event" varStatus="status">
             <tr>
@@ -35,7 +35,12 @@
                 <td>${event.about}</td>
                 <td>
                     <form action="${pageContext.request.contextPath}/eventdir" style="max-width:500px;margin:auto" method="GET">
-                        <button type="submit" name="event" value=${event.name} class="btn">Details</button>
+                        <button type="submit" name="event" value=${event.id} class="btn">Manage</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="${pageContext.request.contextPath}/manage" style="max-width:500px;margin:auto" method="GET">
+                        <button type="submit" name="delete" value=${event.id} class="btn">Delete</button>
                     </form>
                 </td>
             </tr>

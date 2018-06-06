@@ -29,12 +29,11 @@
 <body class="w3-content w3-black" style="max-width:1500px;">
 
 <!-- Navbar (on top) -->
-<div class="w3-display-container w3-top w3-hide-small w3-text-grey">
-    <div class="w3-bar w3-xlarge w3-opacity " id="navbar"><b>
-        <a href="#" class="w3-bar-item w3-button">Home</a>
-        <a href="#about" class="w3-bar-item w3-button">About</a>
-        <a href="#create" class="w3-bar-item w3-button">Create an Event</a>
-        <a href="#find" class="w3-bar-item w3-button">List of Events</a></b>
+<div class="w3-top w3-hide-small w3-text-white">
+    <div class="w3-bar w3-xlarge w3-opacity " id="navbar">
+        <a href="${pageContext.request.contextPath}/index" class="w3-bar-item w3-button">Home</a>
+        <a href="${pageContext.request.contextPath}/create" class="w3-bar-item w3-button">Create an Event</a>
+        <a href="${pageContext.request.contextPath}/manage" class="w3-bar-item w3-button">Manage Your Events</a>
     </div>
 </div>
 
@@ -71,7 +70,7 @@
         </div>
     </div>
     <form action="${pageContext.request.contextPath}/register" style="max-width:500px;margin:auto" method="GET">
-        <button type="submit" class="btn">Join Event</button>
+        <button type="submit" name="eventid" value = ${id} class="btn">Join Event</button>
     </form>
 </div>
 

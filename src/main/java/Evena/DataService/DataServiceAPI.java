@@ -37,21 +37,21 @@ public class DataServiceAPI {
         EventList eventList = new EventList();
 
         try {
-            String sql =  "Select * From \"Event\"";
+            String sql =  "Select * From events";
             //String sql = new SelectQueryBuilder().setTable("Event").createSelectQuery().ReturnQuerry();
             PreparedStatement pstmt = conn.prepareStatement(sql);
             ResultSet result = pstmt.executeQuery();
 
             while(result.next()){
-                String date = result.getString("Date");
+                String date = result.getString("eventDate");
                 if (date == null){
                     date = "NA";
                 }
-                String about = result.getString("About");
+                String about = result.getString("info");
                 if (about == null){
                     about = "NA";
                 }
-                Event event = new Event(String.valueOf(result.getInt("Event Id")),result.getString("Event Name"),date,about);
+                Event event = new Event(String.valueOf(result.getInt("eventID")),result.getString("eventName"),date,about);
                 events.add(event);
             }
             pstmt.close();
@@ -87,13 +87,13 @@ public class DataServiceAPI {
     return i;
   }
 
-  public boolean insert(int id, String name,String Date,String about) throws SQLException, ClassNotFoundException {
+  public boolean insert(int id, String eventName,String eventDate,String info) throws SQLException, ClassNotFoundException {
     Class.forName("org.postgresql.Driver");
 
     Connection conn = connect();
 
     try {
-      String sql = "Insert Into \"Event\"(\"Event Id\", \"Event Name\" , \"Date\",\"About\") Values (" + id +" , '" + name + "', '"+ Date + "', '" + about +"')";
+      String sql = "Insert Into events(eventID, eventName , eventDate , info) Values (" + id +" , '" + eventName + "', '"+ eventDate + "', '" + info +"')";
       PreparedStatement pstmt = conn.prepareStatement(sql);
       pstmt.executeUpdate();
       pstmt.close();
@@ -113,7 +113,7 @@ public class DataServiceAPI {
       Connection conn = connect();
 
         try {
-            String sql =  "Select \"Event Id\" From \"Event\" Where \"Event Id\" = '" + i + "' ";
+            String sql =  "Select eventID From events Where eventID = '" + i + "' ";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             ResultSet result = pstmt.executeQuery();
             if(result.next()) {

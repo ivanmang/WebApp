@@ -54,16 +54,16 @@
 </head>
 
 <body>
-
 <!-- Navbar (on top) -->
 <div class="w3-top w3-hide-small w3-text-white">
     <div class="w3-bar w3-xlarge w3-opacity " id="navbar">
-        <a href="#" class="w3-bar-item w3-button">Home</a>
-        <a href="#about" class="w3-bar-item w3-button">About</a>
-        <a href="#create" class="w3-bar-item w3-button">Create an Event</a>
-        <a href="#find" class="w3-bar-item w3-button">List of Events</a>
+        <a href="${pageContext.request.contextPath}/index" class="w3-bar-item w3-button">Home</a>
+        <a href="${pageContext.request.contextPath}/create" class="w3-bar-item w3-button">Create an Event</a>
+        <a href="${pageContext.request.contextPath}/manage" class="w3-bar-item w3-button">Manage Your Events</a>
     </div>
 </div>
+
+
 
 <!-- Top header -->
 <header class="w3-container bgimg"></header>
@@ -87,7 +87,7 @@
                 <input class="input-field" type="text"  placeholder="About this event..." name="About" id="about1">
             </div>
 
-            <button type="submit" name="action" value="insert" class="btn">Submit</button>
+            <button type="submit" class="btn">Create</button>
         </form>
     </div>
 </div>

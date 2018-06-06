@@ -20,7 +20,7 @@
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-bar-block w3-light-grey w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
   <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
-    <a href="#" class="w3-bar-item w3-button">Home  <i class="fa fa-home"></i></a>
+    <a href="${pageContext.request.contextPath}/index" class="w3-bar-item w3-button">Home  <i class="fa fa-home"></i></a>
     <a href="#" class="w3-bar-item w3-button">Most Recent Events</a>
     <a href="#" class="w3-bar-item w3-button">Popular Events</a>
     <a href="#" class="w3-bar-item w3-button">Music Events</a>
@@ -55,7 +55,7 @@
           <img src="${pageContext.request.contextPath}/resources/images/photoinvalid.jpeg" style="width:100%">
             <div class="w3-display-middle w3-display-hover w3-orange">
               <form action="${pageContext.request.contextPath}/event" style="max-width:500px;margin:auto" method="GET">
-              <button type="submit" name="event"value=${event.name} class="w3-button" >Join Now <i class="fa fa-edit"></i></button>
+              <button type="submit" name="event"value=${event.id} class="w3-button" >Join Now <i class="fa fa-edit"></i></button>
               </form>
              </div>
         </div>

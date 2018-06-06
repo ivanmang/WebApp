@@ -68,8 +68,8 @@ body {font-family:"Lato", sans-serif;}
   <div class="w3-bar w3-xlarge w3-opacity " id="navbar">
     <a href="#" class="w3-bar-item w3-button">Home</a>
     <a href="#about" class="w3-bar-item w3-button">About</a>
-    <a href="#create" class="w3-bar-item w3-button">Create an Event</a>
-    <a href="#find" class="w3-bar-item w3-button">List of Events</a>
+    <a href="/create" class="w3-bar-item w3-button">Create an Event</a>
+    <a href="/manage" class="w3-bar-item w3-button">Manage Your Events</a>
   </div>
 </div>
 
@@ -81,11 +81,11 @@ body {font-family:"Lato", sans-serif;}
       <button type="submit" class="btn">Browse Events</button>
         </form>
       </p>
-    <p><form action="${pageContext.request.contextPath}/create" style="max-width:500px;margin:auto" method="GET">
+    <p><form action="${pageContext.request.contextPath}/signin" style="max-width:500px;margin:auto" method="GET">
       <button type="submit" name = "action" value = "create" class="btn">Create</button>
   </form></p>
       <p><form action="${pageContext.request.contextPath}/signin" style="max-width:500px;margin:auto" method="GET">
-      <button type="submit" name = "action" value = "signin" class="btn">Sign in</button>
+      <button type="submit" name = "action" value = "manage" class="btn">Manage</button>
   </form></p>
   </div>
 </header>

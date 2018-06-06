@@ -61,10 +61,9 @@
 <!-- Navbar (on top) -->
 <div class="w3-top w3-hide-small w3-text-white">
     <div class="w3-bar w3-xlarge w3-opacity " id="navbar">
-        <a href="#" class="w3-bar-item w3-button">Home</a>
-        <a href="#about" class="w3-bar-item w3-button">About</a>
-        <a href="#create" class="w3-bar-item w3-button">Create an Event</a>
-        <a href="#find" class="w3-bar-item w3-button">List of Events</a>
+        <a href="${pageContext.request.contextPath}/index" class="w3-bar-item w3-button">Home</a>
+        <a href="${pageContext.request.contextPath}/create" class="w3-bar-item w3-button">Create an Event</a>
+        <a href="${pageContext.request.contextPath}/manage" class="w3-bar-item w3-button">Manage Your Events</a>
     </div>
 </div>
 
@@ -92,7 +91,7 @@
                 </c:when>
 
                 <c:otherwise>
-                    <form action="${pageContext.request.contextPath}/orgdir" style="max-width:500px;margin:auto" method="GET">
+                    <form action="${pageContext.request.contextPath}/manage" style="max-width:500px;margin:auto" method="GET">
                         <button type="submit" class="btn">Sign In</button>
                     </form>
                 </c:otherwise>
