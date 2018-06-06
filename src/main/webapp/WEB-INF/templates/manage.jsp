@@ -19,6 +19,10 @@
     </div>
 </div>
 
+<form action="${pageContext.request.contextPath}/manage" style="max-width:500px;margin:auto" method="GET">
+    <button type="submit" name="deleteall" value="0" class="btn">DELETEALLLLLLLLLLLLLL</button>
+</form>
+
 <div class="bgimg1 w3-text-white w3-container w3-padding-64 w3-xlarge w3-center" id="find">
     <table class="w3-table-all w3-hoverable w3-table w3-centered"width="50%"  align="center">
         <tr class="w3-orange">

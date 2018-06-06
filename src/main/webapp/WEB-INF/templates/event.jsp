@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 <title>WebApps-Evena</title>
 <meta charset="UTF-8">
@@ -73,7 +74,16 @@
         <button type="submit" name="eventid" value = ${id} class="btn">Join Event</button>
     </form>
 </div>
-
+<table class="w3-table-all w3-hoverable w3-table w3-centered"width="50%"  align="center">
+    <tr class="w3-orange">
+        <th>Info</th>
+    </tr>
+    <c:forEach items="${infoList.infos}" var="infos" varStatus="status">
+        <tr>
+            <td><span style="color: #000000; ">${infos.info}</span></td>
+        </tr>
+    </c:forEach>
+</table>
 
 
 <script>

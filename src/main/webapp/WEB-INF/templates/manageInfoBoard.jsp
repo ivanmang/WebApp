@@ -18,6 +18,13 @@
         <a href="${pageContext.request.contextPath}/manage" class="w3-bar-item w3-button">Manage Your Events</a>
     </div>
 </div>
-
+<form action="${pageContext.request.contextPath}/manageInfoBoard" style="max-width:500px;margin:auto" method="GET">
+    <h2>Add Info</h2>
+    <div class="input-container">
+        <i class="fa fa-pencil-square-o icon"></i>
+        <input class="input-field" type="text" placeholder="Info?" name="info" id="info">
+    </div>
+    <button type="submit" name="event" value=${event} class="btn">Edit</button>
+</form>
 </body>
 </html>

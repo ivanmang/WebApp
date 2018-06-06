@@ -3,11 +3,8 @@ package Evena.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Evena.Event;
+import Evena.*;
 import Evena.DataService.DataServiceAPI;
-import Evena.Functions;
-import Evena.Participant;
-import Evena.ParticipantList;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,9 +33,33 @@ public class EvenaController {
   @RequestMapping(value = "/manageinfo")
   protected ModelAndView manageinfo(HttpServletRequest request) throws Exception {
     ModelAndView model = new ModelAndView("manageinfo");
+    String sql;
+    String id;
+    if(request.getParameter("update")!=null){
+      Connection conn = DataServiceAPI.connect();
+      if(!request.getParameter("name").equals("")) {
+        sql = "UPDATE events SET eventName = '" + request.getParameter("name") + "' WHERE eventID = '" + request.getParameter("update")+ "'";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.executeUpdate();
+      }
+      if(!request.getParameter("date").equals("")) {
+//        System.out.println(request.getParameter("date"));
+        sql = "UPDATE events SET eventDate = '" + request.getParameter("date") + "' WHERE eventID = '" + request.getParameter("update")+ "'";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.executeUpdate();
+      }
+      if(!request.getParameter("about").equals("")) {
+        sql = "UPDATE events SET info = '" + request.getParameter("about") + "' WHERE eventID = '" + request.getParameter("update")+ "'";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.executeUpdate();
+      }
+      id = request.getParameter("update");
+    }else{
+      id = request.getParameter("event");
+    }
     try {
       Connection conn = DataServiceAPI.connect();
-      String sql =  "Select * From events Where eventID = '" + request.getParameter("event") + "' ";
+      sql =  "Select * From events Where eventID = '" + id + "' ";
       PreparedStatement pstmt = conn.prepareStatement(sql);
       ResultSet result = pstmt.executeQuery();
       if(result.next()) {
@@ -88,6 +109,31 @@ public class EvenaController {
   @RequestMapping(value = "/manageInfoBoard")
   protected ModelAndView manageInfoBoard(HttpServletRequest request) throws Exception {
     ModelAndView model = new ModelAndView("manageInfoBoard");
+    if(request.getParameter("info")!=null) {
+      if (!request.getParameter("info").equals("")) {
+        int info_id = 1;
+        try {
+          Connection conn = DataServiceAPI.connect();
+          String sql = "Select * From info Where \"infoID\" = '" + info_id + "' ";
+          PreparedStatement pstmt = conn.prepareStatement(sql);
+          ResultSet result = pstmt.executeQuery();
+          while (result.next()) {
+            info_id = ThreadLocalRandom.current().nextInt(2, 255);
+            sql = "Select participantID From participants Where participantID = '" + info_id + "' ";
+            pstmt = conn.prepareStatement(sql);
+            result = pstmt.executeQuery();
+          }
+          sql = "Insert Into info Values ('" + info_id + "' , '" + request.getParameter("event") + "' , '" + request.getParameter("info") + " ')";
+          pstmt = conn.prepareStatement(sql);
+          pstmt.executeUpdate();
+          pstmt.close();
+        } catch (Exception e) {
+          System.out.println(e.getMessage());
+          e.printStackTrace();
+        }
+      }
+    }
+    model.addObject("event",request.getParameter("event"));
     return model;
   }
 
@@ -115,7 +161,20 @@ public class EvenaController {
   protected ModelAndView manage(HttpServletRequest request) throws Exception {
     ModelAndView model = new ModelAndView("manage");
     DataServiceAPI a = new DataServiceAPI();
-    if(request.getParameter("delete")!=null){
+    if(request.getParameter("deleteall")!=null){
+      try {
+        Connection conn = DataServiceAPI.connect();
+        String sql =  "Delete From events";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.executeUpdate();
+        pstmt.close();
+
+      } catch (Exception e) {
+        System.out.println(e.getMessage());
+        e.printStackTrace();
+      }
+    }
+    else if(request.getParameter("delete")!=null){
       try {
         Connection conn = DataServiceAPI.connect();
         String sql =  "Delete From events Where eventID = '" + request.getParameter("delete") + "' ";
@@ -209,6 +268,26 @@ public class EvenaController {
         System.out.println(e.getMessage());
         e.printStackTrace();
       }
+    }
+
+    try {
+      Connection conn = DataServiceAPI.connect();
+      String sql =  "Select \"infoText\" From info Where \"eventID\" = '" + request.getParameter("event") + "'" ;
+      PreparedStatement pstmt = conn.prepareStatement(sql);
+      ResultSet result = pstmt.executeQuery();
+      List<Info> list = new ArrayList<>();
+      while(result.next()){
+          Info i = new Info(result.getString("infoText"));
+          list.add(i);
+      }
+      InfoList ilist = new InfoList();
+      ilist.setInfos(list);
+      pstmt.close();
+      model.addObject("infoList",ilist);
+
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+      e.printStackTrace();
     }
 
     try {
