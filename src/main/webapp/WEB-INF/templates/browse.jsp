@@ -54,14 +54,19 @@
   <!-- Push down content on small screens -->
   <div class="w3-hide-large" style="margin-top:83px"></div>
 
-  <!-- Top header -->
-  <header class="w3-container w3-xlarge">
-    <p class="w3-center">Upcoming Events</p>
-    <p class="w3-right">
-      <i class="fa fa-search"></i>
-    </p>
-  </header>
-
+  <div class="w3-container w3-padding-64 w3-large" id="create">
+    <div class="container">
+      <form action="${pageContext.request.contextPath}/browse" style="max-width:500px;margin:auto" method="GET">
+        <h2>Search Events</h2>
+        <div class="input-container">
+          <i class="fa fa-search"></i>
+        <input class="input-field" type="text" placeholder="Name of the event?" name="evnm" id="evnm">
+      </div>
+        <button type="submit" name= "search" value="word" class="btn">Search</button>
+        <button type="submit" class="btn">Show All</button>
+      </form>
+    </div>
+  </div>
 
  <!-- Events grid -->
 <c:forEach items="${eventList.events}" var="event" varStatus="status">

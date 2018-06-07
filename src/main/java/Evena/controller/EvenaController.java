@@ -207,7 +207,74 @@ public class EvenaController {
   protected ModelAndView browse(HttpServletRequest request) throws Exception {
     ModelAndView model = new ModelAndView("browse");
     DataServiceAPI a = new DataServiceAPI();
-    model.addObject("eventList", a.selectall());
+    if(request.getParameter("search") == null) {
+        model.addObject("eventList", a.selectall());
+    }
+
+    //search for exact word
+//    else if(request.getParameter("search").equals("word")){
+//        try {
+//            Connection conn = DataServiceAPI.connect();
+//            String sql =  "SELECT * FROM events WHERE eventName LIKE 'word' OR eventName LIKE 'word %' OR eventName LIKE '% word' OR eventName LIKE ' word '";
+//            PreparedStatement pstmt = conn.prepareStatement(sql);
+//            ResultSet result = pstmt.executeQuery();
+//            List<Event> events = new ArrayList<>();
+//            EventList eventList = new EventList();
+//
+//            while(result.next()){
+//                String date = result.getString("eventDate");
+//                if (date == null){
+//                    date = "NA";
+//                }
+//                String about = result.getString("info");
+//                if (about == null){
+//                    about = "NA";
+//                }
+//                Event event = new Event(String.valueOf(result.getInt("eventID")),result.getString("eventName"),date,about);
+//                events.add(event);
+//            }
+//
+//            eventList.setEvents(events);
+//            pstmt.close();
+//            model.addObject("eventList", eventList);
+//
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//            e.printStackTrace();
+//        }
+//    }
+    else{
+        try{
+        Connection conn = DataServiceAPI.connect();
+        String sql =  "SELECT * FROM events WHERE eventName LIKE '%" + request.getParameter("evnm") +"%'";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        ResultSet result = pstmt.executeQuery();
+        List<Event> events = new ArrayList<>();
+        EventList eventList = new EventList();
+
+        while(result.next()){
+            String date = result.getString("eventDate");
+            if (date == null){
+                date = "NA";
+            }
+            String about = result.getString("info");
+            if (about == null){
+                about = "NA";
+            }
+            Event event = new Event(String.valueOf(result.getInt("eventID")),result.getString("eventName"),date,about);
+            events.add(event);
+        }
+
+        eventList.setEvents(events);
+        pstmt.close();
+        model.addObject("eventList", eventList);
+
+    } catch (Exception e) {
+          System.out.println(e.getMessage());
+          e.printStackTrace();
+      }
+    }
+
     return model;
   }
 
