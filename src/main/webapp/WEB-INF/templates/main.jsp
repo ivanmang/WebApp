@@ -3,9 +3,12 @@
 <title>WebApps-Evena</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--<link href="${pageContext.request.contextPath}/resources/css/navbar.css" rel="stylesheet" >-->
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
 <style>
 body, html {height: 100%}
 body {font-family:"Lato", sans-serif;}
@@ -28,6 +31,50 @@ body {font-family:"Lato", sans-serif;}
     -o-background-size: cover;
     min-height: 30%;
     width: 100%;
+
+}
+.dropdown {
+  float: right;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 4.5px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.dropdown-content {
+  right: 0;
+  opacity: 0.7;
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
 /* Set a style for the buttons */
@@ -63,15 +110,41 @@ body {font-family:"Lato", sans-serif;}
 
 <body>
 
-<!-- Navbar (on top) -->
-<div class="w3-top w3-hide-small w3-text-white">
-  <div class="w3-bar w3-xlarge w3-opacity " id="navbar">
-    <a href="#" class="w3-bar-item w3-button">Home</a>
-    <a href="#about" class="w3-bar-item w3-button">About</a>
-    <a href="/create" class="w3-bar-item w3-button">Create an Event</a>
-    <a href="/manage" class="w3-bar-item w3-button">Manage Your Events</a>
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-text-white" id="myNavbar">
+    <a href="#home" class="w3-bar-item w3-button"><i class="fa fa-home"></i> Home</a>
+    <a href="#about" class="w3-bar-item w3-button"><i class="fa fa-user"></i> About</a>
+    <a href="${pageContext.request.contextPath}/create" class="w3-bar-item w3-button"><i class="fa fa-group"></i> Create Event</a>
+
+    <div class="dropdown" id="dropDown">
+      <button class="dropbtn" >Users
+        <i class="fa fa-user-circle"></i>
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="${pageContext.request.contextPath}/manage" class="w3-button"> Profile</a>
+        <a href="${pageContext.request.contextPath}/manage" class="w3-button"> Manage Events</a>
+      </div>
+    </div>
   </div>
 </div>
+
+<script>
+    window.onscroll = function() {myFunction()};
+    function myFunction() {
+        var navbar = document.getElementById("myNavbar");
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-white" ;
+            dropdown.className = "dropbtn" + " w3-text-black";
+            document.getElementById('dropDown').style.visibility = 'hidden';
+        } else {
+            navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-white", "");
+            navbar.className = "w3-bar w3-text-white";
+            document.getElementById('dropDown').style.visibility = 'visable';
+        }
+    }
+</script>
 
 <!-- Header with background image -->
 <header class="homeimg w3-display-container" id="home">
