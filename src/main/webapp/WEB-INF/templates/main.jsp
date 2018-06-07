@@ -68,8 +68,8 @@ body {font-family:"Lato", sans-serif;}
   <div class="w3-bar w3-xlarge w3-opacity " id="navbar">
     <a href="#" class="w3-bar-item w3-button">Home</a>
     <a href="#about" class="w3-bar-item w3-button">About</a>
-    <a href="/create" class="w3-bar-item w3-button">Create an Event</a>
-    <a href="/manage" class="w3-bar-item w3-button">Manage Your Events</a>
+    <a href="${pageContext.request.contextPath}/create" class="w3-bar-item w3-button">Create an Event</a>
+    <a href="${pageContext.request.contextPath}/manage" class="w3-bar-item w3-button">Manage Your Events</a>
   </div>
 </div>
 

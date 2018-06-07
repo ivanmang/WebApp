@@ -282,7 +282,7 @@ public class EvenaController {
 
     try {
       Connection conn = DataServiceAPI.connect();
-      String sql =  "Select * From events Where eventID = '" + id + "' ";
+      String sql =  "Select * From events Where eventID = '" + request.getParameter("event") + "' ";
       PreparedStatement pstmt = conn.prepareStatement(sql);
       ResultSet result = pstmt.executeQuery();
       if(result.next()) {
