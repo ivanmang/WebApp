@@ -52,6 +52,7 @@
         <div class="input-container">
             <i class="fa fa-user-o icon"></i>
             <input class="input-field" type="text" name="p_name" placeholder="Name">
+            <input class="input-field" type="text" name="specinfo" placeholder="Any Special Info?">
         </div>
             <button type="submit" name="join" value = ${id} class="btn">Join</button>
     </div>

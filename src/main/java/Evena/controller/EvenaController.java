@@ -98,11 +98,11 @@ public class EvenaController {
           ParticipantList p_list = new ParticipantList();
           List<Participant> list = new ArrayList<>();
           while(result.next()){
-              sql =  "Select participantName From participants Where participantID = '" + result.getString("participantID") + "'" ;
+              sql =  "Select participantName, specinfo From participants Where participantID = '" + result.getString("participantID") + "'" ;
               pstmt = conn.prepareStatement(sql);
               ResultSet p_result = pstmt.executeQuery();
               p_result.next();
-              Participant p = new Participant(result.getString("participantID"),p_result.getString("participantName"));
+              Participant p = new Participant(result.getString("participantID"),p_result.getString("participantName"),p_result.getString("specinfo"));
               list.add(p);
           }
           p_list.setParticipants(list);
@@ -299,6 +299,7 @@ public class EvenaController {
 
     if (request.getParameter("join")!= null ){
       String eventID = request.getParameter("join");
+      event_name = eventID;
       String p_name = request.getParameter("p_name");
       int p_id = 1;
       try {
@@ -313,7 +314,7 @@ public class EvenaController {
           pstmt = conn.prepareStatement(sql);
           result = pstmt.executeQuery();
         }
-        sql = "Insert Into participants( participantID, participantName) Values (" + p_id +" , '" + p_name + "')";
+        sql = "Insert Into participants( participantID, participantName, \"specinfo\") Values (" + p_id +" , '" + p_name + "','" + request.getParameter("specinfo") + "')";
         pstmt = conn.prepareStatement(sql);
         pstmt.executeUpdate();
         sql = "Insert Into events_Participants(eventID,participantID) Values (" + eventID +" , '" + p_id + "')";
@@ -329,7 +330,7 @@ public class EvenaController {
 
     try {
       Connection conn = DataServiceAPI.connect();
-      String sql =  "Select \"infoText\" From info Where \"eventID\" = '" + request.getParameter("event") + "'" ;
+      String sql =  "Select \"infoText\" From info Where \"eventID\" = '" + event_name + "'" ;
       PreparedStatement pstmt = conn.prepareStatement(sql);
       ResultSet result = pstmt.executeQuery();
       List<Info> list = new ArrayList<>();
@@ -349,7 +350,7 @@ public class EvenaController {
 
     try {
       Connection conn = DataServiceAPI.connect();
-      String sql =  "Select * From events Where eventID = '" + request.getParameter("event") + "' ";
+      String sql =  "Select * From events Where eventID = '" + event_name + "' ";
       PreparedStatement pstmt = conn.prepareStatement(sql);
       ResultSet result = pstmt.executeQuery();
       if(result.next()) {
