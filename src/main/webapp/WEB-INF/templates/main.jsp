@@ -3,11 +3,10 @@
 <title>WebApps-Evena</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--<link href="${pageContext.request.contextPath}/resources/css/navbar.css" rel="stylesheet" >-->
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<link href="${pageContext.request.contextPath}/resources/css/dropdown.css" rel="stylesheet" >
 
 <style>
 body, html {height: 100%}
@@ -33,49 +32,6 @@ body {font-family:"Lato", sans-serif;}
     width: 100%;
 
 }
-.dropdown {
-  float: right;
-  overflow: hidden;
-}
-
-.dropdown .dropbtn {
-  font-size: 16px;
-  border: none;
-  outline: none;
-  color: white;
-  padding: 4.5px 16px;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
-}
-
-.dropdown-content {
-  right: 0;
-  opacity: 0.7;
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-content a {
-  float: none;
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
-
-.dropdown-content a:hover {
-  background-color: #ddd;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
 
 /* Set a style for the buttons */
 .btn {
@@ -94,6 +50,8 @@ body {font-family:"Lato", sans-serif;}
 }
 
 </style>
+
+<script src="<c:url value="${pageContext.request.contextPath}/resources/js/navbar.js" />"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript">
     function disableF5(e) {
@@ -130,21 +88,7 @@ body {font-family:"Lato", sans-serif;}
   </div>
 </div>
 
-<script>
-    window.onscroll = function() {myFunction()};
-    function myFunction() {
-        var navbar = document.getElementById("myNavbar");
-        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-            navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-white" ;
-            dropdown.className = "dropbtn" + " w3-text-black";
-            document.getElementById('dropDown').style.visibility = 'hidden';
-        } else {
-            navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-white", "");
-            navbar.className = "w3-bar w3-text-white";
-            document.getElementById('dropDown').style.visibility = 'visable';
-        }
-    }
-</script>
+
 
 <!-- Header with background image -->
 <header class="homeimg w3-display-container" id="home">

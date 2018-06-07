@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="${pageContext.request.contextPath}/resources/css/dropdown.css" rel="stylesheet" >
 
 <style>
     .bgimg {
@@ -34,16 +35,27 @@
 
 </style>
 
+<script src="<c:url value="${pageContext.request.contextPath}/resources/js/navbar.js" />"></script>
+
 <body>
 
 <header class="w3-container bgimg"></header>
 
-<!-- Navbar (on top) -->
-<div class="w3-top w3-hide-small w3-text-white">
-    <div class="w3-bar w3-xlarge w3-opacity " id="navbar">
-        <a href="${pageContext.request.contextPath}/index" class="w3-bar-item w3-button">Home</a>
-        <a href="${pageContext.request.contextPath}/create" class="w3-bar-item w3-button">Create an Event</a>
-        <a href="${pageContext.request.contextPath}/manage" class="w3-bar-item w3-button">Manage Your Events</a>
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+    <div class="w3-bar w3-text-white" id="myNavbar">
+        <a href="${pageContext.request.contextPath}/index" class="w3-bar-item w3-button"><i class="fa fa-home"></i> Home</a>
+        <a href="${pageContext.request.contextPath}/create" class="w3-bar-item w3-button"><i class="fa fa-group"></i> Create Event</a>
+        <div class="dropdown" id="dropDown">
+            <button class="dropbtn" >Users
+                <i class="fa fa-user-circle"></i>
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="${pageContext.request.contextPath}/manage" class="w3-button"> Profile</a>
+                <a href="${pageContext.request.contextPath}/manage" class="w3-button"> Manage Events</a>
+            </div>
+        </div>
     </div>
 </div>
 
