@@ -69,7 +69,7 @@
         </div>
     </div>
     <form action="${pageContext.request.contextPath}/register" style="max-width:500px;margin:auto" method="GET">
-        <button type="submit" name="eventid" value = ${id} class="btn">Join Event</button>
+        <button type="submit" name="eventid" value ="${id}" class="btn">Join Event</button>
     </form>
 </div>
 
