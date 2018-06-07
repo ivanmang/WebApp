@@ -181,7 +181,7 @@
 
     <div id="InfoBoard" class="w3-container manage" style="display:none">
         <form action="${pageContext.request.contextPath}/eventdir" style="max-width:500px;margin:auto" method="GET">
-            <h2>Add Informations</h2>
+            <h2>Add Information</h2>
             <div class="input-container">
                 <i class="fa fa-pencil-square-o icon w3-teal"></i>
                 <input class="input-field" type="text" placeholder="Info?" name="info">
