@@ -18,7 +18,7 @@
   }
 
   input[type=text] {
-    width: 130px;
+    width: 120px;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
@@ -59,9 +59,23 @@
     opacity: 2;
   }
 
+  .grid-container {
+      display: grid;
+      grid-template-columns: auto auto auto;
+      background-color: #ffffff;
+      padding: 10px;
+
+  }
+  .grid-item {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      font-size: 20px;
+      text-align: center;
+  }
+
 </style>
 
-<script src="<c:url value="${pageContext.request.contextPath}/resources/js/navbar.js" />"></script>
+<script src="<c:url value="/resources/js/navbar.js" />"></script>
 
 
 <body class="w3-content" style="max-width:1200px">
@@ -121,22 +135,23 @@
 
 
 
- <!-- Events grid -->
-<c:forEach items="${eventList.events}" var="event" varStatus="status">
-    <div class="w3-col l3 s8">
-      <div class="w3-container">
-        <div class="w3-display-container">
-          <img src="${pageContext.request.contextPath}/resources/images/photoinvalid.jpeg" style="width:100%">
-            <div class="w3-display-middle w3-display-hover w3-orange">
-              <form action="${pageContext.request.contextPath}/event" style="max-width:500px;margin:auto" method="GET">
-              <button type="submit" name="event"value=${event.id} class="w3-button" >Join Now <i class="fa fa-edit"></i></button>
-              </form>
-             </div>
+
+    <div class="grid-container">
+        <c:forEach items="${eventList.events}" var="event" varStatus="status">
+            <div class="diplay-container">
+        <div class="grid-item"> <img src="${pageContext.request.contextPath}/resources/images/photoinvalid.jpeg" style="width:100%">
+
         </div>
-        <p>${event.name}<br><b>${event.date}</b><br>${event.about}</p>
-      </div>
+                <p>${event.name}<br><b>${event.date}</b><br>${event.about}</p>
+                <div class="w3-right w3-orange">
+                    <form action="${pageContext.request.contextPath}/event" style="max-width:500px;margin:auto" method="GET">
+                        <button type="submit" name="event"value=${event.id} class="w3-button" >Join Now <i class="fa fa-edit"></i></button>
+                    </form>
+                </div>
+            </div>
+
+        </c:forEach>
     </div>
-</c:forEach>
 
 </div>
 

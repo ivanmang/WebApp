@@ -17,7 +17,7 @@
 </style>
 <body class="w3-content w3-black" style="max-width:1500px;">
 
-<script src="<c:url value="${pageContext.request.contextPath}/resources/js/navbar.js" />"></script>
+<script src="<c:url value="/resources/js/navbar.js" />"></script>
 
 <!-- Navbar (sit on top) -->
 <div class="w3-top">

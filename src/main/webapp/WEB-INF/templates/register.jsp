@@ -17,7 +17,7 @@
 
 </style>
 
-<script src="<c:url value="${pageContext.request.contextPath}/resources/js/navbar.js" />"></script>
+<script src="<c:url value="/resources/js/navbar.js" />"></script>
 <head>
     <title>Sign In</title>
 </head>
