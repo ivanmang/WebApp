@@ -284,14 +284,14 @@ public class EvenaController {
     String event_name = request.getParameter("event");
     int id = 1;
     if (event_name == null && request.getParameter("ernm")!= null ){
-      event_name = request.getParameter("ernm");
       DataServiceAPI d = new DataServiceAPI();
       try {
 
         while (d.exist(id)) {
           id = ThreadLocalRandom.current().nextInt(1, 255);
         }
-        d.insert(id,event_name,request.getParameter("date"),request.getParameter("About"));
+        d.insert(id,request.getParameter("ernm"),request.getParameter("date"),request.getParameter("About"));
+        event_name = Integer.toString(id);
 
       }
       catch(Exception e){}
