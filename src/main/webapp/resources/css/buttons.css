@@ -1,0 +1,52 @@
+/* Set a style for the submit button */
+.btn-a {
+    background-color: #ffde40;
+    color: white;
+    padding: 10px 10px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+.btn-a:hover {
+    opacity: 2;
+    background-color: darkorange;
+}
+
+/* Set a style for the submit button */
+.btn {
+    background-color: orange;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+.btn:hover {
+    opacity: 2;
+}
+
+/*Set style for the icons*/
+.icon {
+    padding: 20px;
+    background: orange;
+    color: white;
+    min-width: 50px;
+    text-align: center;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+}
+
+.input-container {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+}
