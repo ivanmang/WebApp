@@ -109,6 +109,16 @@ body {font-family:"Lato", sans-serif;}
 
 
   <!-- About Section -->
+
+<div class="w3-display-container w3-orange w3-text-white w3-center"><p><b>Upcoming Events - Live Updates</b></p></div>
+
+<div class="w3-bar w3-yellow w3-text-red">
+  <div class="w3-bar-item">San Francisco - ICFS International Trip (2018-06-04)   </div>
+  <div class="w3-bar-item">Spicy Challenge 2017!! (2018-07-06)    </div>
+  <div class="w3-bar-item">DC x Marvel Comics Night @Magnum (2018-07-25) </div>
+  <div class="w3-bar-item">HummingBird Concert 2018 (2018-07-29) </div>
+  <div class="w3-bar-item">Taste the Wine of L...</div>
+</div>
   <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="about">
     <h2 class="w3-wide">About</h2>
     <p class="w3-opacity"><i>Evena - a personal event organiser</i></p>

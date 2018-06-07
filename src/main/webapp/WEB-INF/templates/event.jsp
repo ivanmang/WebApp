@@ -39,7 +39,6 @@
 
 <!-- Header with Slideshow -->
 <header class="w3-display-container w3-center">
-    <button class="w3-button w3-block w3-green w3-hide-large w3-hide-medium" onclick="document.getElementById('download').style.display='block'">Download <i class="fa fa-android"></i> <i class="fa fa-apple"></i> <i class="fa fa-windows"></i></button>
     <div class="eventSlides w3-animate-opacity">
         <img class="w3-image" src="${pageContext.request.contextPath}/resources/images/famine.jpg" alt="Image 1" style="min-width:500px">
         <div class="w3-display-left w3-padding w3-hide-small" style="width:35%">
