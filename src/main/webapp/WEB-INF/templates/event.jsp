@@ -84,7 +84,7 @@
     </c:forEach>
 </table>
 
-<script src="<c:url value="${pageContext.request.contextPath}/resources/js/sideshow.js" />"></script>
+<script src="<c:url value="/resources/js/sideshow.js" />"></script>
 
 <!-- Footer -->
 <footer class="w3-container w3-light-grey w3-center w3-padding-48 w3-small">
