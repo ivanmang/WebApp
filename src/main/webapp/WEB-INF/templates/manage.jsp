@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="${pageContext.request.contextPath}/resources/css/dropdown.css" rel="stylesheet" >
+<link href="${pageContext.request.contextPath}/resources/css/buttons.css" rel="stylesheet" >
 
 <style>
     .bgimg {
@@ -15,24 +16,6 @@
         background: url("${pageContext.request.contextPath}/resources/images/manage.png") no-repeat center;
         min-height: 30%;
     }
-
-    /* Set a style for the submit button */
-    .btn {
-        position: relative;
-        background-color: #ffde40;
-        color: white;
-        padding: 10px 10px;
-        border: none;
-        cursor: pointer;
-        width: 100%;
-        opacity: 0.9;
-    }
-
-    .btn:hover {
-        opacity: 2;
-        background-color: darkorange;
-    }
-
 </style>
 
 <script src="<c:url value="${pageContext.request.contextPath}/resources/js/navbar.js" />"></script>
@@ -61,7 +44,7 @@
 
 
 <!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+<nav class="w3-sidebar w3-collapse w3-white" style="z-index:3;width:300px;" id="mySidebar"><br>
     <div class="w3-container w3-row">
         <div class="w3-col s8 w3-bar">
             <span>Welcome, <strong>User</strong></span><br>
@@ -109,13 +92,13 @@
                 <td>
                     <form action="${pageContext.request.contextPath}/eventdir" style="max-width:100px;margin:auto"
                           method="GET">
-                        <button type="submit" name="event" value=${event.id} class="btn">Manage</button>
+                        <button type="submit" name="event" value=${event.id} class="btn-a">Manage</button>
                     </form>
                 </td>
                 <td>
                     <form action="${pageContext.request.contextPath}/manage" style="max-width:100px;margin:auto"
                           method="GET">
-                        <button type="submit" name="delete" value=${event.id} class="btn">Delete</button>
+                        <button type="submit" name="delete" value=${event.id} class="btn-a">Delete</button>
                     </form>
                 </td>
             </tr>

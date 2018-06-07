@@ -5,51 +5,13 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="${pageContext.request.contextPath}/resources/css/dropdown.css" rel="stylesheet" >
+<link href="${pageContext.request.contextPath}/resources/css/buttons.css" rel="stylesheet" >
 <html>
 <style>
     .bgimg {
         background-size: auto;
         background: url("${pageContext.request.contextPath}/resources/images/signin.png") no-repeat center;
         min-height: 45%;
-    }
-
-
-
-    .input-container {
-        display: -ms-flexbox; /* IE10 */
-        display: flex;
-        width: 100%;
-        margin-bottom: 15px;
-    }
-
-    /*Set style for the icons*/
-    .icon {
-        padding: 20px;
-        background: orange;
-        color: white;
-        min-width: 50px;
-        text-align: center;
-    }
-
-    .input-field {
-        width: 100%;
-        padding: 10px;
-        outline: none;
-    }
-
-    /* Set a style for the submit button */
-    .btn {
-        background-color: orange;
-        color: white;
-        padding: 15px 20px;
-        border: none;
-        cursor: pointer;
-        width: 100%;
-        opacity: 0.9;
-    }
-
-    .btn:hover {
-        opacity: 2;
     }
 
 </style>
