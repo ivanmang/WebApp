@@ -169,11 +169,13 @@
             <tr class="w3-purple">
                 <th>ID</th>
                 <th>Name</th>
+                <th>Special Requirement</th>
             </tr>
             <c:forEach items="${p_list.participants}" var="p" varStatus="status">
                 <tr>
                     <td>${p.id}</td>
                     <td>${p.name}</td>
+                    <td></td>
                 </tr>
             </c:forEach>
         </table>
