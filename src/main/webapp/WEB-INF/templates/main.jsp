@@ -51,7 +51,7 @@ body {font-family:"Lato", sans-serif;}
 
 </style>
 
-<script src="<c:url value="${pageContext.request.contextPath}/resources/js/navbar.js" />"></script>
+<script src="<c:url value="/resources/js/navbar.js" />"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript">
     function disableF5(e) {
