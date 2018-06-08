@@ -1,5 +1,5 @@
 package Evena.DataService;
 
-public interface Query {
+public interface QueryBuilder {
     String build();
 }
