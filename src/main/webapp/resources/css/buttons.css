@@ -1,6 +1,7 @@
 /* Set a style for the submit button */
+
 .btn-a {
-    background-color: #ffde40;
+    background-color: #FFCB48;
     color: white;
     padding: 10px 10px;
     border: none;
@@ -11,12 +12,12 @@
 
 .btn-a:hover {
     opacity: 2;
-    background-color: darkorange;
+    background-color: #FF8724;
 }
 
 /* Set a style for the submit button */
 .btn {
-    background-color: orange;
+    background-color: #FF9B48;
     color: white;
     padding: 15px 20px;
     border: none;
@@ -32,7 +33,7 @@
 /*Set style for the icons*/
 .icon {
     padding: 20px;
-    background: orange;
+    background: #FF9B48;
     color: white;
     min-width: 50px;
     text-align: center;

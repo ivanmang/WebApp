@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="${pageContext.request.contextPath}/resources/css/dropdown.css" rel="stylesheet" >
+<link href="${pageContext.request.contextPath}/resources/css/color.css" rel="stylesheet" >
 
 <html>
 
@@ -39,7 +40,7 @@
 
   /* Set a style for the search button */
   .btn {
-    background-color: orange;
+    background-color: #FF8724;
     color: white;
     padding: auto;
     border: none;
@@ -138,12 +139,12 @@
 
     <div class="grid-container">
         <c:forEach items="${eventList.events}" var="event" varStatus="status">
-            <div class="diplay-container">
+            <div class="display-container">
         <div class="grid-item"> <img src="${pageContext.request.contextPath}/resources/images/photoinvalid.jpeg" style="width:100%">
 
         </div>
                 <p>${event.name}<br><b>${event.date}</b><br>${event.about}</p>
-                <div class="w3-right w3-orange">
+                <div class="w3-right w3-text-white" style="background-color: #FF8724">
                     <form action="${pageContext.request.contextPath}/event" style="max-width:500px;margin:auto" method="GET">
                         <button type="submit" name="event"value=${event.id} class="w3-button" >Join Now <i class="fa fa-edit"></i></button>
                     </form>

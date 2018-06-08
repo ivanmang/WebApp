@@ -19,7 +19,7 @@
     /* Set a style for the submit button */
     .btn {
         position: relative;
-        background-color: orangered;
+        background-color: #FF8724;
         color: white;
         padding: auto;
         border: none;
@@ -107,19 +107,19 @@
 
 <div class="w3-row-padding w3-margin-bottom" >
     <div class="w3-third">
-        <div class="btn w3-blue w3-padding-16" onclick="changeTab('Info')">
+        <div class="btn w3-padding-16" onclick="changeTab('Info')" style="background-color: #FFC124">
             <div class="w3-center"><i class="fa fa-info-circle w3-xxlarge"></i><h3>Info</h3></div>
             <div class="w3-clear"></div>
         </div>
     </div>
     <div class="w3-third">
-        <div class="btn w3-purple w3-padding-16" onclick="changeTab('Parti')">
+        <div class="btn w3-padding-16" onclick="changeTab('Parti')" style="background-color: #EE224A">
             <div class="w3-center"><i class="fa fa-users w3-xxlarge"></i><h3>List of Participants</h3></div>
             <div class="w3-clear"></div>
         </div>
     </div>
     <div class="w3-third">
-        <div class="btn w3-teal w3-padding-16" onclick="changeTab('InfoBoard')">
+        <div class="btn w3-padding-16" onclick="changeTab('InfoBoard')" style="background-color: #169E9E">
             <div class="w3-center"><i class="fa fa-file-text-o w3-xxlarge"></i><h3>Information board</h3></div>
             <div class="w3-clear"></div>
         </div>
@@ -128,7 +128,7 @@
 
     <div id="Info" class="w3-container manage">
         <table class="w3-table-all w3-hoverable w3-centered w3-striped"width="50%"  align="center">
-            <tr class="w3-blue">
+            <tr style="background-color: #FFC124" class="w3-text-white">
                 <th>ID</th>
                 <th>Name</th>
                 <th>Date</th>
@@ -144,17 +144,17 @@
             <div class="w3-container  w3-large">
                 <form action="${pageContext.request.contextPath}/eventdir" style="max-width:500px;margin:auto" method="GET">
                     <h2>Update Event</h2>
-                    <div class="input-container w3-blue">
+                    <div class="input-container" style="background-color: #FFC124">
                         <i class="fa fa-pencil-square-o icon" ></i>
                         <input class="input-field" type="text" placeholder="Name of the event?" name="name" id="name">
                     </div>
 
-                    <div class="input-container w3-blue">
+                    <div class="input-container" style="background-color: #FFC124">
                         <i class="fa fa-calendar icon"></i>
                         <input class="input-field" type="date" name="date" id="date">
                     </div>
 
-                    <div class="input-container w3-blue">
+                    <div class="input-container" style="background-color: #FFC124">
                         <i class="fa fa-bullhorn icon"></i>
                         <input class="input-field" type="text"  placeholder="About this event..." name="about" id="about1">
                     </div>
@@ -164,9 +164,9 @@
             </div>
     </div>
 
-    <div id="Parti" class="w3-container manage" style="display:none">
+    <div id="Parti" class="w3-container manage">
         <table class="w3-table-all w3-hoverable w3-centered w3-striped"width="50%"  align="center">
-            <tr class="w3-purple">
+            <tr style="background-color: #EE224A" class="w3-text-white">
                 <th>ID</th>
                 <th>Name</th>
                 <th>Special Requirement</th>
@@ -181,11 +181,11 @@
         </table>
     </div>
 
-    <div id="InfoBoard" class="w3-container manage" style="display:none">
+    <div id="InfoBoard" class="w3-container manage">
         <form action="${pageContext.request.contextPath}/eventdir" style="max-width:500px;margin:auto" method="GET">
             <h2>Add Information</h2>
             <div class="input-container">
-                <i class="fa fa-pencil-square-o icon w3-teal"></i>
+                <i class="fa fa-pencil-square-o icon" style="background-color:#169E9E "></i>
                 <input class="input-field" type="text" placeholder="Info?" name="info">
             </div>
             <button type="submit" name="event" value=${event} class="btn">Edit</button>
