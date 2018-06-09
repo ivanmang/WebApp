@@ -1,5 +1,6 @@
 package Evena.DataService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -8,8 +9,8 @@ import java.util.ListIterator;
  */
 public class InsertQueryBuilder implements QueryBuilder{
     private String t_name;
-    private List<String> cols;
-    private List<String> vals;
+    private List<String> cols = new ArrayList<>();
+    private List<String> vals = new ArrayList<>();
 
     public InsertQueryBuilder(){}
     public InsertQueryBuilder anInsertQueryBuilder(){
