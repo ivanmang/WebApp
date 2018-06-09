@@ -28,7 +28,7 @@ public class DeleteQueryBuilder implements QueryBuilder{
 
     public String build() {
         String query = "Delete From ";
-        query = query.concat("\"" + t_name + "\"");
+        query = query.concat("\"" + t_name + "\" ");
         if (whereList.size() == 0) {
             return query;
         } else {

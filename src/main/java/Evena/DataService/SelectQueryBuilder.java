@@ -42,7 +42,7 @@ public class SelectQueryBuilder implements QueryBuilder{
             }
         }
         query = query.concat("From ");
-        query = query.concat("\"" + t_name + "\"");
+        query = query.concat("\"" + t_name + "\" ");
         if (whereList.size() == 0) {
             return query;
         } else {

@@ -13,7 +13,7 @@ public class SelectClause {
     }
 
     public String addC_name() {
-        return "\"" + c_name + "\" ";
+        return "\"" + c_name + "\"";
     }
 
     public String getFunc() {

@@ -7,11 +7,11 @@ public class WhereClause {
     private String wVal2;
     private String next;
 
-    public WhereClause(String wc_name, String wOp, String wVal1, String next) {
+    public WhereClause(String wc_name, String wOp, String wVal1, String wVal2, String next) {
         this.wc_name = wc_name;
         this.wOp = wOp;
         this.wVal1 = wVal1;
-        this.wVal2 = null;
+        this.wVal2 = wVal2;
         this.next = next;
     }
 

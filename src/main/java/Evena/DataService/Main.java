@@ -15,8 +15,13 @@ public class Main {
         //Testing select query
         SelectQueryBuilder s = new SelectQueryBuilder();
         SelectClause sc = new SelectClause("column", "Avg");
-        WhereClause wc = new WhereClause("phantom", "=", "3", null);
+        WhereClause wc = new WhereClause("phantom", "=", "3", null, null);
         String select = s.addFromClause("fromClause").addselectClauses(sc).addWhereList(wc).build();
         System.out.println(select);
+        //Testing delete query
+        DeleteQueryBuilder d = new DeleteQueryBuilder();
+        WhereClause wc1 = new WhereClause("phantom", "Between", "King", "Queen", "AND");
+        String del = d.addT_name("Ivana").addWhereList(wc1).addWhereList(wc).build();
+        System.out.println(del);
     }
 }
