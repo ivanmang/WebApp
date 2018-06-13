@@ -51,7 +51,8 @@ public class DataServiceAPI {
                 if (about == null){
                     about = "NA";
                 }
-                Event event = new Event(String.valueOf(result.getInt("eventID")),result.getString("eventName"),date,about);
+                Event event = new Event(String.valueOf(result.getInt("eventID")),result.getString("eventName"),date,about,
+                    tags);
                 events.add(event);
             }
             pstmt.close();

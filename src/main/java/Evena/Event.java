@@ -1,19 +1,24 @@
 package Evena;
 
+import java.util.List;
+
 public class Event {
     private String id;
     private String name;
     private String date;
     private String about;
+    private List<Integer> tags;
 
     public Event() {
     }
 
-    public Event(String id, String name,String date,String about) {
+    public Event(String id, String name, String date, String about,
+        List<Integer> tags) {
         this.id = id;
         this.name = name;
         this.date = date;
         this.about = about;
+        this.tags = tags;
     }
 
     public void setId(String id) {
@@ -24,6 +29,13 @@ public class Event {
         this.name = name;
     }
 
+    public List<Integer> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Integer> tags) {
+        this.tags = tags;
+    }
 
     public String getId() {
         return id;

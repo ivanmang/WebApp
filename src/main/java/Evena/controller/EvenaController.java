@@ -1,22 +1,23 @@
 package Evena.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import Evena.*;
 import Evena.DataService.DataServiceAPI;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.AbstractController;
-
+import Evena.Event;
+import Evena.EventList;
+import Evena.Info;
+import Evena.InfoList;
+import Evena.Participant;
+import Evena.ParticipantList;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class EvenaController {
@@ -261,7 +262,14 @@ public class EvenaController {
             if (about == null){
                 about = "NA";
             }
-            Event event = new Event(String.valueOf(result.getInt("eventID")),result.getString("eventName"),date,about);
+            String tagids = result.getString("tagids");
+            List<Integer> tags = new ArrayList<>();
+            if(tagids == null) {
+              tagids = "";
+              tags = convertTagsToList(tagids);
+            }
+            Event event = new Event(String.valueOf(result.getInt("eventID")),result.getString("eventName"),date,about,
+                tags);
             events.add(event);
         }
 
@@ -374,9 +382,64 @@ public class EvenaController {
                                                HttpServletResponse response) throws Exception {
 
     ModelAndView model = new ModelAndView("main");
+    return model;
+  }
 
+  @RequestMapping(value = "/browse")
+  protected ModelAndView tags(HttpServletRequest request) throws Exception {
+    ModelAndView model = new ModelAndView("browse");
+    int tag = Integer.valueOf(request.getParameter("tagid"));
+
+    try{
+      Connection conn = DataServiceAPI.connect();
+      String sql = "SELECT * FROM events";
+      PreparedStatement pstmt = conn.prepareStatement(sql);
+      ResultSet result = pstmt.executeQuery();
+      List<Event> events = new ArrayList<>();
+      EventList eventList = new EventList();
+
+      while(result.next()){
+        String tagids = result.getString("tagids");
+        List<Integer> tags = new ArrayList<>();
+        if(request.getParameter("tagids") != null) {
+          tags = convertTagsToList(tagids);
+        }
+
+        if(tags.contains(tag)) {
+          String date = result.getString("eventDate");
+          if(date == null) {
+            date = "N/A";
+          }
+
+          String about = result.getString("info");
+          if (about == null){
+            about = "N/A";
+          }
+          Event event = new Event(String.valueOf(result.getInt("eventID")),result.getString("eventName"), date, about,
+              tags);
+
+          events.add(event);
+
+          eventList.setEvents(events);
+          pstmt.close();
+          model.addObject("eventList", eventList);
+        }
+      }
+
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+      e.printStackTrace();
+    }
 
     return model;
+  }
+
+  private List<Integer> convertTagsToList(String tagids) {
+    List<Integer> tags = new ArrayList<>();
+    for(String str: tagids.split(",")) {
+      tags.add(Integer.valueOf(str));
+    }
+    return tags;
   }
 
 }
