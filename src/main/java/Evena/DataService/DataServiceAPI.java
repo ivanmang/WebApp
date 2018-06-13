@@ -14,64 +14,67 @@ import java.util.Properties;
 
 public class DataServiceAPI {
 
-    private static String database = "jdbc:postgresql://db.doc.ic.ac.uk/g1727106_u?&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory";
-    private static String user = "g1727106_u";
-    private static String password = "Rjfz8pWxZM";
+  private static String database = "jdbc:postgresql://db.doc.ic.ac.uk/g1727106_u?&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory";
+  private static String user = "g1727106_u";
+  private static String password = "Rjfz8pWxZM";
 
-    public static Connection connect() throws SQLException {
-        String url = database;
-        Properties connectionProps = new Properties();
-        connectionProps.setProperty("user", user);
-        connectionProps.setProperty("password", password);
-        return DriverManager.getConnection(url, connectionProps);
+  public static Connection connect() throws SQLException {
+    String url = database;
+    Properties connectionProps = new Properties();
+    connectionProps.setProperty("user", user);
+    connectionProps.setProperty("password", password);
+    return DriverManager.getConnection(url, connectionProps);
 
 
-    }
+  }
 
-    public EventList selectall() throws SQLException, ClassNotFoundException {
-        Class.forName("org.postgresql.Driver");
+  public EventList selectall() throws SQLException, ClassNotFoundException {
+    Class.forName("org.postgresql.Driver");
 
-        Connection conn = connect();
+    Connection conn = connect();
 
-        List<Event> events = new ArrayList<>();
-        EventList eventList = new EventList();
+    List<Event> events = new ArrayList<>();
+    EventList eventList = new EventList();
 
-        try {
-            String sql =  "Select * From events";
-            //String sql = new SelectQueryBuilder().setTable("Event").createSelectQuery().ReturnQuerry();
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            ResultSet result = pstmt.executeQuery();
+    try {
+      String sql = "Select * From events";
+      //String sql = new SelectQueryBuilder().setTable("Event").createSelectQuery().ReturnQuerry();
+      PreparedStatement pstmt = conn.prepareStatement(sql);
+      ResultSet result = pstmt.executeQuery();
 
-            while(result.next()){
-                String date = result.getString("eventDate");
-                if (date == null){
-                    date = "NA";
-                }
-                String about = result.getString("info");
-                if (about == null){
-                    about = "NA";
-                }
-              String tagids = result.getString("tagids");
-              if(tagids == null) {
-                tagids = "";
-              }
-              List<Integer> tags = new ArrayList<>();
-              for(String str: tagids.split(",")) {
-                tags.add(Integer.valueOf(str));
-              }
-                Event event = new Event(String.valueOf(result.getInt("eventID")),result.getString("eventName"),date,about,
-                    tags);
-                events.add(event);
-            }
-            pstmt.close();
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
+      while (result.next()) {
+        String date = result.getString("eventDate");
+        if (date == null) {
+          date = "NA";
         }
-        eventList.setEvents(events);
-        return eventList;
+        String about = result.getString("info");
+        if (about == null) {
+          about = "NA";
+        }
+        String tagids = result.getString("tagids");
+        if (tagids == null) {
+          tagids = "";
+        }
+        List<Integer> tags = new ArrayList<>();
+        if (tagids.length() != 0) {
+          for (String str : tagids.split(",")) {
+            tags.add(Integer.valueOf(str));
+          }
+        }
+        Event event = new Event(String.valueOf(result.getInt("eventID")),
+            result.getString("eventName"), date, about,
+            tags);
+        events.add(event);
+      }
+      pstmt.close();
+
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+      e.printStackTrace();
     }
+    eventList.setEvents(events);
+    return eventList;
+  }
 
   public int select(String name) throws SQLException, ClassNotFoundException {
     Class.forName("org.postgresql.Driver");
@@ -80,11 +83,13 @@ public class DataServiceAPI {
     int i = 0;
 
     try {
-      String sql =  "Select \"Event Id\" From \"Event\" Where \"Event Name\" = '" + name + "' ";
+      String sql =
+          "Select \"Event Id\" From \"Event\" Where \"Event Name\" = '" + name
+              + "' ";
       //String sql = new SelectQueryBuilder().setTable("Event").createSelectQuery().ReturnQuerry();
       PreparedStatement pstmt = conn.prepareStatement(sql);
       ResultSet result = pstmt.executeQuery();
-      if(result.next()) {
+      if (result.next()) {
         i = result.getInt("Event Id");
       }
       pstmt.close();
@@ -96,13 +101,17 @@ public class DataServiceAPI {
     return i;
   }
 
-  public boolean insert(int id, String eventName,String eventDate,String info) throws SQLException, ClassNotFoundException {
+  public boolean insert(int id, String eventName, String eventDate, String info)
+      throws SQLException, ClassNotFoundException {
     Class.forName("org.postgresql.Driver");
 
     Connection conn = connect();
 
     try {
-      String sql = "Insert Into events(eventID, eventName , eventDate , info) Values (" + id +" , '" + eventName + "', '"+ eventDate + "', '" + info +"')";
+      String sql =
+          "Insert Into events(eventID, eventName , eventDate , info) Values ("
+              + id + " , '" + eventName + "', '" + eventDate + "', '" + info
+              + "')";
       PreparedStatement pstmt = conn.prepareStatement(sql);
       pstmt.executeUpdate();
       pstmt.close();
@@ -116,25 +125,25 @@ public class DataServiceAPI {
 
   }
 
-    public boolean exist(int i) throws SQLException, ClassNotFoundException {
-      Class.forName("org.postgresql.Driver");
+  public boolean exist(int i) throws SQLException, ClassNotFoundException {
+    Class.forName("org.postgresql.Driver");
 
-      Connection conn = connect();
+    Connection conn = connect();
 
-        try {
-            String sql =  "Select eventID From events Where eventID = '" + i + "' ";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            ResultSet result = pstmt.executeQuery();
-            if(result.next()) {
-                return true;
-            }
-            pstmt.close();
+    try {
+      String sql = "Select eventID From events Where eventID = '" + i + "' ";
+      PreparedStatement pstmt = conn.prepareStatement(sql);
+      ResultSet result = pstmt.executeQuery();
+      if (result.next()) {
+        return true;
+      }
+      pstmt.close();
 
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
-        return false;
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+      e.printStackTrace();
     }
+    return false;
+  }
 
 }

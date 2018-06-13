@@ -1,12 +1,18 @@
 package Evena.DataService;
 
+import Evena.Event;
+import Evena.EventList;
+import java.sql.SQLException;
+
 /**
  * Created by admin on 9/6/2018.
  */
 public class Main {
-    public static void main(String[] args) {
-        //run to see list of outcomes when building the query
-        //Testing insert query
+
+  public static void main(String[] args)
+      throws SQLException, ClassNotFoundException {
+    //run to see list of outcomes when building the query
+    //Testing insert query
 //        InsertQueryBuilder b = new InsertQueryBuilder();
 //        String insert = b.addT_name("FK").addCols("AS").addCols("KL").addVals("3").addVals("2").build();
 //        System.out.println(insert);
@@ -21,9 +27,13 @@ public class Main {
 //        WhereClause wc1 = new WhereClause("phantom", "Between", "King", "Queen", "AND");
 //        String del = d.addT_name("Ivana").addWhereList(wc1).addWhereList(wc).build();
 //        System.out.println(del);
-        String[] array = "1,2,3,4,5,6".split(",");
-        for(String str:array) {
-            System.out.println(str);
-        }
+    String[] array = "1,2,3,4,5,6".split(",");
+    for (String str : array) {
+      System.out.println(str);
     }
+    DataServiceAPI data = new DataServiceAPI();
+    for (Event event : data.selectall().getEvents()) {
+      System.out.println(event);
+    }
+  }
 }
