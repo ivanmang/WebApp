@@ -384,8 +384,8 @@ public class EvenaController {
     ModelAndView model = new ModelAndView("main");
     return model;
   }
-
-  @RequestMapping(value = "/browse")
+/*
+  @RequestMapping(value = "/browsetags")
   protected ModelAndView tags(HttpServletRequest request) throws Exception {
     ModelAndView model = new ModelAndView("browse");
     int tag = Integer.valueOf(request.getParameter("tagid"));
@@ -432,7 +432,7 @@ public class EvenaController {
     }
 
     return model;
-  }
+  }*/
 
   private List<Integer> convertTagsToList(String tagids) {
     List<Integer> tags = new ArrayList<>();
