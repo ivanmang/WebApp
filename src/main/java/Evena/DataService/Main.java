@@ -1,6 +1,7 @@
 package Evena.DataService;
 
 import static Evena.DataService.DataServiceAPI.selectAllSql;
+import static Evena.DataService.DataServiceAPI.today;
 
 import Evena.Event;
 import java.sql.SQLException;
@@ -37,6 +38,6 @@ public class Main {
     for (Event event : data.selectall(selectAllSql).getEvents()) {
       System.out.println(event);
     }
-    System.out.println(LocalDate.now());
+    System.out.println(today);
   }
 }
