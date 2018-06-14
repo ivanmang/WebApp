@@ -61,7 +61,7 @@
 <script src="<c:url value="/resources/js/jquery.tablesorter.js" />"></script>
 
 <script id="js">$(function() {
-  $("#Parti").tablesorter();
+  $("#participants").tablesorter();
 });
 </script>
 
@@ -174,19 +174,23 @@
     </div>
 
     <div id="Parti" class="w3-container manage">
-        <table class="tablesorter w3-table-all w3-hoverable w3-centered w3-striped" width="50%"  align="center">
-            <tr style="background-color: #EE224A" class="w3-text-white">
-                <th>ID</th>
-                <th>Name</th>
-                <th>Special Requirement</th>
-            </tr>
-            <c:forEach items="${p_list.participants}" var="p" varStatus="status">
-                <tr>
-                    <td>${p.id}</td>
-                    <td>${p.name}</td>
-                    <td>${p.specinfo}</td>
+        <table id="participants" class="tablesorter w3-table-all w3-hoverable w3-centered w3-striped" width="50%"  align="center">
+            <thead>
+                <tr style="background-color: #EE224A" class="w3-text-white">
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Special Requirement</th>
                 </tr>
-            </c:forEach>
+            </thead>
+            <tbody>
+                <c:forEach items="${p_list.participants}" var="p" varStatus="status">
+                    <tr>
+                        <td>${p.id}</td>
+                        <td>${p.name}</td>
+                        <td>${p.specinfo}</td>
+                    </tr>
+                </c:forEach>
+            </tbody>
         </table>
     </div>
 
