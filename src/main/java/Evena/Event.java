@@ -64,7 +64,7 @@ public class Event {
     @Override
     public String toString() {
       StringBuilder str = new StringBuilder();
-      str.append("id = ").append(id).append(" name = ").append(name).append(" date = ").append(date).append("about = ").append(about);
+      str.append("id = ").append(id).append(" name = ").append(name).append(" date = ").append(date).append(" about = ").append(about);
       int tagnum = 1;
       for(Integer tag : tags) {
         str.append(" tag").append(tagnum).append(" = ").append(tag);

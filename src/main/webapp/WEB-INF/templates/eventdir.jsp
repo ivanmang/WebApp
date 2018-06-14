@@ -57,6 +57,15 @@
 </style>
 
 <script src="<c:url value="/resources/js/navbar.js" />"></script>
+<script src="<c:url value="/resources/js/jquery-3.3.1.js" />"></script>
+<script src="<c:url value="/resources/js/jquery.tablesorter.js" />"></script>
+
+<script id="js">$(function() {
+  $("#Parti").tablesorter();
+});
+</script>
+
+
 <body>
 
 <header class="w3-container bgimg"></header>
@@ -165,7 +174,7 @@
     </div>
 
     <div id="Parti" class="w3-container manage">
-        <table class="w3-table-all w3-hoverable w3-centered w3-striped"width="50%"  align="center">
+        <table class="tablesorter w3-table-all w3-hoverable w3-centered w3-striped" width="50%"  align="center">
             <tr style="background-color: #EE224A" class="w3-text-white">
                 <th>ID</th>
                 <th>Name</th>
@@ -191,7 +200,6 @@
             <button type="submit" name="event" value=${event} class="btn">Edit</button>
         </form>
     </div>
-
 
 
 
