@@ -1,7 +1,9 @@
 package Evena.DataService;
 
+import static Evena.DataService.DataServiceAPI.selectAllSql;
+import static Evena.DataService.DataServiceAPI.today;
+
 import Evena.Event;
-import Evena.EventList;
 import java.sql.SQLException;
 
 /**
@@ -32,8 +34,9 @@ public class Main {
       System.out.println(str);
     }
     DataServiceAPI data = new DataServiceAPI();
-    for (Event event : data.selectall().getEvents()) {
+    for (Event event : data.selectall(selectAllSql).getEvents()) {
       System.out.println(event);
     }
+    System.out.println(today);
   }
 }
