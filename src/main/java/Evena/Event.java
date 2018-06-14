@@ -15,12 +15,14 @@ public class Event {
     public Event() {
     }
 
-    public Event(String id, String name, String location, String date, String about,
+    public Event(String id, String name, String location, String date, String startTime, String endTime, String about,
         List<Integer> tags) {
         this.id = id;
         this.name = name;
         this.location = location;
         this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.about = about;
         this.tags = tags;
     }
@@ -71,6 +73,22 @@ public class Event {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 
     @Override
