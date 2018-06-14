@@ -94,6 +94,20 @@ public class EvenaController {
     ModelAndView model = new ModelAndView("eventdir");
     model.addObject("event", request.getParameter("event"));
 
+    //delete participant
+    if(request.getParameter("delete") != null) {
+      try {
+        Connection conn = DataServiceAPI.connect();
+        String sql = "DELETE FROM participants WHERE participantid = '" + request.getParameter("delete") + "'";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.executeUpdate();
+        pstmt.close();
+      } catch (Exception e) {
+        System.out.println(e.getMessage());
+        e.printStackTrace();
+      }
+    }
+
     //partilist
     try {
       Connection conn = DataServiceAPI.connect();
