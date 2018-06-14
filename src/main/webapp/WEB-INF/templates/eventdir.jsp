@@ -141,12 +141,18 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Date</th>
+                <th>Start at</th>
+                <th>End at</th>
+                <th>Location</th>
                 <th>About</th>
             </tr>
             <tr class="w3-form">
                 <td>${id}</td>
                 <td>${name}</td>
                 <td>${date}</td>
+                <td>${startTime}</td>
+                <td>${endTime}</td>
+                <td>${location}</td>
                 <td>${about}</td>
             </tr>
         </table>
