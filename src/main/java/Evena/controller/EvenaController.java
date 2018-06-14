@@ -162,8 +162,20 @@ public class EvenaController {
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.executeUpdate();
       }
+      if (!request.getParameter("startTime").equals("")) {
+        sql = "UPDATE events SET eventStart = '" + request.getParameter("startTime")
+                + "' WHERE eventID = '" + request.getParameter("update") + "'";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.executeUpdate();
+      }
+      if (!request.getParameter("endTime").equals("")) {
+        sql = "UPDATE events SET eventEnd = '" + request.getParameter("endTime")
+                + "' WHERE eventID = '" + request.getParameter("update") + "'";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.executeUpdate();
+      }
       if (!request.getParameter("location").equals("")) {
-        sql = "UPDATE events SET eventLocation = '" + request.getParameter("location")
+        sql = "UPDATE events SET eventLocation = '" + request.getParameter("eventLocation")
                 + "' WHERE eventID = '" + request.getParameter("update") + "'";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.executeUpdate();
@@ -187,6 +199,8 @@ public class EvenaController {
         model.addObject("id", result.getString("eventID"));
         model.addObject("name", result.getString("eventName"));
         model.addObject("date", result.getString("eventDate"));
+        model.addObject("startTime",result.getString("eventStart"));
+        model.addObject("endTime",result.getString("eventEnd"));
         model.addObject("location",result.getString("eventLocation"));
         model.addObject("about", result.getString("info"));
       }
@@ -322,8 +336,8 @@ public class EvenaController {
         while (api.exist(id)) {
           id = ThreadLocalRandom.current().nextInt(1, 255);
         }
-        api.insert(id, request.getParameter("ernm"), request.getParameter("date"), request.getParameter("location"),
-            request.getParameter("About"));
+        api.insert(id, request.getParameter("ernm"), request.getParameter("date"), request.getParameter("startTime"), request.getParameter("endTime"),
+                request.getParameter("location"), request.getParameter("About"));
         event_name = Integer.toString(id);
 
       } catch (Exception e) {
@@ -403,6 +417,8 @@ public class EvenaController {
         model.addObject("id", id);
         model.addObject("name", result.getString("eventName"));
         model.addObject("date", result.getString("eventDate"));
+        model.addObject("startTime", result.getString("eventStart"));
+        model.addObject("endTime",result.getString("eventEnd"));
         model.addObject("location",result.getString("eventLocation"));
         model.addObject("about", result.getString("info"));
       }

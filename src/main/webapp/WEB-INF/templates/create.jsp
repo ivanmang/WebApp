@@ -127,6 +127,16 @@
             </div>
 
             <div class="input-container">
+                <i class="fa fa-clock-o icon"></i>
+                <input class="input-field" type="time"  name="startTime" id="startTime">
+            </div>
+
+            <div class="input-container">
+                <i class="fa fa-clock-o icon"></i>
+                <input class="input-field" type="time" name="endTime" id="endTime">
+            </div>
+
+            <div class="input-container">
                 <i class="fa fa-pencil-square-o icon"></i>
                 <input class="input-field" type="text" placeholder="Location ?" name="location" id="location">
             </div>
