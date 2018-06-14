@@ -127,6 +127,11 @@
             </div>
 
             <div class="input-container">
+                <i class="fa fa-pencil-square-o icon"></i>
+                <input class="input-field" type="text" placeholder="Location ?" name="location" id="location">
+            </div>
+
+            <div class="input-container">
                 <i class="fa fa-bullhorn icon"></i>
                 <input class="input-field" type="text"  placeholder="About this event..." name="About" id="about1">
             </div>

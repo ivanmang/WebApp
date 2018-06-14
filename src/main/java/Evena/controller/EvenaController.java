@@ -162,6 +162,12 @@ public class EvenaController {
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.executeUpdate();
       }
+      if (!request.getParameter("location").equals("")) {
+        sql = "UPDATE events SET eventLocation = '" + request.getParameter("location")
+                + "' WHERE eventID = '" + request.getParameter("update") + "'";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.executeUpdate();
+      }
       if (!request.getParameter("about").equals("")) {
         sql = "UPDATE events SET info = '" + request.getParameter("about")
             + "' WHERE eventID = '" + request.getParameter("update") + "'";
@@ -181,6 +187,7 @@ public class EvenaController {
         model.addObject("id", result.getString("eventID"));
         model.addObject("name", result.getString("eventName"));
         model.addObject("date", result.getString("eventDate"));
+        model.addObject("location",result.getString("eventLocation"));
         model.addObject("about", result.getString("info"));
       }
       pstmt.close();
@@ -315,7 +322,7 @@ public class EvenaController {
         while (api.exist(id)) {
           id = ThreadLocalRandom.current().nextInt(1, 255);
         }
-        api.insert(id, request.getParameter("ernm"), request.getParameter("date"),
+        api.insert(id, request.getParameter("ernm"), request.getParameter("date"), request.getParameter("location"),
             request.getParameter("About"));
         event_name = Integer.toString(id);
 
@@ -396,6 +403,7 @@ public class EvenaController {
         model.addObject("id", id);
         model.addObject("name", result.getString("eventName"));
         model.addObject("date", result.getString("eventDate"));
+        model.addObject("location",result.getString("eventLocation"));
         model.addObject("about", result.getString("info"));
       }
       pstmt.close();

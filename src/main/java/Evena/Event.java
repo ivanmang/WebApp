@@ -5,17 +5,21 @@ import java.util.List;
 public class Event {
     private String id;
     private String name;
+    private String location;
     private String date;
+    private String startTime;
+    private String endTime;
     private String about;
     private List<Integer> tags;
 
     public Event() {
     }
 
-    public Event(String id, String name, String date, String about,
+    public Event(String id, String name, String location, String date, String about,
         List<Integer> tags) {
         this.id = id;
         this.name = name;
+        this.location = location;
         this.date = date;
         this.about = about;
         this.tags = tags;
@@ -59,6 +63,14 @@ public class Event {
 
     public void setAbout(String about) {
         this.about = about;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     @Override

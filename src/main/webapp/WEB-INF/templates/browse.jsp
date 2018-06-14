@@ -134,16 +134,13 @@
   <!-- Push down content on small screens -->
   <div class="w3-hide-large" style="margin-top:83px"></div>
 
-
-
-
     <div class="grid-container">
         <c:forEach items="${eventList.events}" var="event" varStatus="status">
             <div class="display-container">
         <div class="grid-item"> <img src="${pageContext.request.contextPath}/resources/images/photoinvalid.jpeg" style="width:100%">
 
         </div>
-                <p>${event.name}<br><b>${event.date}</b><br>${event.about}</p>
+                <p>${event.name}<br><b>${event.location}<br>${event.date}</b><br>${event.about}</p>
                 <div class="w3-right w3-text-white" style="background-color: #FF8724">
                     <form action="${pageContext.request.contextPath}/event" style="max-width:500px;margin:auto" method="GET">
                         <button type="submit" name="event"value=${event.id} class="w3-button" >Join Now <i class="fa fa-edit"></i></button>

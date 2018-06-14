@@ -65,6 +65,7 @@
         <div class="w3-col l8 m6">
             <h1 class="w3-jumbo"><b>${name}</b></h1>
             <h1 class="w3-xxxlarge w3-text-amber"><b>${date}</b></h1>
+            <h2 class="w3-large">${location}</h2>
             <p>${about}</p>
         </div>
     </div>

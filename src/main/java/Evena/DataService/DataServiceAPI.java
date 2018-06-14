@@ -68,6 +68,10 @@ public class DataServiceAPI {
       if (date == null) {
         date = "NA";
       }
+      String location = result.getString("location");
+      if (location == null) {
+        location = "NA";
+      }
       String about = result.getString("info");
       if (about == null) {
         about = "NA";
@@ -83,7 +87,7 @@ public class DataServiceAPI {
         }
       }
       Event event = new Event(String.valueOf(result.getInt("eventID")),
-          result.getString("eventName"), date, about,
+          result.getString("eventName"), date, location, about,
           tags);
       events.add(event);
     }
@@ -114,7 +118,7 @@ public class DataServiceAPI {
     return i;
   }
 
-  public boolean insert(int id, String eventName, String eventDate, String info)
+  public boolean insert(int id, String eventName, String eventDate, String eventLocation, String info)
       throws SQLException, ClassNotFoundException {
     Class.forName("org.postgresql.Driver");
 
@@ -122,8 +126,8 @@ public class DataServiceAPI {
 
     try {
       String sql =
-          "Insert Into events(eventID, eventName , eventDate , info) Values ("
-              + id + " , '" + eventName + "', '" + eventDate + "', '" + info
+          "Insert Into events(eventID, eventName , eventDate ,location, info) Values ("
+              + id + " , '" + eventName + "', '" + eventDate + "', '" + eventLocation + "', '" + info
               + "')";
       PreparedStatement pstmt = conn.prepareStatement(sql);
       pstmt.executeUpdate();
