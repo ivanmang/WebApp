@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class EvenaController {
 
   private static List<Event> events = new ArrayList<Event>();
+  private DataServiceAPI api = new DataServiceAPI();
 
 //  static {
 //    events.add(new Event("Barack", "Obama"));
@@ -55,7 +56,6 @@ public class EvenaController {
   @RequestMapping(value = "/manage")
   protected ModelAndView manage(HttpServletRequest request) throws Exception {
     ModelAndView model = new ModelAndView("manage");
-    DataServiceAPI a = new DataServiceAPI();
     if (request.getParameter("deleteall") != null) {
       try {
         Connection conn = DataServiceAPI.connect();
@@ -82,7 +82,7 @@ public class EvenaController {
         e.printStackTrace();
       }
     }
-    model.addObject("eventList", a.selectall());
+    model.addObject("eventList", api.selectall());
     return model;
   }
 
@@ -222,9 +222,8 @@ public class EvenaController {
   @RequestMapping(value = "/browse")
   protected ModelAndView browse(HttpServletRequest request) throws Exception {
     ModelAndView model = new ModelAndView("browse");
-    DataServiceAPI a = new DataServiceAPI();
     if (request.getParameter("search") == null) {
-      model.addObject("eventList", a.selectall());
+      model.addObject("eventList", api.selectall());
     }
 
     //search for exact word
@@ -269,26 +268,7 @@ public class EvenaController {
         List<Event> events = new ArrayList<>();
         EventList eventList = new EventList();
 
-        while (result.next()) {
-          String date = result.getString("eventDate");
-          if (date == null) {
-            date = "NA";
-          }
-          String about = result.getString("info");
-          if (about == null) {
-            about = "NA";
-          }
-          String tagids = result.getString("tagids");
-          List<Integer> tags = new ArrayList<>();
-          if (tagids == null) {
-            tagids = "";
-            tags = convertTagsToList(tagids);
-          }
-          Event event = new Event(String.valueOf(result.getInt("eventID")),
-              result.getString("eventName"), date, about,
-              tags);
-          events.add(event);
-        }
+        api.addResultSetToEventList(result, events);
 
         eventList.setEvents(events);
         pstmt.close();
@@ -309,13 +289,12 @@ public class EvenaController {
     String event_name = request.getParameter("event");
     int id = 1;
     if (event_name == null && request.getParameter("ernm") != null) {
-      DataServiceAPI d = new DataServiceAPI();
       try {
 
-        while (d.exist(id)) {
+        while (api.exist(id)) {
           id = ThreadLocalRandom.current().nextInt(1, 255);
         }
-        d.insert(id, request.getParameter("ernm"), request.getParameter("date"),
+        api.insert(id, request.getParameter("ernm"), request.getParameter("date"),
             request.getParameter("About"));
         event_name = Integer.toString(id);
 
