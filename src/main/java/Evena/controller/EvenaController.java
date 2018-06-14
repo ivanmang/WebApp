@@ -1,5 +1,8 @@
 package Evena.controller;
 
+import static Evena.DataService.DataServiceAPI.selectAllSql;
+import static Evena.DataService.DataServiceAPI.selectUpcomingSql;
+
 import Evena.DataService.DataServiceAPI;
 import Evena.Event;
 import Evena.EventList;
@@ -82,7 +85,7 @@ public class EvenaController {
         e.printStackTrace();
       }
     }
-    model.addObject("eventList", api.selectall());
+    model.addObject("eventList", api.selectall(selectAllSql));
     return model;
   }
 
@@ -223,7 +226,7 @@ public class EvenaController {
   protected ModelAndView browse(HttpServletRequest request) throws Exception {
     ModelAndView model = new ModelAndView("browse");
     if (request.getParameter("search") == null) {
-      model.addObject("eventList", api.selectall());
+      model.addObject("eventList", api.selectall(selectUpcomingSql));
     }
 
     //search for exact word

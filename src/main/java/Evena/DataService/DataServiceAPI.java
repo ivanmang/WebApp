@@ -8,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -17,6 +18,9 @@ public class DataServiceAPI {
   private static String database = "jdbc:postgresql://db.doc.ic.ac.uk/g1727106_u?&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory";
   private static String user = "g1727106_u";
   private static String password = "Rjfz8pWxZM";
+  public static String today = LocalDate.now().toString();
+  public static String selectAllSql = "SELECT * FROM events";
+  public static String selectUpcomingSql = "SELECT * FROM events WHERE eventdate >= \'" + today + "\'";
 
   public static Connection connect() throws SQLException {
     String url = database;
@@ -28,7 +32,7 @@ public class DataServiceAPI {
 
   }
 
-  public EventList selectall() throws SQLException, ClassNotFoundException {
+  public EventList selectall(String sql) throws SQLException, ClassNotFoundException {
     Class.forName("org.postgresql.Driver");
 
     Connection conn = connect();
@@ -37,7 +41,6 @@ public class DataServiceAPI {
     EventList eventList = new EventList();
 
     try {
-      String sql = "Select * From events";
       //String sql = new SelectQueryBuilder().setTable("Event").createSelectQuery().ReturnQuerry();
       PreparedStatement pstmt = conn.prepareStatement(sql);
       ResultSet result = pstmt.executeQuery();
