@@ -103,13 +103,17 @@ public class EvenaController {
       List<Participant> list = new ArrayList<>();
       while (result.next()) {
         sql =
-            "Select participantName, specinfo From participants Where participantID = '"
+            "Select participantName, email, phone, age, gender, specinfo From participants Where participantID = '"
                 + result.getString("participantID") + "'";
         pstmt = conn.prepareStatement(sql);
         ResultSet p_result = pstmt.executeQuery();
         p_result.next();
         Participant p = new Participant(result.getString("participantID"),
             p_result.getString("participantName"),
+            p_result.getString("email"),
+            p_result.getString("phone"),
+            p_result.getString("age"),
+            p_result.getString("gender"),
             p_result.getString("specinfo"));
         list.add(p);
       }
@@ -323,9 +327,14 @@ public class EvenaController {
           result = pstmt.executeQuery();
         }
         sql =
-            "Insert Into participants( participantID, participantName, \"specinfo\") Values ("
-                + p_id + " , '" + p_name + "','" + request
-                .getParameter("specinfo") + "')";
+            "Insert Into participants( participantID, participantName, email, phone, age, gender, \"specinfo\") Values ("
+                + p_id + " , '" + p_name + "' , '" +
+                request.getParameter("email") + "' , " +
+                request.getParameter("phone") + " , " +
+                request.getParameter("age") + " , '" +
+                request.getParameter("gender") + "' , '" +
+                request.getParameter("specinfo")
+                + "')";
         pstmt = conn.prepareStatement(sql);
         pstmt.executeUpdate();
         sql = "Insert Into events_Participants(eventID,participantID) Values ("

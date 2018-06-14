@@ -179,7 +179,11 @@
                 <tr style="background-color: #EE224A" class="w3-text-white">
                     <th>ID</th>
                     <th>Name</th>
-                    <th>Special Requirement</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Special Info</th>
                 </tr>
             </thead>
             <tbody>
@@ -187,6 +191,10 @@
                     <tr>
                         <td>${p.id}</td>
                         <td>${p.name}</td>
+                        <td>${p.email}</td>
+                        <td>${p.phone}</td>
+                        <td>${p.age}</td>
+                        <td>${p.gender}</td>
                         <td>${p.specinfo}</td>
                     </tr>
                 </c:forEach>
