@@ -51,10 +51,29 @@
         <h2>Register for ${name}</h2>
         <div class="input-container">
             <i class="fa fa-user-o icon"></i>
-            <input class="input-field" type="text" name="p_name" placeholder="Name">
+            <input class="input-field" type="text" name="p_name" placeholder="Name"><br/>
+        </div>
+        <div class="input-container">
+            <i class="fa fa-user-o icon"></i>
+            <input class="input-field" type="text" name="email" placeholder="Email">
+        </div>
+        <div class="input-container">
+            <i class="fa fa-user-o icon"></i>
+            <input class="input-field" type="text" name="phone" placeholder="Phone">
+        </div>
+        <div class="input-container">
+            <i class="fa fa-user-o icon"></i>
+            <input class="input-field" type="text" name="age" placeholder="Age">
+        </div>
+        <div class="input-container">
+            <i class="fa fa-user-o icon"></i>
+            <input class="input-field" type="text" name="gender" placeholder="Gender">
+        </div>
+        <div class="input-container">
+            <i class="fa fa-user-o icon"></i>
             <input class="input-field" type="text" name="specinfo" placeholder="Any Special Info?">
         </div>
-            <button type="submit" name="join" value = ${id} class="btn">Join</button>
+        <button type="submit" name="join" value = ${id} class="btn">Join</button>
     </div>
 </div>
 </form>
