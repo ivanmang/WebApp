@@ -42,30 +42,8 @@ public class DataServiceAPI {
       PreparedStatement pstmt = conn.prepareStatement(sql);
       ResultSet result = pstmt.executeQuery();
 
-      while (result.next()) {
-        String date = result.getString("eventDate");
-        if (date == null) {
-          date = "NA";
-        }
-        String about = result.getString("info");
-        if (about == null) {
-          about = "NA";
-        }
-        String tagids = result.getString("tagids");
-        if (tagids == null) {
-          tagids = "";
-        }
-        List<Integer> tags = new ArrayList<>();
-        if (tagids.length() != 0) {
-          for (String str : tagids.split(",")) {
-            tags.add(Integer.valueOf(str));
-          }
-        }
-        Event event = new Event(String.valueOf(result.getInt("eventID")),
-            result.getString("eventName"), date, about,
-            tags);
-        events.add(event);
-      }
+      addResultSetToEventList(result, events);
+
       pstmt.close();
 
     } catch (Exception e) {
@@ -74,6 +52,34 @@ public class DataServiceAPI {
     }
     eventList.setEvents(events);
     return eventList;
+  }
+
+  public void addResultSetToEventList(ResultSet result, List<Event> events)
+      throws SQLException {
+    while (result.next()) {
+      String date = result.getString("eventDate");
+      if (date == null) {
+        date = "NA";
+      }
+      String about = result.getString("info");
+      if (about == null) {
+        about = "NA";
+      }
+      String tagids = result.getString("tagids");
+      if (tagids == null) {
+        tagids = "";
+      }
+      List<Integer> tags = new ArrayList<>();
+      if (tagids.length() != 0) {
+        for (String str : tagids.split(",")) {
+          tags.add(Integer.valueOf(str));
+        }
+      }
+      Event event = new Event(String.valueOf(result.getInt("eventID")),
+          result.getString("eventName"), date, about,
+          tags);
+      events.add(event);
+    }
   }
 
   public int select(String name) throws SQLException, ClassNotFoundException {
