@@ -137,7 +137,7 @@
             </div>
 
             <div class="input-container">
-                <i class="fa fa-pencil-square-o icon"></i>
+                <i class="fa fa-globe icon"></i>
                 <input class="input-field" type="text" placeholder="Location ?" name="location" id="location">
             </div>
 

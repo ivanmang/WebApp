@@ -164,6 +164,21 @@
                     </div>
 
                     <div class="input-container" style="background-color: #FFC124">
+                        <i class="fa fa-clock-o icon"></i>
+                        <input class="input-field" type="time"  name="startTime" id="startTime">
+                    </div>
+
+                    <div class="input-container" style="background-color: #FFC124">
+                        <i class="fa fa-clock-o icon"></i>
+                        <input class="input-field" type="time"  name="about" id="endTime">
+                    </div>
+
+                    <div class="input-container" style="background-color: #FFC124">
+                        <i class="fa fa-globe icon"></i>
+                        <input class="input-field" type="text"  placeholder="Location" name="about" id="location">
+                    </div>
+
+                    <div class="input-container" style="background-color: #FFC124">
                         <i class="fa fa-bullhorn icon"></i>
                         <input class="input-field" type="text"  placeholder="About this event..." name="about" id="about1">
                     </div>
