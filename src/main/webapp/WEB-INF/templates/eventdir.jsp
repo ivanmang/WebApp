@@ -184,6 +184,7 @@
                     <th>Age</th>
                     <th>Gender</th>
                     <th>Special Info</th>
+                    <th>Manage</th>
                 </tr>
             </thead>
             <tbody>
@@ -196,6 +197,12 @@
                         <td>${p.age}</td>
                         <td>${p.gender}</td>
                         <td>${p.specinfo}</td>
+                        <td>
+                            <form action="${pageContext.request.contextPath}/eventdir" style="max-width:100px;margin:auto"
+                                  method="GET">
+                                <button type="submit" name="delete" value=${p.id} class="btn-a">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                 </c:forEach>
             </tbody>
