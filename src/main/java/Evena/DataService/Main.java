@@ -5,7 +5,6 @@ import static Evena.DataService.DataServiceAPI.today;
 
 import Evena.Event;
 import java.sql.SQLException;
-import java.time.LocalDate;
 
 /**
  * Created by admin on 9/6/2018.
