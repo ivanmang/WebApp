@@ -101,6 +101,10 @@
   </div>
 </div>
 
+
+
+
+
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-collapse w3-white" style="z-index:3;width:250px;" id="mySidebar"><br>
 
@@ -108,9 +112,12 @@
     <a href="${pageContext.request.contextPath}/index" class="w3-bar-item w3-button">Home  <i class="fa fa-home"></i></a>
     <a href="#" class="w3-bar-item w3-button">Most Recent Events  <i class="fa fa-clock-o"></i> </a>
     <a href="#" class="w3-bar-item w3-button">Popular Events <i class="fa fa-heart"></i> </a>
-    <a href="#" class="w3-bar-item w3-button">Music Events <i class="fa fa-music"></i> </a>
-    <a href="#" class="w3-bar-item w3-button">Sports Events <i class="fa fa-child"></i> </a>
-    <a href="#" class="w3-bar-item w3-button">Other Events <i class="fa fa-sticky-note"></i> </a>
+
+    <form action="${pageContext.request.contextPath}/browse" style="max-width:500px;margin:auto" method="GET">
+      <button type="submit" name="music" class="w3-bar-item w3-button">Music Events <i class="fa fa-music"></i> </button>
+      <button type="submit" name="sport" class="w3-bar-item w3-button">Sports Events <i class="fa fa-music"></i> </button>
+      <button type="submit" name="misc" class="w3-bar-item w3-button">Other Events <i class="fa fa-music"></i> </button>
+    </form>
 
     <div class="container">
       <form action="${pageContext.request.contextPath}/browse" style="max-width:500px;margin:auto" method="GET">
