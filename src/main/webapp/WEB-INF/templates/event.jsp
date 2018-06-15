@@ -64,7 +64,9 @@
     <div class="w3-row-padding">
         <div class="w3-col l8 m6">
             <h1 class="w3-jumbo"><b>${name}</b></h1>
-            <h1 class="w3-xxxlarge w3-text-amber"><b>${date}</b></h1>
+            <h1 class="w3-xxlarge w3-text-orange"><b>${date}</b></h1>
+            <h2 class="w3-xlarge w3-text-amber"><b>${startTime} - ${endTime}</b></h2>
+            <h2 class="w3-large"><b>${location}</b></h2>
             <p>${about}</p>
         </div>
     </div>

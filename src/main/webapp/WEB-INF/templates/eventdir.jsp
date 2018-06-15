@@ -57,6 +57,15 @@
 </style>
 
 <script src="<c:url value="/resources/js/navbar.js" />"></script>
+<script src="<c:url value="/resources/js/jquery-3.3.1.js" />"></script>
+<script src="<c:url value="/resources/js/jquery.tablesorter.js" />"></script>
+
+<script id="js">$(function() {
+  $("#participants").tablesorter();
+});
+</script>
+
+
 <body>
 
 <header class="w3-container bgimg"></header>
@@ -132,12 +141,18 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Date</th>
+                <th>Start at</th>
+                <th>End at</th>
+                <th>Location</th>
                 <th>About</th>
             </tr>
             <tr class="w3-form">
                 <td>${id}</td>
                 <td>${name}</td>
                 <td>${date}</td>
+                <td>${startTime}</td>
+                <td>${endTime}</td>
+                <td>${location}</td>
                 <td>${about}</td>
             </tr>
         </table>
@@ -155,6 +170,21 @@
                     </div>
 
                     <div class="input-container" style="background-color: #FFC124">
+                        <i class="fa fa-clock-o icon"></i>
+                        <input class="input-field" type="time"  name="startTime" id="startTime">
+                    </div>
+
+                    <div class="input-container" style="background-color: #FFC124">
+                        <i class="fa fa-clock-o icon"></i>
+                        <input class="input-field" type="time"  name="about" id="endTime">
+                    </div>
+
+                    <div class="input-container" style="background-color: #FFC124">
+                        <i class="fa fa-globe icon"></i>
+                        <input class="input-field" type="text"  placeholder="Location" name="about" id="location">
+                    </div>
+
+                    <div class="input-container" style="background-color: #FFC124">
                         <i class="fa fa-bullhorn icon"></i>
                         <input class="input-field" type="text"  placeholder="About this event..." name="about" id="about1">
                     </div>
@@ -165,19 +195,38 @@
     </div>
 
     <div id="Parti" class="w3-container manage">
-        <table class="w3-table-all w3-hoverable w3-centered w3-striped"width="50%"  align="center">
-            <tr style="background-color: #EE224A" class="w3-text-white">
-                <th>ID</th>
-                <th>Name</th>
-                <th>Special Requirement</th>
-            </tr>
-            <c:forEach items="${p_list.participants}" var="p" varStatus="status">
-                <tr>
-                    <td>${p.id}</td>
-                    <td>${p.name}</td>
-                    <td>${p.specinfo}</td>
+        <table id="participants" class="tablesorter w3-table-all w3-hoverable w3-centered w3-striped" width="50%"  align="center">
+            <thead>
+                <tr style="background-color: #EE224A" class="w3-text-white">
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Special Info</th>
+                    <th>Manage</th>
                 </tr>
-            </c:forEach>
+            </thead>
+            <tbody>
+                <c:forEach items="${p_list.participants}" var="p" varStatus="status">
+                    <tr>
+                        <td>${p.id}</td>
+                        <td>${p.name}</td>
+                        <td>${p.email}</td>
+                        <td>${p.phone}</td>
+                        <td>${p.age}</td>
+                        <td>${p.gender}</td>
+                        <td>${p.specinfo}</td>
+                        <td>
+                            <form action="${pageContext.request.contextPath}/eventdir" style="max-width:100px;margin:auto"
+                                  method="GET">
+                                <button type="submit" name="delete" value=${p.id} class="btn-a">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
         </table>
     </div>
 
@@ -191,7 +240,6 @@
             <button type="submit" name="event" value=${event} class="btn">Edit</button>
         </form>
     </div>
-
 
 
 

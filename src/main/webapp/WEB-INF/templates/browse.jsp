@@ -108,9 +108,12 @@
     <a href="${pageContext.request.contextPath}/index" class="w3-bar-item w3-button">Home  <i class="fa fa-home"></i></a>
     <a href="#" class="w3-bar-item w3-button">Most Recent Events  <i class="fa fa-clock-o"></i> </a>
     <a href="#" class="w3-bar-item w3-button">Popular Events <i class="fa fa-heart"></i> </a>
-    <a href="#" class="w3-bar-item w3-button">Music Events <i class="fa fa-music"></i> </a>
-    <a href="#" class="w3-bar-item w3-button">Sports Events <i class="fa fa-child"></i> </a>
-    <a href="#" class="w3-bar-item w3-button">Other Events <i class="fa fa-sticky-note"></i> </a>
+
+      <form action="${pageContext.request.contextPath}/browse" style="max-width:500px;margin:auto" method="GET">
+          <button type="submit" name="music" class="w3-bar-item w3-button" value="on">Music Events <i class="fa fa-music"></i> </button>
+          <button type="submit" name="sport" class="w3-bar-item w3-button" value="on">Sports Events <i class="fa fa-child"></i> </button>
+          <button type="submit" name="misc" class="w3-bar-item w3-button" value="on">Other Events <i class="fa fa-sticky-note"></i> </button>
+      </form>
 
     <div class="container">
       <form action="${pageContext.request.contextPath}/browse" style="max-width:500px;margin:auto" method="GET">
@@ -134,19 +137,16 @@
   <!-- Push down content on small screens -->
   <div class="w3-hide-large" style="margin-top:83px"></div>
 
-
-
-
     <div class="grid-container">
         <c:forEach items="${eventList.events}" var="event" varStatus="status">
             <div class="display-container">
         <div class="grid-item"> <img src="${pageContext.request.contextPath}/resources/images/photoinvalid.jpeg" style="width:100%">
 
         </div>
-                <p>${event.name}<br><b>${event.date}</b><br>${event.about}</p>
+                <p>${event.name}<br><b>${event.location}</b><br>${event.date} - ${event.startTime} <br> <b> ${event.endTime}</b> <br>${event.about}</p>
                 <div class="w3-right w3-text-white" style="background-color: #FF8724">
                     <form action="${pageContext.request.contextPath}/event" style="max-width:500px;margin:auto" method="GET">
-                        <button type="submit" name="event"value=${event.id} class="w3-button" >Join Now <i class="fa fa-edit"></i></button>
+                        <button type="submit" name="event" value=${event.id} class="w3-button" >Join Now <i class="fa fa-edit"></i></button>
                     </form>
                 </div>
             </div>
