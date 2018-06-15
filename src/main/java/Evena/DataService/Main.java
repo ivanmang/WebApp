@@ -29,14 +29,17 @@ public class Main {
 //        WhereClause wc1 = new WhereClause("phantom", "Between", "King", "Queen", "AND");
 //        String del = d.addT_name("Ivana").addWhereList(wc1).addWhereList(wc).build();
 //        System.out.println(del);
+
+
+
     String[] array = "1,2,3,4,5,6".split(",");
     for (String str : array) {
       System.out.println(str);
     }
-    DataServiceAPI data = new DataServiceAPI();
+/*    DataServiceAPI data = new DataServiceAPI();
     for (Event event : data.selectall(selectAllSql).getEvents()) {
       System.out.println(event);
-    }
+    }*/
     System.out.println(today);
   }
 }

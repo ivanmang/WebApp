@@ -147,11 +147,11 @@
             </div>
 
             <label class="checkcontainer">Music
-                <input type="checkbox">
+                <input type="checkbox" name="music" id="music">
                 <span class="checkmark"></span>
             </label>
             <label class="checkcontainer">Sport
-                <input type="checkbox">
+                <input type="checkbox" name="sport" id="sport">
                 <span class="checkmark"></span>
             </label>
             <button type="submit" class="btn">Create</button>
