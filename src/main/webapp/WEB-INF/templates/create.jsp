@@ -155,7 +155,7 @@
                 <span class="checkmark"></span>
             </label>
             <label class="checkcontainer">Miscellaneous
-                <input type="checkbox" name="sport" id="misc">
+                <input type="checkbox" name="misc" id="misc">
                 <span class="checkmark"></span>
             </label>
             <button type="submit" class="btn">Create</button>
