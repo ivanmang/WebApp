@@ -101,6 +101,9 @@ body {font-family:"Lato", sans-serif;}
     <p><form action="${pageContext.request.contextPath}/signin" style="max-width:500px;margin:auto" method="GET">
       <button type="submit" name = "action" value = "create" class="btn">Create Events</button>
   </form></p>
+    <p><form action="${pageContext.request.contextPath}/d_create" style="max-width:500px;margin:auto" method="GET">
+    <button type="submit" name = "action" value = "create" class="btn">Create Custom Registration Events</button>
+  </form></p>
       <p><form action="${pageContext.request.contextPath}/signin" style="max-width:500px;margin:auto" method="GET">
       <button type="submit" name = "action" value = "manage" class="btn">Manage Events</button>
   </form></p>

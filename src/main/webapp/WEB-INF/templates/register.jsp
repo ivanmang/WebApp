@@ -45,20 +45,43 @@
 
 <!-- Top header -->
 <header class="w3-container bgimg"></header>
-<form action="${pageContext.request.contextPath}/event" style="max-width:500px;margin:auto" method="GET">
+<form action="${pageContext.request.contextPath}/register_done" style="max-width:500px;margin:auto" method="GET">
 <div class="w3-container w3-padding-64 w3-large" id="create">
     <div class="container" style="max-width:500px;margin:auto">
         <h2>Register for ${name}</h2>
-        <div class="input-container">
-            <i class="fa fa-user-o icon"></i>
-            <input class="input-field" type="text" name="p_name" placeholder="Name">
-            <input class="input-field" type="text" name="specinfo" placeholder="Any Special Info?">
+        <table id="myTable">
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+
         </div>
             <button type="submit" name="join" value = ${id} class="btn">Join</button>
     </div>
 </div>
 </form>
 
+<script>
+
+    // Number of inputs to create
+    var str = ${reg_form_format};
+    var res = str.split(";");
+    // Container <div> where dynamic content will be placed
+    var table = document.getElementById("myTable");
+    var i;
+    for (i=res.length-1;i>=0;i--){
+        // Append a node with a random text
+        var row = table.insertRow(1);
+        var cell = row.insertCell(0);
+        cell.innerHTML = res[i];
+        var input = row.insertCell(1);
+        var input1 = document.createElement("input");
+        input1.type = "text";
+        input1.name = "member" + i;
+        input.appendChild(input1);
+    }
+</script>
 <!-- Footer -->
 <footer class="w3-container w3-light-grey w3-center w3-padding-48 w3-small">
     <p>Webapp-Evena @2018</p>
