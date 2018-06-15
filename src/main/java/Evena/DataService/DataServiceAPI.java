@@ -34,7 +34,8 @@ public class DataServiceAPI {
     put("misc", 3);
   }};
 
-  public static Connection connect() throws SQLException {
+  public static Connection connect() throws SQLException, ClassNotFoundException {
+    Class.forName("org.postgresql.Driver");
     String url = database;
     Properties connectionProps = new Properties();
     connectionProps.setProperty("user", user);
@@ -45,7 +46,6 @@ public class DataServiceAPI {
   }
 
   public EventList selectall(String sql) throws SQLException, ClassNotFoundException {
-    Class.forName("org.postgresql.Driver");
 
     Connection conn = connect();
 
@@ -110,7 +110,6 @@ public class DataServiceAPI {
   }
 
   public int select(String name) throws SQLException, ClassNotFoundException {
-    Class.forName("org.postgresql.Driver");
 
     Connection conn = connect();
     int i = 0;
@@ -159,7 +158,6 @@ public class DataServiceAPI {
   }
 
   public boolean exist(int i) throws SQLException, ClassNotFoundException {
-    Class.forName("org.postgresql.Driver");
 
     Connection conn = connect();
 
