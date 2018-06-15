@@ -262,8 +262,8 @@ public class EvenaController {
     return model;
   }
 
-  private String createTagSearch(int tag) {
-    return "SELECT * FROM events WHERE tagids like '%" + tag + "'%";
+  public String createTagSearch(int tag) {
+    return "SELECT * FROM events WHERE tagids like '%" + tag + "%'";
   }
 
   @RequestMapping(value = "/browse")
