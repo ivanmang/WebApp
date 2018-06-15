@@ -154,6 +154,10 @@
                 <input type="checkbox" name="sport" id="sport">
                 <span class="checkmark"></span>
             </label>
+            <label class="checkcontainer">Miscellaneous
+                <input type="checkbox" name="sport" id="misc">
+                <span class="checkmark"></span>
+            </label>
             <button type="submit" class="btn">Create</button>
         </form>
     </div>

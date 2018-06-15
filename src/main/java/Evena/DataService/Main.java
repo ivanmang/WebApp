@@ -4,6 +4,7 @@ import static Evena.DataService.DataServiceAPI.selectAllSql;
 import static Evena.DataService.DataServiceAPI.today;
 
 import Evena.Event;
+import Evena.Tags;
 import java.sql.SQLException;
 
 /**
@@ -36,6 +37,8 @@ public class Main {
     for (String str : array) {
       System.out.println(str);
     }
+
+    System.out.println(Tags.valueOf("MUSIC"));
 /*    DataServiceAPI data = new DataServiceAPI();
     for (Event event : data.selectall(selectAllSql).getEvents()) {
       System.out.println(event);

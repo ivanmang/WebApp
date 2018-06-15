@@ -2,6 +2,7 @@ package Evena.controller;
 
 import static Evena.DataService.DataServiceAPI.selectAllSql;
 import static Evena.DataService.DataServiceAPI.selectUpcomingSql;
+import static Evena.DataService.DataServiceAPI.tagToID;
 
 import Evena.DataService.DataServiceAPI;
 import Evena.Event;
@@ -325,6 +326,24 @@ public class EvenaController {
     return model;
   }
 
+  private String translateTags (HttpServletRequest request) {
+    StringBuilder builder = new StringBuilder();
+    boolean firstTag = true;
+    for(String tag : tagToID.keySet()) {
+      if(request.getParameter(tag) != null) {
+        if(request.getParameter(tag).equals("on")) {
+          if(firstTag) {
+            builder.append(tagToID.get(tag));
+            firstTag = false;
+          } else {
+            builder.append(",").append(tagToID.get(tag));
+          }
+        }
+      }
+    }
+    return builder.toString();
+  }
+
   @RequestMapping(value = "/event")
   protected ModelAndView redirect(HttpServletRequest request) {
     ModelAndView model = new ModelAndView("event");
@@ -336,8 +355,9 @@ public class EvenaController {
         while (api.exist(id)) {
           id = ThreadLocalRandom.current().nextInt(1, 255);
         }
+        String tagids = translateTags(request);
         api.insert(id, request.getParameter("ernm"), request.getParameter("date"), request.getParameter("startTime"), request.getParameter("endTime"),
-                request.getParameter("location"), request.getParameter("About"));
+                request.getParameter("location"), request.getParameter("About"), tagids);
         event_name = Integer.toString(id);
 
       } catch (Exception e) {
@@ -497,5 +517,7 @@ public class EvenaController {
     }
     return tags;
   }
+
+
 
 }

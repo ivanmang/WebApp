@@ -12,7 +12,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 public class DataServiceAPI {
@@ -25,6 +27,12 @@ public class DataServiceAPI {
   public static String today = dateFormat.format(date);
   public static String selectAllSql = "SELECT * FROM events";
   public static String selectUpcomingSql = "SELECT * FROM events WHERE eventdate >= \'" + today + "\'";
+
+  public static Map<String, Integer> tagToID = new LinkedHashMap<String, Integer>() {{
+    put("music", 1);
+    put("sport", 2);
+    put("misc", 3);
+  }};
 
   public static Connection connect() throws SQLException {
     String url = database;
@@ -126,7 +134,7 @@ public class DataServiceAPI {
     return i;
   }
 
-  public boolean insert(int id, String eventName, String eventDate, String eventStart, String eventEnd, String eventLocation, String info)
+  public boolean insert(int id, String eventName, String eventDate, String eventStart, String eventEnd, String eventLocation, String info, String tagids)
       throws SQLException, ClassNotFoundException {
     Class.forName("org.postgresql.Driver");
 
@@ -134,9 +142,9 @@ public class DataServiceAPI {
 
     try {
       String sql =
-          "Insert Into events(eventID, eventName , eventDate , eventStart, eventEnd, eventLocation, info) Values ("
+          "Insert Into events(eventID, eventName , eventDate , eventStart, eventEnd, eventLocation, info, tagids) Values ("
               + id + " , '" + eventName + "', '" + eventDate + "', '" + eventStart + "', '" + eventEnd + "', '" + eventLocation + "', '" + info
-              + "')";
+              + "', '" + tagids + "')";
       PreparedStatement pstmt = conn.prepareStatement(sql);
       pstmt.executeUpdate();
       pstmt.close();
