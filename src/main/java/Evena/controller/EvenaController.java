@@ -5,6 +5,8 @@ import static Evena.DataService.DataServiceAPI.selectUpcomingSql;
 import static Evena.DataService.DataServiceAPI.tagToID;
 
 import Evena.DataService.DataServiceAPI;
+import Evena.Dynamic_partic;
+import Evena.Dynamic_partic_list;
 import Evena.Event;
 import Evena.EventList;
 import Evena.Info;
