@@ -262,11 +262,28 @@ public class EvenaController {
     return model;
   }
 
+  private String createTagSearch(int tag) {
+    return "SELECT * FROM events WHERE tagids like '%" + tag + "'%";
+  }
+
   @RequestMapping(value = "/browse")
   protected ModelAndView browse(HttpServletRequest request) throws Exception {
+    boolean browsetags = false;
     ModelAndView model = new ModelAndView("browse");
     if (request.getParameter("search") == null) {
-      model.addObject("eventList", api.selectall(selectUpcomingSql));
+      for(String tag : tagToID.keySet()) {
+        if(request.getParameter(tag) != null) {
+          if(request.getParameter(tag).equals("on")) {
+            int id = tagToID.get(tag);
+            model.addObject("eventList", api.selectall(createTagSearch(id)));
+            browsetags = true;
+            break;
+          }
+        }
+      }
+      if(!browsetags) {
+        model.addObject("eventList", api.selectall(selectUpcomingSql));
+      }
     }
 
     //search for exact word
