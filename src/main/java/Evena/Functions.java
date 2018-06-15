@@ -32,9 +32,9 @@ public class Functions {
     return dsa.select(name);
   }
 
-  public boolean runInsert(int id,String name,String date,String startTime, String endTime, String location,String about) throws SQLException, ClassNotFoundException {
+  public boolean runInsert(int id,String name,String date,String startTime, String endTime, String location,String about, String tagids) throws SQLException, ClassNotFoundException {
     DataServiceAPI dsa = new DataServiceAPI();
-    return dsa.insert(id,name,date,startTime,endTime,location,about);
+    return dsa.insert(id,name,date,startTime,endTime,location,about, tagids);
   }
 
 
