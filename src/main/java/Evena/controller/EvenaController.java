@@ -52,9 +52,6 @@ public class EvenaController {
     @RequestMapping(value = "/user_register", method = RequestMethod.POST)
     protected  ModelAndView user_register(@RequestParam String username, @RequestParam String password, @RequestParam String re_password) throws Exception{
         ModelAndView model;
-//        System.out.println(username);
-//        System.out.println(password);
-//        System.out.println(re_password);
         if (username.length()<=6 || username.length()>=20){
             model = new ModelAndView("user_register");
             model.addObject("error_message","invalid username\n");
@@ -100,9 +97,9 @@ public class EvenaController {
 
     @RequestMapping(value = "/logout")
     protected  ModelAndView logout(HttpServletRequest request) throws Exception{
-        HttpSession session = request.getSession();
-        session.removeAttribute("username");
-        return new ModelAndView("main");
+        ModelAndView model  = new ModelAndView("main");
+        model.addObject("username","out");
+        return model;
     }
 
     @RequestMapping(value = "/signin", method = RequestMethod.POST)
@@ -123,7 +120,8 @@ public class EvenaController {
         }
 
         if(action.equals("create")){
-            model = new ModelAndView("create");
+            model = new ModelAndView("d_create");
+            model.addObject("username",username);
         }else {
             model = new ModelAndView("manage");
 
