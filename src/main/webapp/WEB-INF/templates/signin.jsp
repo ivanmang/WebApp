@@ -50,7 +50,6 @@
     <div class="container" style="max-width:500px;margin:auto">
             <h2>Sign In</h2>
 
-
                     <form action="${pageContext.request.contextPath}/signin" style="max-width:500px;margin:auto" method="POST">
                         <div class="input-container">
                             <i class="fa fa-user-o icon"></i>
