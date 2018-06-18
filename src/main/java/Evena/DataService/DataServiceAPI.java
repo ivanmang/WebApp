@@ -76,6 +76,10 @@ public class DataServiceAPI {
       if (date == null) {
         date = "NA";
       }
+      String location = result.getString("eventLocation");
+      if (location == null) {
+        location = "NA";
+      }
       String startTime = result.getString("eventStart");
       if (startTime == null) {
         startTime = "NA";
@@ -83,10 +87,6 @@ public class DataServiceAPI {
       String endTime = result.getString("eventEnd");
       if (endTime == null) {
         endTime = "NA";
-      }
-      String location = result.getString("eventLocation");
-      if (location == null) {
-        location = "NA";
       }
       String about = result.getString("info");
       if (about == null) {
@@ -141,8 +141,8 @@ public class DataServiceAPI {
 
     try {
       String sql =
-          "Insert Into events(eventID, eventName , eventDate , eventStart, eventEnd, eventLocation, info, tagids) Values ("
-              + id + " , '" + eventName + "', '" + eventDate + "', '" + eventStart + "', '" + eventEnd + "', '" + eventLocation + "', '" + info
+          "Insert Into events(eventID, eventName, eventLocation , eventDate , eventStart, eventEnd, info, tagids) Values ("
+              + id + " , '" + eventName + "', '" + eventLocation + "', '" + eventDate + "', '" + eventStart + "', '" + eventEnd +  "', '" + info
               + "', '" + tagids + "')";
       PreparedStatement pstmt = conn.prepareStatement(sql);
       pstmt.executeUpdate();

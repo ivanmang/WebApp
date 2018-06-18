@@ -43,21 +43,26 @@ public class EvenaController {
         int event_id = ThreadLocalRandom.current().nextInt(1, 255);
         Connection conn = DataServiceAPI.connect();
 
+        String tagids = translateTags(request);
         DataServiceAPI d = new DataServiceAPI();
 
         while (d.exist(event_id)) {
             event_id = ThreadLocalRandom.current().nextInt(1, 255);
         }
-        String sql = "Insert Into events(eventID, eventName , eventDate , info , \"reg_form_format\" ) Values (" +
-                event_id +" , '" + request.getParameter("name") + "', '"+ request.getParameter("date") + "', '" + request.getParameter("About") + "', '" +
-                request.getParameter("create") + "')";
+        String sql = "Insert Into events(eventID, eventName , eventLocation, eventDate , eventStart, eventEnd , info , tagids ,  \"reg_form_format\" ) " +
+                "Values (" + event_id +" , '" + request.getParameter("name") + "', '"+ request.getParameter("location") + "', '" + request.getParameter("date") + "', '"
+                + request.getParameter("startTime") + "', '" + request.getParameter("endTime") + "', '"+ request.getParameter("About") + "', '" +  tagids +
+                "', '"+ request.getParameter("create") + "')";
         System.out.println(sql);
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.executeUpdate();
 
         model.addObject("id",event_id);
         model.addObject("name",request.getParameter("name"));
+        model.addObject("location", request.getParameter("location"));
         model.addObject("date",request.getParameter("date"));
+        model.addObject("startTime", request.getParameter("startTime"));
+        model.addObject("endTime",request.getParameter("endTime"));
         model.addObject("about",request.getParameter("About"));
 
         pstmt.close();

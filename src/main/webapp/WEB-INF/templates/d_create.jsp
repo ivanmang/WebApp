@@ -16,6 +16,72 @@
         min-height: 45%;
     }
 
+    /* The container */
+    .checkcontainer {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 22px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    /* Hide the browser's default checkbox */
+    .checkcontainer input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    /* Create a custom checkbox */
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: #eee;
+    }
+
+    /* On mouse-over, add a grey background color */
+    .checkcontainer:hover input ~ .checkmark {
+        background-color: #ccc;
+    }
+
+    /* When the checkbox is checked, add a background */
+    .checkcontainer input:checked ~ .checkmark {
+        background-color: #FFAE6B;
+    }
+
+    /* Create the checkmark/indicator (hidden when not checked) */
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+    /* Show the checkmark when checked */
+    .checkcontainer input:checked ~ .checkmark:after {
+        display: block;
+    }
+
+    /* Style the checkmark/indicator */
+    .container .checkmark:after {
+        left: 9px;
+        top: 5px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+
 </style>
 
 <script src="<c:url value="/resources/js/navbar.js" />"></script>
@@ -58,8 +124,23 @@
             </div>
 
             <div class="input-container">
+                <i class="fa fa-globe icon"></i>
+                <input class="input-field" type="text" placeholder="Location ?" name="location" id="location">
+            </div>
+
+            <div class="input-container">
                 <i class="fa fa-calendar icon"></i>
                 <input class="input-field" type="date" name="date" id="date">
+            </div>
+
+            <div class="input-container">
+                <i class="fa fa-clock-o icon"></i>
+                <input class="input-field" type="time"  name="startTime" id="startTime">
+            </div>
+
+            <div class="input-container">
+                <i class="fa fa-clock-o icon"></i>
+                <input class="input-field" type="time" name="endTime" id="endTime">
             </div>
 
             <div class="input-container">
@@ -67,10 +148,23 @@
                 <input class="input-field" type="text"  placeholder="About this event..." name="About" id="about1">
             </div>
 
+            <label class="checkcontainer">Music
+                <input type="checkbox" name="music" id="music">
+                <span class="checkmark"></span>
+            </label>
+            <label class="checkcontainer">Sport
+                <input type="checkbox" name="sport" id="sport">
+                <span class="checkmark"></span>
+            </label>
+            <label class="checkcontainer">Miscellaneous
+                <input type="checkbox" name="misc" id="misc">
+                <span class="checkmark"></span>
+            </label>
+
             <div class="input-container">
                 <div>
                 <br />
-                Field Name
+                Add the fields of the participants register form
                 <input class="input-field" type="text" id="member" name="member" value=""><br />
                 <a href="#" id="filldetails" onclick="addFields()">Add Field</a>
                 </div>
