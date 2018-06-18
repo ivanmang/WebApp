@@ -115,14 +115,15 @@ public class DataServiceAPI {
     int i = 0;
 
     try {
-      String sql =
-          "Select \"Event Id\" From \"Event\" Where \"Event Name\" = '" + name
-              + "' ";
-      //String sql = new SelectQueryBuilder().setTable("Event").createSelectQuery().ReturnQuerry();
+      SelectClause s = new SelectClause("eventid", null);
+      WhereClause w = new WhereClause("eventname", "=", name, null, null);
+      String sql = new SelectQueryBuilder().addselectClauses(s).addFromClause("events")
+              .addWhereList(w).build();
+
       PreparedStatement pstmt = conn.prepareStatement(sql);
       ResultSet result = pstmt.executeQuery();
       if (result.next()) {
-        i = result.getInt("Event Id");
+        i = result.getInt("eventId");
       }
       pstmt.close();
 
@@ -140,10 +141,12 @@ public class DataServiceAPI {
     Connection conn = connect();
 
     try {
+      String idStr = String.valueOf(id);
       String sql =
-          "Insert Into events(eventID, eventName, eventLocation , eventDate , eventStart, eventEnd, info, tagids) Values ("
-              + id + " , '" + eventName + "', '" + eventLocation + "', '" + eventDate + "', '" + eventStart + "', '" + eventEnd +  "', '" + info
-              + "', '" + tagids + "')";
+              new InsertQueryBuilder().addT_name("events").addCols("eventID").addCols("eventName")
+                      .addCols("eventLocation").addCols("eventDate").addCols("eventStart").addCols("eventEnd")
+                      .addCols("info").addCols("tagids").addVals(idStr).addVals(eventName).addVals(eventLocation)
+                      .addVals(eventDate).addVals(eventStart).addVals(eventEnd).addVals(info).addVals(tagids).build();
       PreparedStatement pstmt = conn.prepareStatement(sql);
       pstmt.executeUpdate();
       pstmt.close();
@@ -162,7 +165,11 @@ public class DataServiceAPI {
     Connection conn = connect();
 
     try {
-      String sql = "Select eventID From events Where eventID = '" + i + "' ";
+      String iStr = String.valueOf(i);
+      SelectClause s = new SelectClause("eventiD", null);
+      WhereClause w = new WhereClause("eventiD", "=", iStr, null, null);
+      String sql = new SelectQueryBuilder().addselectClauses(s).addFromClause("events").addWhereList(w).build();
+
       PreparedStatement pstmt = conn.prepareStatement(sql);
       ResultSet result = pstmt.executeQuery();
       if (result.next()) {

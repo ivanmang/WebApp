@@ -35,12 +35,12 @@ public class InsertQueryBuilder implements QueryBuilder{
             return null;
         }
         ListIterator<String> iterator = cols.listIterator();
-        query = query.concat(t_name + "(" + iterator.next());
+        query = query.concat("\""+ t_name + "\"" + "(" + iterator.next());
         while (iterator.hasNext()) {
             query = query.concat(", " + iterator.next());
         }
         iterator = vals.listIterator();
-        query = query.concat(") Values('" + iterator.next() + "'");
+        query = query.concat(") Values ('" + iterator.next() + "'");
         while (iterator.hasNext()) {
             query = query.concat(", '" + iterator.next() + "'");
         }

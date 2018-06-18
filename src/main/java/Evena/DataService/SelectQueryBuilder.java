@@ -37,7 +37,7 @@ public class SelectQueryBuilder implements QueryBuilder{
                 if (s.getFunc() != null) {
                     query = query.concat(s.getFunc() + "(" + s.addC_name() + ") ");
                 } else {
-                    query = query.concat(s.addC_name());
+                    query = query.concat(s.addC_name() + " ");
                 }
             }
         }

@@ -88,7 +88,8 @@ public class EvenaController {
                 pstmt = conn.prepareStatement(sql);
                 result = pstmt.executeQuery();
             }
-            sql = "Insert Into \"user\"(userid, username , password) Values (" + user_id +" , '" + username + "', '"+ password + "')";
+            sql = "Insert Into \"user\"(userid, username , password) Values (" + user_id +" , '" +
+                    username + "', '"+ password + "')";
             System.out.println(sql);
             pstmt = conn.prepareStatement(sql);
             pstmt.executeUpdate();
