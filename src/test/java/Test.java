@@ -11,7 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import jdk.nashorn.internal.objects.annotations.Where;
 import junit.framework.TestCase;
 import org.junit.Assert;
 

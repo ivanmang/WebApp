@@ -5,6 +5,9 @@ import static Evena.DataService.DataServiceAPI.selectUpcomingSql;
 import static Evena.DataService.DataServiceAPI.tagToID;
 
 import Evena.DataService.DataServiceAPI;
+import Evena.DataService.SelectClause;
+import Evena.DataService.SelectQueryBuilder;
+import Evena.DataService.WhereClause;
 import Evena.Dynamic_partic;
 import Evena.Dynamic_partic_list;
 import Evena.Event;
@@ -75,8 +78,10 @@ public class EvenaController {
         }else {
             int user_id = ThreadLocalRandom.current().nextInt(1, 255);
             Connection conn = DataServiceAPI.connect();
-
-            String sql =  "Select \"userid\" From \"user\" Where \"userid\" = '" + user_id + "' ";
+            String user_idStr = String.valueOf(user_id);
+            SelectClause s = new SelectClause("userid", null);
+            WhereClause w = new WhereClause("userid", "=", user_idStr, null, null);
+            String sql = new SelectQueryBuilder().addselectClauses(s).addFromClause("user").addWhereList(w).build();
             PreparedStatement pstmt = conn.prepareStatement(sql);
             ResultSet result = pstmt.executeQuery();
             while (result.next()) {
