@@ -70,7 +70,7 @@
             <div class="input-container">
                 <div>
                 <br />
-                Field Name
+                Registration Form
                 <input class="input-field" type="text" id="member" name="member" value=""><br />
                 <a href="#" id="filldetails" onclick="addFields()">Add Field</a>
                 </div>

@@ -13,6 +13,8 @@ import Evena.Info;
 import Evena.InfoList;
 import Evena.Participant;
 import Evena.ParticipantList;
+import Evena.Dynamic_partic;
+import Evena.Dynamic_partic_list;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,15 +23,136 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.crypto.Data;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@SessionAttributes("username")
 public class EvenaController {
 
-  private static List<Event> events = new ArrayList<Event>();
+  private static List<Event> events = new ArrayList<>();
   private DataServiceAPI api = new DataServiceAPI();
+
+    @RequestMapping(value = "/user_register", method = RequestMethod.GET)
+    protected  ModelAndView user_register_page(){
+        ModelAndView model = new ModelAndView("user_register");
+        model.addObject("username_placeholder", "\"Please enter your username\"");
+        model.addObject("password_placeholder", "\"Please enter your password\"");
+        model.addObject("re_con_pw_placeholder", "\"Please confirm your password\"");
+        return model;
+    }
+
+    @RequestMapping(value = "/user_register", method = RequestMethod.POST)
+    protected  ModelAndView user_register(@RequestParam String username, @RequestParam String password, @RequestParam String re_password) throws Exception{
+        ModelAndView model;
+//        System.out.println(username);
+//        System.out.println(password);
+//        System.out.println(re_password);
+        if (username.length()<=6 || username.length()>=20){
+            model = new ModelAndView("user_register");
+            model.addObject("error_message","invalid username\n");
+            model.addObject("username_placeholder", "\"Please re-enter your username\"");
+            model.addObject("password_placeholder", "\"Please re-enter your password\"");
+            model.addObject("re_con_pw_placeholder", "\"Please confirm your password\"");
+        }else if (password.length()<=10 || password.length()>=40){
+            model = new ModelAndView("user_register");
+            model.addObject("error_message","invalid password");
+            model.addObject("username_default","default");
+            model.addObject("username_placeholder", "\"" + username + "\"");
+            model.addObject("password_placeholder", "\"Please re-enter your password\"");
+            model.addObject("re_con_pw_placeholder", "\"Please confirm your password\"");
+        } else if(!password.equals(re_password)){
+            model = new ModelAndView("user_register");
+            model.addObject("error_message","invalid confirming password");
+            model.addObject("username_default","default");
+            model.addObject("username_placeholder", "\"" + username + "\"");
+            model.addObject("password_placeholder", "\"Please re-enter your password\"");
+            model.addObject("re_con_pw_placeholder", "\"Please confirm your password\"");
+        }else {
+            int user_id = ThreadLocalRandom.current().nextInt(1, 255);
+            Connection conn = DataServiceAPI.connect();
+
+            String sql =  "Select \"userid\" From \"user\" Where \"userid\" = '" + user_id + "' ";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet result = pstmt.executeQuery();
+            while (result.next()) {
+                user_id = ThreadLocalRandom.current().nextInt(1, 255);
+                sql =  "Select \"userid\" From \"user\" Where \"userid\" = '" + user_id + "' ";
+                pstmt = conn.prepareStatement(sql);
+                result = pstmt.executeQuery();
+            }
+            sql = "Insert Into \"user\"(userid, username , password) Values (" + user_id +" , '" + username + "', '"+ password + "')";
+            System.out.println(sql);
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+            model = new ModelAndView("manage");
+            model.addObject("username",username);
+        }
+        return model;
+    }
+
+    @RequestMapping(value = "/logout")
+    protected  ModelAndView logout() throws Exception{
+        ModelAndView model = new ModelAndView("main");
+        model.addObject("username", "NA");
+        return model;
+    }
+
+    @RequestMapping(value = "/signin", method = RequestMethod.POST)
+    protected  ModelAndView sign_in_done(@RequestParam String username, @RequestParam String password, @RequestParam String action) throws Exception{
+        ModelAndView model;
+        Connection conn = DataServiceAPI.connect();
+        String sql =  "Select \"password\" From \"user\" Where \"username\" = '" + username + "'" ;
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        ResultSet result = pstmt.executeQuery();
+
+        //check if username exist and if it does, if the password matches
+        if(result.next()){
+            if(!result.getString("password").equals(password)){
+                return new ModelAndView("main");
+            }
+        } else{
+            return new ModelAndView("main");
+        }
+
+        if(action.equals("create")){
+            model = new ModelAndView("create");
+        }else {
+            model = new ModelAndView("manage");
+
+            List<Event> events = new ArrayList<>();
+            EventList eventList = new EventList();
+
+            sql = "Select * From events Where \"username\" = '" + username + "'";
+            pstmt = conn.prepareStatement(sql);
+            result = pstmt.executeQuery();
+
+            DataServiceAPI d = new DataServiceAPI();
+            d.addResultSetToEventList(result,events);
+            pstmt.close();
+            eventList.setEvents(events);
+
+            model.addObject("eventList", eventList);
+
+        }
+
+        model.addObject("username",username);
+        return model;
+    }
+
+    @RequestMapping(value = "/signin", method = RequestMethod.GET)
+    protected ModelAndView signin(HttpServletRequest request) throws Exception {
+        String action = request.getParameter("action");
+        ModelAndView model = new ModelAndView("signin");
+        model.addObject("action", action);
+        return model;
+    }
 
     @RequestMapping(value = "/d_create")
     protected  ModelAndView d_create(HttpServletRequest request) throws Exception{
@@ -152,8 +275,6 @@ public class EvenaController {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             ResultSet result = pstmt.executeQuery();
             while (result.next()) {
-                System.out.println("wp2");
-                System.out.println(p_id);
                 p_id = ThreadLocalRandom.current().nextInt(1, 255);
                 sql =  "Select participantID From participants Where participantID = '" + p_id + "' ";
                 pstmt = conn.prepareStatement(sql);
@@ -173,33 +294,23 @@ public class EvenaController {
   @RequestMapping(value = "/manage")
   protected ModelAndView manage(HttpServletRequest request) throws Exception {
     ModelAndView model = new ModelAndView("manage");
-    if (request.getParameter("deleteall") != null) {
-      try {
-        Connection conn = DataServiceAPI.connect();
-        String sql = "Delete From events";
-        PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.executeUpdate();
-        pstmt.close();
+    String username = (String)request.getSession().getAttribute("username");
+    System.out.println(username);
+    Connection conn = DataServiceAPI.connect();
 
-      } catch (Exception e) {
-        System.out.println(e.getMessage());
-        e.printStackTrace();
-      }
-    } else if (request.getParameter("delete") != null) {
-      try {
-        Connection conn = DataServiceAPI.connect();
-        String sql = "Delete From events Where eventID = '" + request
-            .getParameter("delete") + "' ";
-        PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.executeUpdate();
-        pstmt.close();
+    List<Event> events = new ArrayList<>();
+    EventList eventList = new EventList();
 
-      } catch (Exception e) {
-        System.out.println(e.getMessage());
-        e.printStackTrace();
-      }
-    }
-    model.addObject("eventList", api.selectall(selectAllSql));
+    String sql = "Select * From events Where \"username\" = '" + username + "'";
+    PreparedStatement pstmt = conn.prepareStatement(sql);
+    ResultSet result = pstmt.executeQuery();
+
+    DataServiceAPI d = new DataServiceAPI();
+    d.addResultSetToEventList(result,events);
+    pstmt.close();
+    eventList.setEvents(events);
+
+    model.addObject("eventList", eventList);
     return model;
   }
 
@@ -362,16 +473,6 @@ public class EvenaController {
   @RequestMapping(value = "/create")
   protected ModelAndView create(HttpServletRequest request) throws Exception {
     ModelAndView model = new ModelAndView("create");
-    return model;
-  }
-
-
-  @RequestMapping(value = "/signin")
-  protected ModelAndView signin(HttpServletRequest request) throws Exception {
-    String action = request.getParameter("action");
-    ModelAndView model = new ModelAndView("signin");
-    ;
-    model.addObject("action", action);
     return model;
   }
 

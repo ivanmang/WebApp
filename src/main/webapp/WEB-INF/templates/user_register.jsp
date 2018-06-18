@@ -48,28 +48,35 @@
 
 <div class="w3-container w3-padding-64 w3-large" id="create">
     <div class="container" style="max-width:500px;margin:auto">
-            <h2>Sign In</h2>
+        <h2>Register</h2>
 
+        <span style="color: red; ">${error_message}</span>
 
-                    <form action="${pageContext.request.contextPath}/signin" style="max-width:500px;margin:auto" method="POST">
-                        <div class="input-container">
-                            <i class="fa fa-user-o icon"></i>
-                            <input class="input-field" type="text" name="username" placeholder="Username">
-                        </div>
+        <form action="${pageContext.request.contextPath}/user_register" style="max-width:500px;margin:auto" method="POST">
 
-                        <div class="input-container">
-                            <i class="fa fa-unlock-alt icon"></i>
-                            <input class="input-field" type="text" name="password" placeholder="Password">
-                        </div>
-                        <c:choose>
-                            <c:when test = "${action == 'create'}">
-                                <button type="submit" name="action" value ="create" class="btn">Sign In</button>
-                            </c:when>
-                            <c:otherwise>
-                                <button type="submit" name="action" value ="manage" class="btn">Sign In</button>
-                            </c:otherwise>
-                        </c:choose>
-                    </form>
+            <div class="input-container">
+                <i class="fa fa-user-o icon"></i>
+                <c:choose>
+                    <c:when test = "${username_default == 'default'}">
+                        <input class="input-field" type="text" name="username" value=${username_placeholder}>
+                    </c:when>
+                    <c:otherwise>
+                        <input class="input-field" type="text" name="username" placeholder=${username_placeholder}>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+            <h5>Note: Your username must be longer than 6 character and shorter than 20 character</h5>
+            <div class="input-container">
+                <i class="fa fa-unlock-alt icon"></i>
+                <input class="input-field" type="password" name="password" placeholder=${password_placeholder}>
+            </div>
+                <h5>Note: Your password must be longer than 10 character and shorter than 40 character</h5>
+            <div class="input-container">
+                <i class="fa fa-unlock-alt icon"></i>
+                <input class="input-field" type="password" name="re_password" placeholder=${re_con_pw_placeholder}>
+            </div>
+            <button type="submit" class="btn">Register</button>
+        </form>
 
     </div>
 </div>
