@@ -83,6 +83,7 @@ body {font-family:"Lato", sans-serif;}
       <div class="dropdown-content">
         <a href="${pageContext.request.contextPath}/manage" class="w3-button"> Profile</a>
         <a href="${pageContext.request.contextPath}/manage" class="w3-button"> Manage Events</a>
+        <a href="${pageContext.request.contextPath}/logout" class="w3-button"> Log Out</a>
       </div>
     </div>
   </div>
@@ -104,9 +105,19 @@ body {font-family:"Lato", sans-serif;}
     <p><form action="${pageContext.request.contextPath}/d_create" style="max-width:500px;margin:auto" method="GET">
     <button type="submit" name = "action" value = "create" class="btn">Create Custom Registration Events</button>
   </form></p>
-      <p><form action="${pageContext.request.contextPath}/signin" style="max-width:500px;margin:auto" method="GET">
-      <button type="submit" name = "action" value = "manage" class="btn">Manage Events</button>
-  </form></p>
+    <c:choose>
+      <c:when test = "${empty username}">
+        <p><form action="${pageContext.request.contextPath}/signin" style="max-width:500px;margin:auto" method="GET">
+        <button type="submit" name = "action" value = "manage" class="btn">Manage Events</button>
+      </form></p>
+      </c:when>
+      <c:otherwise>
+        <p><form action="${pageContext.request.contextPath}/manage" style="max-width:500px;margin:auto" method="GET">
+        <button type="submit" class="btn">Manage Events</button>
+      </form></p>
+      </c:otherwise>
+    </c:choose>
+
   </div>
 </header>
 
