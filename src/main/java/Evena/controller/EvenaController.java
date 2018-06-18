@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.xml.crypto.Data;
 
 import org.springframework.stereotype.Controller;
@@ -98,10 +99,10 @@ public class EvenaController {
     }
 
     @RequestMapping(value = "/logout")
-    protected  ModelAndView logout() throws Exception{
-        ModelAndView model = new ModelAndView("main");
-        model.addObject("username", "NA");
-        return model;
+    protected  ModelAndView logout(HttpServletRequest request) throws Exception{
+        HttpSession session = request.getSession();
+        session.removeAttribute("username");
+        return new ModelAndView("main");
     }
 
     @RequestMapping(value = "/signin", method = RequestMethod.POST)

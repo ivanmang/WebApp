@@ -106,12 +106,7 @@ body {font-family:"Lato", sans-serif;}
     <button type="submit" name = "action" value = "create" class="btn">Create Custom Registration Events</button>
   </form></p>
     <c:choose>
-      <c:when test = "${name == 'NA'}">
-        <p><form action="${pageContext.request.contextPath}/signin" style="max-width:500px;margin:auto" method="GET">
-        <button type="submit" name = "action" value = "manage" class="btn">Manage Events</button>
-      </form></p>
-      </c:when>
-      <c:when test = "${empty name}">
+      <c:when test = "${empty username}">
         <p><form action="${pageContext.request.contextPath}/signin" style="max-width:500px;margin:auto" method="GET">
         <button type="submit" name = "action" value = "manage" class="btn">Manage Events</button>
       </form></p>
