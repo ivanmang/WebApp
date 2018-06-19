@@ -32,6 +32,7 @@
       <url-pattern>/d_create_done</url-pattern>
       <url-pattern>/register_done</url-pattern>
       <url-pattern>/user_register</url-pattern>
+      <url-pattern>/upload</url-pattern>
       <url-pattern>/logout</url-pattern>
       <url-pattern>*.htm</url-pattern>
   </servlet-mapping>
