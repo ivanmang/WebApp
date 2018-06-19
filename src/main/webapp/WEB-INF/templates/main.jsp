@@ -96,7 +96,7 @@ body {font-family:"Lato", sans-serif;}
       </c:when>
       <c:otherwise>
         <div class="dropdown" id="dropDown">
-          <button class="dropbtn" >Users
+          <button class="dropbtn" >${username}
             <i class="fa fa-user-circle"></i>
             <i class="fa fa-caret-down"></i>
           </button>
