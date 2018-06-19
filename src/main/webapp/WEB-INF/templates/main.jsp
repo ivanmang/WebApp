@@ -202,7 +202,23 @@ body {font-family:"Lato", sans-serif;}
             <div class="w3-container w3-white">
               <p><b>Create a event</b></p>
               <p>You can create a event and share it to others</p>
-              <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Create</button>
+              <c:choose>
+                <c:when test = "${empty username}">
+                  <p><form action="${pageContext.request.contextPath}/signin" style="max-width:500px;margin:auto" method="GET">
+                  <button type="submit" name = "action" value = "create" class="w3-button w3-black w3-margin-bottom">Create</button>
+                </form></p>
+                </c:when>
+                <c:when test = "${username == 'out'}">
+                  <p><form action="${pageContext.request.contextPath}/signin" style="max-width:500px;margin:auto" method="GET">
+                  <button type="submit" name = "action" value = "create" class="w3-button w3-black w3-margin-bottom">Create</button>
+                </form></p>
+                </c:when>
+                <c:otherwise>
+                  <p><form action="${pageContext.request.contextPath}/d_create" style="max-width:500px;margin:auto" method="GET">
+                  <button type="submit" class="w3-button w3-black w3-margin-bottom">Create</button>
+                </form></p>
+                </c:otherwise>
+              </c:choose>
             </div>
           </div>
           <div class="w3-third w3-margin-bottom">
@@ -210,7 +226,9 @@ body {font-family:"Lato", sans-serif;}
             <div class="w3-container w3-white">
               <p><b>Join a event</b></p>
               <p>You can join a event by a simple click</p>
-              <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Join</button>
+              <form action="${pageContext.request.contextPath}/browse" style="max-width:500px;margin:auto" method="GET">
+                <button type="submit" class="w3-button w3-black w3-margin-bottom">Join</button>
+              </form>
             </div>
           </div>
           <div class="w3-third w3-margin-bottom">
@@ -218,7 +236,9 @@ body {font-family:"Lato", sans-serif;}
             <div class="w3-container w3-white">
               <p><b>Find some interesting event</b></p>
               <p>You can find some upcoming cool events</p>
-              <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Browse Events</button>
+              <form action="${pageContext.request.contextPath}/browse" style="max-width:500px;margin:auto" method="GET">
+                <button type="submit" class="w3-button w3-black w3-margin-bottom">Browse</button>
+              </form>
             </div>
           </div>
         </div>
