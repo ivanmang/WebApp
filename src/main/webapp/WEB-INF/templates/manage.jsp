@@ -66,7 +66,7 @@
 </div>
 
 <!-- !PAGE CONTENT! -->
-<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+<div class="w3-main" style="margin-top:43px;">
 
     <!-- Header -->
     <header class="w3-container" style="padding-top:22px">
@@ -83,12 +83,18 @@
         <tr>
             <th>Event Name</th>
             <th>Date</th>
+            <th>StartTime</th>
+            <th>EndTime</th>
+            <th>Location</th>
             <th>About</th>
         </tr>
         <c:forEach items="${eventList.events}" var="event" varStatus="status">
             <tr>
                 <td>${event.name}</td>
+                <td>${event.location}</td>
                 <td>${event.date}</td>
+                <td>${event.startTime}</td>
+                <td>${event.endTime}</td>
                 <td>${event.about}</td>
                 <td>
                     <form action="${pageContext.request.contextPath}/eventdir" style="max-width:100px;margin:auto"
