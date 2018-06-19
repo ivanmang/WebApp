@@ -195,10 +195,10 @@ public class EvenaController {
                 result = pstmt.executeQuery();
             }
 
-            sql = new InsertQueryBuilder().addT_name("user").addCols("userid").addCols(username).addCols("password")
-                    .addVals(String.valueOf(user_id)).addVals(username).addVals(password).build();
-//            sql = "Insert Into \"user\"(userid, username , password) Values (" + user_id +" , '" +
-//                    username + "', '"+ password + "')";
+//            sql = new InsertQueryBuilder().addT_name("user").addCols("userid").addCols(username).addCols("password")
+//                    .addVals(String.valueOf(user_id)).addVals(username).addVals(password).build();
+            sql = "Insert Into \"user\"(userid, username , password) Values (" + user_id +" , '" +
+                    username + "', '"+ password + "')";
             System.out.println(sql);
             pstmt = conn.prepareStatement(sql);
             pstmt.executeUpdate();

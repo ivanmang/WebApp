@@ -73,7 +73,6 @@ body {font-family:"Lato", sans-serif;}
   <div class="w3-bar w3-text-white" id="myNavbar">
     <a href="#home" class="w3-bar-item w3-button"><i class="fa fa-home"></i> Home</a>
     <a href="#about" class="w3-bar-item w3-button"><i class="fa fa-user"></i> About</a>
-    <a href="${pageContext.request.contextPath}/create" class="w3-bar-item w3-button"><i class="fa fa-group"></i> Create Event</a>
 
     <c:choose>
       <c:when test = "${empty username}">

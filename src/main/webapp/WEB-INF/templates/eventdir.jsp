@@ -78,7 +78,6 @@
 <div class="w3-top">
     <div class="w3-bar w3-text-white" id="myNavbar">
         <a href="${pageContext.request.contextPath}/index" class="w3-bar-item w3-button"><i class="fa fa-home"></i> Home</a>
-        <a href="${pageContext.request.contextPath}/create" class="w3-bar-item w3-button"><i class="fa fa-group"></i> Create Event</a>
 
         <c:choose>
             <c:when test = "${empty username}">

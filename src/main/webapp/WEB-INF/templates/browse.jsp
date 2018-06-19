@@ -85,43 +85,63 @@
 
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
-  <div class="w3-bar w3-text-white" id="myNavbar">
-    <a href="${pageContext.request.contextPath}/index" class="w3-bar-item w3-button"><i class="fa fa-home"></i> Home</a>
-    <a href="${pageContext.request.contextPath}/create" class="w3-bar-item w3-button"><i class="fa fa-group"></i> Create Event</a>
+    <div class="w3-bar w3-text-white" id="myNavbar">
+        <a href="${pageContext.request.contextPath}/index" class="w3-bar-item w3-button"><i class="fa fa-home"></i> Home</a>
 
-      <c:choose>
-          <c:when test = "${empty username}">
-              <form action="${pageContext.request.contextPath}/signin" method="GET">
-                  <div class="dropdown">
-                      <button class="dropbtn" >Sign in
-                          <i class="fa fa-user-circle"></i>
-                      </button>
-                  </div>
-              </form>
-          </c:when>
-          <c:when test = "${username == 'out'}">
-              <form action="${pageContext.request.contextPath}/signin" method="GET">
-                  <div class="dropdown">
-                      <button class="dropbtn" >Sign in
-                          <i class="fa fa-user-circle"></i>
-                      </button>
-                  </div>
-              </form>
-          </c:when>
-          <c:otherwise>
-              <div class="dropdown" id="dropDown">
-                  <button class="dropbtn" >${username}
-                      <i class="fa fa-user-circle"></i>
-                      <i class="fa fa-caret-down"></i>
-                  </button>
-                  <div class="dropdown-content">
-                      <a href="${pageContext.request.contextPath}/manage" class="w3-button"> Manage Events</a>
-                      <a href="${pageContext.request.contextPath}/logout" class="w3-button"> Log Out</a>
-                  </div>
-              </div>
-          </c:otherwise>
-      </c:choose>
-  </div>
+        <c:choose>
+            <c:when test = "${empty username}">
+
+                <div class="dropdown">
+                    <form action="${pageContext.request.contextPath}/user_register" method="GET">
+                        <button class="dropbtn" >Register
+                            <i class="fa fa-user-circle"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="dropdown">
+                    <form action="${pageContext.request.contextPath}/signin" method="GET">
+                        <button class="dropbtn" >Sign in
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                    </form>
+                </div>
+
+            </c:when>
+            <c:when test = "${username == 'out'}">
+
+                <div class="dropdown">
+                    <form action="${pageContext.request.contextPath}/user_register" method="GET">
+                        <button class="dropbtn" >Register
+                            <i class="fa fa-user-circle"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="dropdown">
+                    <form action="${pageContext.request.contextPath}/signin" method="GET">
+                        <button class="dropbtn" >Sign in
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                    </form>
+                </div>
+
+            </c:when>
+            <c:otherwise>
+                <div class="dropdown" id="dropDown">
+                    <button class="dropbtn" >${username}
+                        <i class="fa fa-user-circle"></i>
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="${pageContext.request.contextPath}/manage" class="w3-button"> Manage Events</a>
+                        <a href="${pageContext.request.contextPath}/logout" class="w3-button"> Log Out</a>
+                    </div>
+                </div>
+            </c:otherwise>
+        </c:choose>
+
+    </div>
 </div>
 
 <!-- Sidebar/menu -->
