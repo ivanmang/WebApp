@@ -176,7 +176,7 @@
                     <input type="checkbox" name="academic" id="academic">
                     <span class="checkmark"></span>
                 </label>
-                <label class="checkcontainer">Arts & Musics
+                <label class="checkcontainer">Arts & Music
                     <input type="checkbox" name="music" id="music">
                     <span class="checkmark"></span>
                 </label>

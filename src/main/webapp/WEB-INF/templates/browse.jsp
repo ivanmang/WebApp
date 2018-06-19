@@ -131,7 +131,7 @@
     <a href="${pageContext.request.contextPath}/index" class="w3-bar-item w3-button">Home  <i class="fa fa-home"></i></a>
       <form action="${pageContext.request.contextPath}/browse" style="max-width:500px;margin:auto" method="GET">
           <button type="submit" name="academic" class="w3-bar-item w3-button" value="on">Academic Related <i class="fa fa-graduation-cap"></i> </button>
-          <button type="submit" name="music" class="w3-bar-item w3-button" value="on">Arts & Musics <i class="fa fa-music"></i> </button>
+          <button type="submit" name="music" class="w3-bar-item w3-button" value="on">Arts & Music <i class="fa fa-music"></i> </button>
           <button type="submit" name="charity" class="w3-bar-item w3-button" value="on">Charitable <i class="fa fa-signing"></i> </button>
           <button type="submit" name="cultural" class="w3-bar-item w3-button" value="on">Cultural <i class="fa fa-globe"></i> </button>
           <button type="submit" name="indoor" class="w3-bar-item w3-button" value="on">Indoor <i class="fa fa-home"></i> </button>
