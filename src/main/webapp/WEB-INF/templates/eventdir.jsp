@@ -244,6 +244,8 @@
             var cell = row.insertCell(0);
             cell.innerHTML = res[i];
         }
+        cell = row.insertCell(row.length);
+        cell.innerHTML = "Memo";
     }
 
 </script>
@@ -258,6 +260,13 @@
             var cell = row.insertCell(0);
             cell.innerHTML = res[i];
         }
+        cell = row.insertCell(row.length);
+        cell.appendChild(document.createElement("input"));
+        cell.appendChild(document.createTextNode("    "));
+        var link = document.createElement("a");
+        link.setAttribute('href',"#");
+        link.appendChild(document.createTextNode("Edit"));
+        cell.appendChild(link);
     </script>
 </c:forEach>
 
