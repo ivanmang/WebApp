@@ -15,12 +15,17 @@ import Evena.Participant;
 import Evena.ParticipantList;
 import Evena.Dynamic_partic;
 import Evena.Dynamic_partic_list;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -31,6 +36,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -1066,6 +1072,16 @@ public class EvenaController {
     return tags;
   }
 
-
+  @RequestMapping(value = "/upload", method = RequestMethod.POST)
+  public String handleFormUpload(
+      @RequestParam("file") MultipartFile file) throws IOException {
+    if (!file.isEmpty()) {
+      BufferedImage src = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
+      File destination = new File("/opt/uploads/test.png"); // something like C:/Users/tom/Documents/nameBasedOnSomeId.png
+      ImageIO.write(src, "png", destination);
+      //Save the id you have used to create the file name in the DB. You can retrieve the image in future with the ID.
+    }
+    return "testing";
+  }
 
 }
