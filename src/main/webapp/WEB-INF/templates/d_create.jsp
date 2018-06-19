@@ -251,8 +251,10 @@
 
             <div>
                 <div>
+
                 <div id="field_container"/>
                     <h5>Preview</h5>
+
 
                 </div>
             </div>
@@ -264,10 +266,10 @@
 </div>
 
 <script type='text/javascript'>
-    var number = 1;
+    var number = 0;
     function addFields(){
         var s = document.getElementById("create");
-        if (number===1) {
+        if (number===0) {
             s.value += document.getElementById("member").value;
         } else {
             s.value += ";";
@@ -278,6 +280,7 @@
         // Clear previous contents of the container
         // Append a node with a random text
         var field = document.createElement("fieldset");
+        field.setAttribute('id',"field" + number);
         field.appendChild(document.createTextNode(document.getElementById("member").value + " : " ));
         field.appendChild(document.createElement("input"));
         field.appendChild(document.createTextNode("    "));
@@ -292,7 +295,7 @@
     }
 
     function defaultField(){
-        var fields = [ "Name" , "Age" , "Gender" , "Email"]
+        var fields = [ "Name" , "Age" , "Gender" , "Email"];
         for (var i = 0; i < fields.length; i++) {
             var s = document.getElementById("member");
             s.value = fields[i];
@@ -305,22 +308,27 @@
             var s = document.getElementById("create");
             var res = s.value.split(";");
             s.value="";
-            for (var i = 0; i < res.length; i++) {
-                if(i !== (remove-1)){
+            var parent = document.getElementById("field_container");
+            var resset = parent.getElementsByTagName("fieldset");
+            // parent.appendChild(document.createTextNode(""+resset.length));
+            var j;
+            for (var i = 0; i < resset.length; i++) {
+                // parent.appendChild(document.createTextNode(i + s.value));
+                if(resset[i].getAttribute('id') !== ("field" + remove)){
                     if(s.value.length!==0){
                         s.value+=";";
                     }
                     s.value +=res[i];
+                }else{
+                    j=i;
                 }
 
             }
             number -=1;
-            var parent = document.getElementById("field_container");
-            var resset = parent.getElementsByTagName("fieldset");
-            var toremove = resset[remove-1];
-            // parent.appendChild(document.createTextNode("number" + remove));
-            // parent.appendChild(document.createTextNode("s.value" + s.value));
-            parent.removeChild(toremove);
+            parent.removeChild(resset[j]);
+             // parent.appendChild(document.createTextNode("number" + remove));
+             // parent.appendChild(document.createTextNode("s.value" + s.value));
+
         }
 
 
