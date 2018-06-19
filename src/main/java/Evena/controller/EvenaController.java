@@ -518,7 +518,8 @@ public class EvenaController {
             result = pstmt.executeQuery();
         }
 
-        sql = "Insert Into participants( participantid, participantdata) Values (" + p_id +" , '" + data + "')";
+        sql = "Insert Into participants( participantid, participantdata , eventid) Values (" + p_id +" , '" + data + "' , " + eventID +")";
+        System.out.println(sql);
         pstmt = conn.prepareStatement(sql);
         pstmt.executeUpdate();
         pstmt.close();
@@ -648,19 +649,19 @@ public class EvenaController {
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.executeUpdate();
       }
-      if (!request.getParameter("startTime").equals("")) {
+      if (request.getParameter("startTime")!=null) {
         sql = "UPDATE events SET eventStart = '" + request.getParameter("startTime")
                 + "' WHERE eventID = '" + request.getParameter("update") + "'";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.executeUpdate();
       }
-      if (!request.getParameter("endTime").equals("")) {
+      if (request.getParameter("endTime")!=null) {
         sql = "UPDATE events SET eventEnd = '" + request.getParameter("endTime")
                 + "' WHERE eventID = '" + request.getParameter("update") + "'";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.executeUpdate();
       }
-      if (!request.getParameter("location").equals("")) {
+      if (request.getParameter("location")!=null) {
         sql = "UPDATE events SET eventLocation = '" + request.getParameter("eventLocation")
                 + "' WHERE eventID = '" + request.getParameter("update") + "'";
         PreparedStatement pstmt = conn.prepareStatement(sql);

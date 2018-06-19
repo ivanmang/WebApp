@@ -105,6 +105,7 @@
                         <i class="fa fa-caret-down"></i>
                     </button>
                     <div class="dropdown-content">
+                        <a href="${pageContext.request.contextPath}/d_create" class="w3-button"> Create Event</a>
                         <a href="${pageContext.request.contextPath}/manage" class="w3-button"> Manage Events</a>
                         <a href="${pageContext.request.contextPath}/logout" class="w3-button"> Log Out</a>
                     </div>
@@ -193,7 +194,7 @@
                         <i class="fa fa-bullhorn icon"></i>
                         <input class="input-field" type="text"  placeholder="About this event..." name="about" id="about1">
                     </div>
-
+                    <input type="hidden" name="event" value = ${id}>
                     <button class="btn" type="submit" name="update" value =${id} >Edit</button>
                 </form>
             </div>

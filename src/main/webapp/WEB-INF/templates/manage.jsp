@@ -55,6 +55,7 @@
                         <i class="fa fa-caret-down"></i>
                     </button>
                     <div class="dropdown-content">
+                        <a href="${pageContext.request.contextPath}/d_create" class="w3-button"> Create Event</a>
                         <a href="${pageContext.request.contextPath}/manage" class="w3-button"> Manage Events</a>
                         <a href="${pageContext.request.contextPath}/logout" class="w3-button"> Log Out</a>
                     </div>
@@ -108,9 +109,9 @@
                     </form>
                 </td>
                 <td>
-                    <form action="${pageContext.request.contextPath}/manage" style="max-width:100px;margin:auto"
+                    <form action="${pageContext.request.contextPath}/event" style="max-width:100px;margin:auto"
                           method="GET">
-                        <button type="submit" name="delete" value=${event.id} class="btn-a">Delete</button>
+                        <button type="submit" name="event" value=${event.id} class="btn-a">Event Page</button>
                     </form>
                 </td>
             </tr>

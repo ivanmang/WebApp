@@ -53,6 +53,7 @@
                         <i class="fa fa-caret-down"></i>
                     </button>
                     <div class="dropdown-content">
+                        <a href="${pageContext.request.contextPath}/d_create" class="w3-button"> Create Event</a>
                         <a href="${pageContext.request.contextPath}/manage" class="w3-button"> Manage Events</a>
                         <a href="${pageContext.request.contextPath}/logout" class="w3-button"> Log Out</a>
                     </div>
