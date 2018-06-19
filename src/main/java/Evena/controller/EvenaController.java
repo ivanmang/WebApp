@@ -528,7 +528,41 @@ public class EvenaController {
         return model;
     }
 
-  @RequestMapping(value = "/manage")
+  @RequestMapping(value = "/manage", method = RequestMethod.POST)
+  protected ModelAndView delete_event(HttpServletRequest request) throws Exception {
+    Connection conn = DataServiceAPI.connect();
+
+    ModelAndView model = new ModelAndView("manage");
+    String username = (String)request.getSession().getAttribute("username");
+    System.out.println(username);
+
+    List<Event> events = new ArrayList<>();
+    EventList eventList = new EventList();
+
+    WhereClause w
+      = new WhereClause()
+      .addWc_Name("username")
+      .addwOp("=")
+      .addWVal1(username);
+    String sql = new SelectQueryBuilder()
+      .addFromClause("events")
+      .addWhereList(w)
+      .build();
+
+//    String sql = "Select * From events Where \"username\" = '" + username + "'";
+    PreparedStatement pstmt = conn.prepareStatement(sql);
+    ResultSet result = pstmt.executeQuery();
+
+    DataServiceAPI d = new DataServiceAPI();
+    d.addResultSetToEventList(result,events);
+    pstmt.close();
+    eventList.setEvents(events);
+
+    model.addObject("eventList", eventList);
+    return model;
+  }
+
+  @RequestMapping(value = "/manage", method = RequestMethod.GET)
   protected ModelAndView manage(HttpServletRequest request) throws Exception {
     ModelAndView model = new ModelAndView("manage");
     String username = (String)request.getSession().getAttribute("username");
@@ -571,16 +605,16 @@ public class EvenaController {
       try {
         Connection conn = DataServiceAPI.connect();
 
-          WhereClause w
-                  = new WhereClause()
-                  .addWc_Name("participantid")
-                  .addwOp("=")
-                  .addWVal1(request.getParameter("delete"));
-          String sql = new DeleteQueryBuilder()
-                  .addT_name("participants")
-                  .addWhereList(w)
-                  .build();
-//        String sql = "DELETE FROM participants WHERE participantid = '" + request.getParameter("delete") + "'";
+//          WhereClause w
+//                  = new WhereClause()
+//                  .addWc_Name("participantid")
+//                  .addwOp("=")
+//                  .addWVal1(request.getParameter("delete"));
+//          String sql = new DeleteQueryBuilder()
+//                  .addT_name("participants")
+//                  .addWhereList(w)
+//                  .build();
+        String sql = "DELETE FROM participants WHERE participantid = '" + request.getParameter("delete") + "'";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.executeUpdate();
         pstmt.close();

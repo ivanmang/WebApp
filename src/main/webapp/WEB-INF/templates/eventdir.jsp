@@ -246,6 +246,7 @@
         cell = row.insertCell(row.length);
         cell.innerHTML = "Memo";
         cell = row.insertCell(row.length);
+        cell.innerHTML = "Delete";
     }
 
 </script>
@@ -285,6 +286,24 @@
         form.appendChild(button);
         field.appendChild(form);
         cell.appendChild(field);
+        cell = row.insertCell(row.length);
+        var form_ = document.createElement("form");
+        form_.setAttribute('action',"${pageContext.request.contextPath}/eventdir");
+        form_.setAttribute('method',"GET");
+        input_ = document.createElement("input");
+        input_.setAttribute('class',"input-field");
+        input_.setAttribute('type',"hidden");
+        input_.setAttribute('name',"event");
+        input_.setAttribute('value',${id});
+        form_.appendChild(input_);
+        var button_ = document.createElement("button");
+        button_.setAttribute('type',"submit");
+        button_.setAttribute('name',"delete");
+        button_.setAttribute('value',"${p.id}");
+        button_.appendChild(document.createTextNode("Delete"));
+        form_.appendChild(button_);
+        cell.appendChild(form_);
+
     </script>
 </c:forEach>
 
