@@ -34,6 +34,17 @@ public class DataServiceAPI {
     put("misc", 3);
   }};
 
+//    public static void main(String[] args) {
+//        String user_id = "XX";
+//        String sqlStr1 = "Select \"userid\" From \"user\" Where \"userid\" = '" + user_id + "'";
+//        System.out.println(sqlStr1);
+//        SelectClause s = new SelectClause("userid", null);
+//        WhereClause w = new WhereClause("userid", "=", user_id, null, null);
+//        String testStr1 = new SelectQueryBuilder().addselectClauses(s).addFromClause("user").addWhereList(w).build();
+//        System.out.println(testStr1);
+//    }
+
+
   public static Connection connect() throws SQLException, ClassNotFoundException {
     Class.forName("org.postgresql.Driver");
     String url = database;
@@ -115,11 +126,20 @@ public class DataServiceAPI {
     int i = 0;
 
     try {
-      SelectClause s = new SelectClause("eventid", null);
-      WhereClause w = new WhereClause("eventname", "=", name, null, null);
-      String sql = new SelectQueryBuilder().addselectClauses(s).addFromClause("events")
-              .addWhereList(w).build();
 
+        SelectClause s
+                = new SelectClause()
+                .addC_name("eventid");
+        WhereClause w
+                = new WhereClause()
+                .addWc_Name("eventname")
+                .addwOp("=")
+                .addWVal1(name);
+        String sql = new SelectQueryBuilder()
+                .addselectClauses(s)
+                .addFromClause("events")
+                .addWhereList(w)
+                .build();
       PreparedStatement pstmt = conn.prepareStatement(sql);
       ResultSet result = pstmt.executeQuery();
       if (result.next()) {
@@ -143,10 +163,25 @@ public class DataServiceAPI {
     try {
       String idStr = String.valueOf(id);
       String sql =
-              new InsertQueryBuilder().addT_name("events").addCols("eventID").addCols("eventName")
-                      .addCols("eventLocation").addCols("eventDate").addCols("eventStart").addCols("eventEnd")
-                      .addCols("info").addCols("tagids").addVals(idStr).addVals(eventName).addVals(eventLocation)
-                      .addVals(eventDate).addVals(eventStart).addVals(eventEnd).addVals(info).addVals(tagids).build();
+              new InsertQueryBuilder()
+                      .addT_name("events")
+                      .addCols("eventID")
+                      .addCols("eventName")
+                      .addCols("eventLocation")
+                      .addCols("eventDate")
+                      .addCols("eventStart")
+                      .addCols("eventEnd")
+                      .addCols("info")
+                      .addCols("tagids")
+                      .addVals(idStr)
+                      .addVals(eventName)
+                      .addVals(eventLocation)
+                      .addVals(eventDate)
+                      .addVals(eventStart)
+                      .addVals(eventEnd)
+                      .addVals(info)
+                      .addVals(tagids)
+                      .build();
       PreparedStatement pstmt = conn.prepareStatement(sql);
       pstmt.executeUpdate();
       pstmt.close();
@@ -165,11 +200,19 @@ public class DataServiceAPI {
     Connection conn = connect();
 
     try {
-      String iStr = String.valueOf(i);
-      SelectClause s = new SelectClause("eventiD", null);
-      WhereClause w = new WhereClause("eventiD", "=", iStr, null, null);
-      String sql = new SelectQueryBuilder().addselectClauses(s).addFromClause("events").addWhereList(w).build();
-
+        SelectClause s
+                = new SelectClause()
+                .addC_name("eventid");
+        WhereClause w
+                = new WhereClause()
+                .addWc_Name("eventid")
+                .addwOp("=")
+                .addWVal1(String.valueOf(i));
+        String sql = new SelectQueryBuilder()
+                .addselectClauses(s)
+                .addFromClause("events")
+                .addWhereList(w)
+                .build();
       PreparedStatement pstmt = conn.prepareStatement(sql);
       ResultSet result = pstmt.executeQuery();
       if (result.next()) {

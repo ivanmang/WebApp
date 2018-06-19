@@ -2,7 +2,6 @@ package Evena.DataService;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
 /**
  * Created by admin on 8/6/2018.
@@ -35,11 +34,11 @@ public class DeleteQueryBuilder implements QueryBuilder{
             query = query.concat("Where ");
             for (WhereClause where : whereList) {
                 if (where.getwOp() == "Between") {
-                    query = query.concat(where.addwc_name() + " " + where.getwOp() + " "
-                            + where.addwVal1() + " " + "And " + where.addwVal2());
+                    query = query.concat(where.plusWc_name() + " " + where.getwOp() + " "
+                            + where.plusWVal1() + " " + "And " + where.plusWVal2());
                 } else {
-                    query = query.concat(where.addwc_name() + " " + where.getwOp() + " "
-                            + where.addwVal1());
+                    query = query.concat(where.plusWc_name() + " " + where.getwOp() + " "
+                            + where.plusWVal1());
                 }
                 if (where.getNext() != null) {
                     query = query.concat(" " + where.getNext() + " ");

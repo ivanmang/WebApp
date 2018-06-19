@@ -35,9 +35,9 @@ public class SelectQueryBuilder implements QueryBuilder{
         } else {
             for (SelectClause s : selectClauses) {
                 if (s.getFunc() != null) {
-                    query = query.concat(s.getFunc() + "(" + s.addC_name() + ") ");
+                    query = query.concat(s.getFunc() + "(" + s.plusC_name() + ") ");
                 } else {
-                    query = query.concat(s.addC_name() + " ");
+                    query = query.concat(s.plusC_name() + " ");
                 }
             }
         }
@@ -49,11 +49,11 @@ public class SelectQueryBuilder implements QueryBuilder{
             query = query.concat("Where ");
             for (WhereClause where : whereList) {
                 if (where.getwOp() == "Between") {
-                    query = query.concat(where.addwc_name() + " " + where.getwOp() + " "
-                            + where.addwVal1() + " " + "And " + where.addwVal2());
+                    query = query.concat(where.plusWc_name() + " " + where.getwOp() + " "
+                            + where.plusWVal1() + " " + "And " + where.plusWVal2());
                 } else {
-                    query = query.concat(where.addwc_name() + " " + where.getwOp() + " "
-                            + where.addwVal1());
+                    query = query.concat(where.plusWc_name() + " " + where.getwOp() + " "
+                            + where.plusWVal1());
                 }
                 if (where.getNext() != null) {
                     query = query.concat(" " + where.getNext() + " ");

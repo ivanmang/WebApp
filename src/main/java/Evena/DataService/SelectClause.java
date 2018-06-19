@@ -5,15 +5,16 @@ package Evena.DataService;
  */
 public class SelectClause {
     private String c_name;
-    private String func;
+    private String func = null;
 
-    public SelectClause(String c_name, String func) {
-        this.c_name = c_name;
-        this.func = func;
-    }
+    public SelectClause() {}
 
-    public String addC_name() {
+    public String plusC_name() {
         return "\"" + c_name + "\"";
+    }
+    public SelectClause addC_name(String c_name){
+        this.c_name = c_name;
+        return this;
     }
 
     public String getFunc() {
