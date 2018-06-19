@@ -532,6 +532,17 @@ public class EvenaController {
   @RequestMapping(value = "/manage", method = RequestMethod.POST)
   protected ModelAndView delete_event(HttpServletRequest request) throws Exception {
     Connection conn = DataServiceAPI.connect();
+    String sql = "DELETE FROM info WHERE \"eventID\" = '" + request.getParameter("event") + "'";
+    PreparedStatement pstmt = conn.prepareStatement(sql);
+    pstmt.executeUpdate();
+
+    sql = "DELETE FROM participants WHERE eventid = '" + request.getParameter("event") + "'";
+    pstmt = conn.prepareStatement(sql);
+    pstmt.executeUpdate();
+
+    sql = "DELETE FROM events WHERE  eventid = '" + request.getParameter("event") + "'";
+    pstmt = conn.prepareStatement(sql);
+    pstmt.executeUpdate();
 
     ModelAndView model = new ModelAndView("manage");
     String username = (String)request.getSession().getAttribute("username");
@@ -545,13 +556,13 @@ public class EvenaController {
       .addWc_Name("username")
       .addwOp("=")
       .addWVal1(username);
-    String sql = new SelectQueryBuilder()
+    sql = new SelectQueryBuilder()
       .addFromClause("events")
       .addWhereList(w)
       .build();
 
 //    String sql = "Select * From events Where \"username\" = '" + username + "'";
-    PreparedStatement pstmt = conn.prepareStatement(sql);
+    pstmt = conn.prepareStatement(sql);
     ResultSet result = pstmt.executeQuery();
 
     DataServiceAPI d = new DataServiceAPI();

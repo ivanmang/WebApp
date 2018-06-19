@@ -72,13 +72,6 @@
     <header class="w3-container" style="padding-top:22px">
         <h5><b><i class="fa fa-dashboard"></i> Current Events</b></h5>
     </header>
-    <div class="w3-right">
-        <form action="${pageContext.request.contextPath}/manage" style="max-width:500px;margin:auto" method="GET">
-            <button type="submit" name="deleteall" value="0" class="w3-button w3-small w3-right w3-hover-red">DELETE ALL
-                Events
-            </button>
-        </form>
-    </div>
     <table class="w3-table w3-striped w3-white">
         <tr>
             <th>Event Name</th>
@@ -114,6 +107,13 @@
                         <button type="submit" name="event" value=${event.id} class="btn-a">Event Page</button>
                     </form>
                 </td>
+                <td>
+                    <form action="${pageContext.request.contextPath}/manage" style="max-width:100px;margin:auto"
+                          method="POST">
+                        <button type="submit" name="event" value=${event.id} class="btn-a">Delete</button>
+                    </form>
+                </td>
+
             </tr>
         </c:forEach>
     </table>
