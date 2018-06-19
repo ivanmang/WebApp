@@ -129,9 +129,6 @@
 
   <div class="w3-bar-block">
     <a href="${pageContext.request.contextPath}/index" class="w3-bar-item w3-button">Home  <i class="fa fa-home"></i></a>
-    <a href="#" class="w3-bar-item w3-button">Most Recent Events  <i class="fa fa-clock-o"></i> </a>
-    <a href="#" class="w3-bar-item w3-button">Popular Events <i class="fa fa-heart"></i> </a>
-
       <form action="${pageContext.request.contextPath}/browse" style="max-width:500px;margin:auto" method="GET">
           <button type="submit" name="music" class="w3-bar-item w3-button" value="on">Music Events <i class="fa fa-music"></i> </button>
           <button type="submit" name="sport" class="w3-bar-item w3-button" value="on">Sports Events <i class="fa fa-child"></i> </button>
