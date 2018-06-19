@@ -28,7 +28,7 @@
 <div class="w3-top">
     <div class="w3-bar w3-text-white" id="myNavbar">
         <a href="${pageContext.request.contextPath}/index" class="w3-bar-item w3-button"><i class="fa fa-home"></i> Home</a>
-        <a href="${pageContext.request.contextPath}/create" class="w3-bar-item w3-button"><i class="fa fa-group"></i> Create Event</a>
+
         <c:choose>
             <c:when test = "${empty username}">
                 <form action="${pageContext.request.contextPath}/signin" method="GET">
@@ -80,7 +80,7 @@
 
                         <div class="input-container">
                             <i class="fa fa-unlock-alt icon"></i>
-                            <input class="input-field" type="text" name="password" placeholder="Password">
+                            <input class="input-field" type="password" name="password" placeholder="Password">
                         </div>
                         <c:choose>
                             <c:when test = "${action == 'create'}">

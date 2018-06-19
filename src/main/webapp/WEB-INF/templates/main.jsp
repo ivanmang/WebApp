@@ -73,7 +73,6 @@ body {font-family:"Lato", sans-serif;}
   <div class="w3-bar w3-text-white" id="myNavbar">
     <a href="#home" class="w3-bar-item w3-button"><i class="fa fa-home"></i> Home</a>
     <a href="#about" class="w3-bar-item w3-button"><i class="fa fa-user"></i> About</a>
-    <a href="${pageContext.request.contextPath}/create" class="w3-bar-item w3-button"><i class="fa fa-group"></i> Create Event</a>
 
     <c:choose>
       <c:when test = "${empty username}">
@@ -121,6 +120,7 @@ body {font-family:"Lato", sans-serif;}
             <i class="fa fa-caret-down"></i>
           </button>
           <div class="dropdown-content">
+            <a href="${pageContext.request.contextPath}/d_create" class="w3-button"> Create Event</a>
             <a href="${pageContext.request.contextPath}/manage" class="w3-button"> Manage Events</a>
             <a href="${pageContext.request.contextPath}/logout" class="w3-button"> Log Out</a>
           </div>

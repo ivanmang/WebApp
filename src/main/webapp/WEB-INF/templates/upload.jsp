@@ -26,7 +26,6 @@
 <div class="w3-top">
     <div class="w3-bar w3-text-white" id="myNavbar">
         <a href="${pageContext.request.contextPath}/index" class="w3-bar-item w3-button"><i class="fa fa-home"></i> Home</a>
-        <a href="${pageContext.request.contextPath}/create" class="w3-bar-item w3-button"><i class="fa fa-group"></i> Create Event</a>
 
         <c:choose>
             <c:when test = "${empty username}">
@@ -54,6 +53,7 @@
                         <i class="fa fa-caret-down"></i>
                     </button>
                     <div class="dropdown-content">
+                        <a href="${pageContext.request.contextPath}/d_create" class="w3-button"> Create Event</a>
                         <a href="${pageContext.request.contextPath}/manage" class="w3-button"> Manage Events</a>
                         <a href="${pageContext.request.contextPath}/logout" class="w3-button"> Log Out</a>
                     </div>

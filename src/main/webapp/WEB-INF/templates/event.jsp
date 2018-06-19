@@ -23,7 +23,6 @@
 <div class="w3-top">
     <div class="w3-bar w3-text-white" id="myNavbar">
         <a href="${pageContext.request.contextPath}/index" class="w3-bar-item w3-button"><i class="fa fa-home"></i> Home</a>
-        <a href="${pageContext.request.contextPath}/create" class="w3-bar-item w3-button"><i class="fa fa-group"></i> Create Event</a>
 
         <c:choose>
             <c:when test = "${empty username}">
@@ -51,6 +50,7 @@
                         <i class="fa fa-caret-down"></i>
                     </button>
                     <div class="dropdown-content">
+                        <a href="${pageContext.request.contextPath}/d_create" class="w3-button"> Create Event</a>
                         <a href="${pageContext.request.contextPath}/manage" class="w3-button"> Manage Events</a>
                         <a href="${pageContext.request.contextPath}/logout" class="w3-button"> Log Out</a>
                     </div>
@@ -63,23 +63,8 @@
 <!-- Header with Slideshow -->
 <header class="w3-display-container w3-center">
     <div class="eventSlides w3-animate-opacity">
-        <img class="w3-image" src="${pageContext.request.contextPath}/resources/images/famine.jpg" alt="Image 1" style="min-width:500px">
-        <div class="w3-display-left w3-padding w3-hide-small" style="width:35%">
-            <div class="w3-opacity w3-hover-opacity-off w3-padding-large w3-round-large">
-                <h1 class="w3-xlarge">Organiser's Name</h1>
-                <hr class="w3-opacity">
-                <p><button class="w3-button w3-block w3-amber w3-round" onclick="document.getElementById('organiserId').style.display='block'">About the organiser <i class="fa fa-search"></i> <i class="fa fa-male"></i></button></p>
-            </div>
-        </div>
+        <img src="/uploads/${id}.png" style="width:100%">
     </div>
-    <div class="eventSlides w3-animate-opacity">
-        <img class="w3-image" src="${pageContext.request.contextPath}/resources/images/test.jpg" alt="Image 2" style="min-width:500px">
-    </div>
-    <div class="eventSlides w3-animate-opacity">
-        <img class="w3-image" src="${pageContext.request.contextPath}/resources/images/test2.jpg" alt="Image 3" style="min-width:500px">
-    </div>
-    <a class="w3-button w3-black w3-display-right w3-margin-right w3-round w3-hide-small w3-hover-light-grey" onclick="plusDivs(1)">More photos <i class="fa fa-angle-right"></i></a>
-    <a class="w3-button w3-block w3-black w3-hide-large w3-hide-medium" onclick="plusDivs(1)">More photos <i class="fa fa-angle-right"></i></a>
 </header>
 
 <!-- The Event Section -->

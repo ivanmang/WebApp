@@ -195,10 +195,10 @@ public class EvenaController {
                 result = pstmt.executeQuery();
             }
 
-            sql = new InsertQueryBuilder().addT_name("user").addCols("userid").addCols(username).addCols("password")
-                    .addVals(String.valueOf(user_id)).addVals(username).addVals(password).build();
-//            sql = "Insert Into \"user\"(userid, username , password) Values (" + user_id +" , '" +
-//                    username + "', '"+ password + "')";
+//            sql = new InsertQueryBuilder().addT_name("user").addCols("userid").addCols(username).addCols("password")
+//                    .addVals(String.valueOf(user_id)).addVals(username).addVals(password).build();
+            sql = "Insert Into \"user\"(userid, username , password) Values (" + user_id +" , '" +
+                    username + "', '"+ password + "')";
             System.out.println(sql);
             pstmt = conn.prepareStatement(sql);
             pstmt.executeUpdate();
@@ -345,9 +345,12 @@ public class EvenaController {
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.executeUpdate();
 
-      String filepath = "/opt/uploads/" + event_idStr + ".png";
-      File destination = new File(filepath);
-      ImageIO.write(defaultimage, "png", destination);
+        try {
+            String filepath = "/opt/uploads/" + event_idStr + ".png";
+            File destination = new File(filepath);
+            ImageIO.write(defaultimage, "png", destination);
+        }catch(Exception e){
+        }
 
         model.addObject("id",event_id);
         model.addObject("name",request.getParameter("name"));
@@ -515,7 +518,8 @@ public class EvenaController {
             result = pstmt.executeQuery();
         }
 
-        sql = "Insert Into participants( participantid, participantdata) Values (" + p_id +" , '" + data + "')";
+        sql = "Insert Into participants( participantid, participantdata , eventid) Values (" + p_id +" , '" + data + "' , " + eventID +")";
+        System.out.println(sql);
         pstmt = conn.prepareStatement(sql);
         pstmt.executeUpdate();
         pstmt.close();
@@ -645,19 +649,19 @@ public class EvenaController {
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.executeUpdate();
       }
-      if (!request.getParameter("startTime").equals("")) {
+      if (request.getParameter("startTime")!=null) {
         sql = "UPDATE events SET eventStart = '" + request.getParameter("startTime")
                 + "' WHERE eventID = '" + request.getParameter("update") + "'";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.executeUpdate();
       }
-      if (!request.getParameter("endTime").equals("")) {
+      if (request.getParameter("endTime")!=null) {
         sql = "UPDATE events SET eventEnd = '" + request.getParameter("endTime")
                 + "' WHERE eventID = '" + request.getParameter("update") + "'";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.executeUpdate();
       }
-      if (!request.getParameter("location").equals("")) {
+      if (request.getParameter("location")!=null) {
         sql = "UPDATE events SET eventLocation = '" + request.getParameter("eventLocation")
                 + "' WHERE eventID = '" + request.getParameter("update") + "'";
         PreparedStatement pstmt = conn.prepareStatement(sql);
