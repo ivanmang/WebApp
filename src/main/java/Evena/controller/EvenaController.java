@@ -49,7 +49,7 @@ public class EvenaController {
 
   {
     try {
-      defaultimage = ImageIO.read(new File("resources/images/photoinvalid.jpeg"));
+      defaultimage = ImageIO.read(new File("/opt/uploads/photoinvalid.png"));
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -350,6 +350,7 @@ public class EvenaController {
             File destination = new File(filepath);
             ImageIO.write(defaultimage, "png", destination);
         }catch(Exception e){
+          e.printStackTrace();
         }
 
         model.addObject("id",event_id);
