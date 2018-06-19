@@ -243,6 +243,7 @@ public class EvenaController {
                 .addCols("info")
                 .addCols("tagids")
                 .addCols("reg_form_format")
+                .addCols("username")
                 .addVals(event_idStr)
                 .addVals(request.getParameter("name"))
                 .addVals(request.getParameter("location"))
@@ -252,6 +253,7 @@ public class EvenaController {
                 .addVals(request.getParameter("About"))
                 .addVals(tagids)
                 .addVals(request.getParameter("create"))
+                .addVals((String)request.getSession().getAttribute("username"))
                 .build();
 //        String sql = "Insert Into events(eventID, eventName , eventLocation, eventDate , eventStart, eventEnd , info , tagids ,  \"reg_form_format\" ) " +
 //                "Values (" + event_id +" , '" + request.getParameter("name") + "', '"+ request.getParameter("location") + "', '" + request.getParameter("date") + "', '"
