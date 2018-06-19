@@ -32,6 +32,21 @@ public class Test extends TestCase{
         Assert.assertEquals(sqlStr, testStr);
     }
 
+    public void testSelectQueryWhenSelectQueryNotPresent(){
+        int id = 0;
+        String sql = "Select * From \"events\" Where \"eventID\" = '" + id + "'";
+        WhereClause w
+                = new WhereClause()
+                .addWc_Name("eventID")
+                .addwOp("=")
+                .addWVal1(String.valueOf(id));
+        String test = new SelectQueryBuilder()
+                .addFromClause("events")
+                .addWhereList(w)
+                .build();
+        Assert.assertEquals(sql, test);
+    }
+
     public void testSimpleInsertQuery() {
         String user_id = "XX";
         String username = "YY";
@@ -127,7 +142,6 @@ public class Test extends TestCase{
                 .addWhereList(w)
                 .build();
         Assert.assertEquals(sql,test);
-
     }
 
 

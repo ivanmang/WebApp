@@ -176,16 +176,12 @@ public class EvenaController {
             List<Event> events = new ArrayList<>();
             EventList eventList = new EventList();
 
-//            s
-//                    = new SelectClause()
-//                    .addC_name("*");
             w
                     = new WhereClause()
                     .addWc_Name("username")
                     .addwOp("=")
                     .addWVal1(username);
             sql = new SelectQueryBuilder()
-//                    .addselectClauses(s)
                     .addFromClause("events")
                     .addWhereList(w)
                     .build();
@@ -487,16 +483,12 @@ public class EvenaController {
     List<Event> events = new ArrayList<>();
     EventList eventList = new EventList();
 
-      SelectClause s
-              = new SelectClause()
-              .addC_name("*");
       WhereClause w
               = new WhereClause()
               .addWc_Name("username")
               .addwOp("=")
               .addWVal1(username);
       String sql = new SelectQueryBuilder()
-              .addselectClauses(s)
               .addFromClause("events")
               .addWhereList(w)
               .build();
@@ -656,16 +648,12 @@ public class EvenaController {
     try {
       Connection conn = DataServiceAPI.connect();
 
-        SelectClause s
-                = new SelectClause()
-                .addC_name("*");
         WhereClause w
                 = new WhereClause()
                 .addWc_Name("eventID")
                 .addwOp("=")
                 .addWVal1(String.valueOf(id));
         sql = new SelectQueryBuilder()
-                .addselectClauses(s)
                 .addFromClause("events")
                 .addWhereList(w)
                 .build();
@@ -696,16 +684,12 @@ public class EvenaController {
         try {
           Connection conn = DataServiceAPI.connect();
 
-            SelectClause s
-                    = new SelectClause()
-                    .addC_name("*");
             WhereClause w
                     = new WhereClause()
                     .addWc_Name("infoID")
                     .addwOp("=")
                     .addWVal1(String.valueOf(info_id));
             sql = new SelectQueryBuilder()
-                    .addselectClauses(s)
                     .addFromClause("info")
                     .addWhereList(w)
                     .build();
@@ -714,7 +698,7 @@ public class EvenaController {
           ResultSet result = pstmt.executeQuery();
           while (result.next()) {
             info_id = ThreadLocalRandom.current().nextInt(2, 255);
-              s
+              SelectClause s
                       = new SelectClause()
                       .addC_name("participantID");
               w
@@ -971,16 +955,12 @@ public class EvenaController {
     try {
       Connection conn = DataServiceAPI.connect();
 
-        SelectClause s
-                = new SelectClause()
-                .addC_name("*");
         WhereClause w
                 = new WhereClause()
                 .addWc_Name("eventID")
                 .addwOp("=")
                 .addWVal1(event_name);
         String sql = new SelectQueryBuilder()
-                .addselectClauses(s)
                 .addFromClause("events")
                 .addWhereList(w)
                 .build();
