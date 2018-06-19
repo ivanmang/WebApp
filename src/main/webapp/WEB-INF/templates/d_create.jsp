@@ -23,7 +23,7 @@
         padding-left: 35px;
         margin-bottom: 12px;
         cursor: pointer;
-        font-size: 22px;
+        font-size: 15px;
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
@@ -171,18 +171,50 @@
                 <input class="input-field" type="text"  placeholder="About this event..." name="About" id="about1">
             </div>
 
-            <label class="checkcontainer">Music
-                <input type="checkbox" name="music" id="music">
-                <span class="checkmark"></span>
-            </label>
-            <label class="checkcontainer">Sport
-                <input type="checkbox" name="sport" id="sport">
-                <span class="checkmark"></span>
-            </label>
-            <label class="checkcontainer">Miscellaneous
-                <input type="checkbox" name="misc" id="misc">
-                <span class="checkmark"></span>
-            </label>
+            <div class="w3-container w3-cell">
+                <label class="checkcontainer">Academic
+                    <input type="checkbox" name="academic" id="academic">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkcontainer">Arts & Musics
+                    <input type="checkbox" name="music" id="music">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkcontainer">Charitable
+                    <input type="checkbox" name="charity" id="charity">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="w3-container w3-cell">
+                <label class="checkcontainer">Cultural
+                    <input type="checkbox" name="cultural" id="cultural">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkcontainer">Indoor
+                    <input type="checkbox" name="indoor" id="indoor">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkcontainer">Outdoor
+                    <input type="checkbox" name="outdoor" id="outdoor">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="w3-container w3-cell">
+                <label class="checkcontainer">Social
+                    <input type="checkbox" name="social" id="social">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkcontainer">Sports
+                    <input type="checkbox" name="misc" id="sport">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkcontainer">Miscellaneous
+                    <input type="checkbox" name="misc" id="misc">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+
+
 
             <div class="input-container">
                 <div>

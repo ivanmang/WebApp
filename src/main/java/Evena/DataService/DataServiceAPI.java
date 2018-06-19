@@ -29,9 +29,15 @@ public class DataServiceAPI {
   public static String selectUpcomingSql = "SELECT * FROM events WHERE eventdate >= \'" + today + "\'";
 
   public static Map<String, Integer> tagToID = new LinkedHashMap<String, Integer>() {{
-    put("music", 1);
-    put("sport", 2);
-    put("misc", 3);
+    put("academic", 1);
+    put("music", 2);
+    put("charity", 3);
+    put("cultural", 4);
+    put("indoor", 5);
+    put("outdoor", 6);
+    put("social", 7);
+    put("sport", 8);
+    put("misc", 9);
   }};
 
 //    public static void main(String[] args) {
