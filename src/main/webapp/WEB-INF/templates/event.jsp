@@ -62,23 +62,8 @@
 <!-- Header with Slideshow -->
 <header class="w3-display-container w3-center">
     <div class="eventSlides w3-animate-opacity">
-        <img class="w3-image" src="${pageContext.request.contextPath}/resources/images/famine.jpg" alt="Image 1" style="min-width:500px">
-        <div class="w3-display-left w3-padding w3-hide-small" style="width:35%">
-            <div class="w3-opacity w3-hover-opacity-off w3-padding-large w3-round-large">
-                <h1 class="w3-xlarge">Organiser's Name</h1>
-                <hr class="w3-opacity">
-                <p><button class="w3-button w3-block w3-amber w3-round" onclick="document.getElementById('organiserId').style.display='block'">About the organiser <i class="fa fa-search"></i> <i class="fa fa-male"></i></button></p>
-            </div>
-        </div>
+        <img src="/uploads/${id}.png" style="width:100%">
     </div>
-    <div class="eventSlides w3-animate-opacity">
-        <img class="w3-image" src="${pageContext.request.contextPath}/resources/images/test.jpg" alt="Image 2" style="min-width:500px">
-    </div>
-    <div class="eventSlides w3-animate-opacity">
-        <img class="w3-image" src="${pageContext.request.contextPath}/resources/images/test2.jpg" alt="Image 3" style="min-width:500px">
-    </div>
-    <a class="w3-button w3-black w3-display-right w3-margin-right w3-round w3-hide-small w3-hover-light-grey" onclick="plusDivs(1)">More photos <i class="fa fa-angle-right"></i></a>
-    <a class="w3-button w3-block w3-black w3-hide-large w3-hide-medium" onclick="plusDivs(1)">More photos <i class="fa fa-angle-right"></i></a>
 </header>
 
 <!-- The Event Section -->

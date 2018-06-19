@@ -345,9 +345,12 @@ public class EvenaController {
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.executeUpdate();
 
-      String filepath = "/opt/uploads/" + event_idStr + ".png";
-      File destination = new File(filepath);
-      ImageIO.write(defaultimage, "png", destination);
+        try {
+            String filepath = "/opt/uploads/" + event_idStr + ".png";
+            File destination = new File(filepath);
+            ImageIO.write(defaultimage, "png", destination);
+        }catch(Exception e){
+        }
 
         model.addObject("id",event_id);
         model.addObject("name",request.getParameter("name"));
