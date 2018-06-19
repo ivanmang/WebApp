@@ -45,8 +45,17 @@ public class EvenaController {
 
   private static List<Event> events = new ArrayList<>();
   private DataServiceAPI api = new DataServiceAPI();
+  private BufferedImage defaultimage = null;
 
-    @RequestMapping(value = "/update_memo")
+  {
+    try {
+      defaultimage = ImageIO.read(new File("resources/images/photoinvalid.jpeg"));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  @RequestMapping(value = "/update_memo")
     protected ModelAndView update_memo(HttpServletRequest request) throws Exception {
         ModelAndView model = new ModelAndView("eventdir");
         return model;
@@ -268,6 +277,10 @@ public class EvenaController {
         System.out.println(sql);
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.executeUpdate();
+
+      String filepath = "/opt/uploads/" + event_idStr + ".png";
+      File destination = new File(filepath);
+      ImageIO.write(defaultimage, "png", destination);
 
         model.addObject("id",event_id);
         model.addObject("name",request.getParameter("name"));
