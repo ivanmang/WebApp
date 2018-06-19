@@ -166,7 +166,7 @@
     <div class="grid-container">
         <c:forEach items="${eventList.events}" var="event" varStatus="status">
             <div class="display-container">
-        <div class="grid-item"> <img src="${pageContext.request.contextPath}/resources/images/photoinvalid.jpeg" style="width:100%">
+        <div class="grid-item"> <img src="/uploads/${event.id}.png" style="width:100%">
 
         </div>
                 <p>${event.name}<br><b>${event.location}</b><br>${event.date} - ${event.startTime} <br> <b> ${event.endTime}</b> <br>${event.about}</p>

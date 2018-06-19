@@ -46,6 +46,12 @@ public class EvenaController {
   private static List<Event> events = new ArrayList<>();
   private DataServiceAPI api = new DataServiceAPI();
 
+    @RequestMapping(value = "/update_memo")
+    protected ModelAndView update_memo(HttpServletRequest request) throws Exception {
+        ModelAndView model = new ModelAndView("eventdir");
+        return model;
+    }
+
     @RequestMapping(value = "/user_register", method = RequestMethod.GET)
     protected  ModelAndView user_register_page(){
         ModelAndView model = new ModelAndView("user_register");
@@ -434,7 +440,7 @@ public class EvenaController {
         pstmt.executeUpdate();
         pstmt.close();
 
-        model.addObject("alert","You have successfully join the event");
+        model.addObject("alert","\"You have successfully join the event\"");
         return model;
     }
 
@@ -991,11 +997,13 @@ public class EvenaController {
   }
 
   @RequestMapping(value = "/upload", method = RequestMethod.POST)
-  public String handleFormUpload(
+  public String handleFormUpload(HttpServletRequest request,
       @RequestParam("file") MultipartFile file) throws IOException {
+      System.out.println(request.getParameter("eventid"));
     if (!file.isEmpty()) {
       BufferedImage src = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
-      File destination = new File("/opt/uploads/test.png"); // something like C:/Users/tom/Documents/nameBasedOnSomeId.png
+      String filepath = "/opt/uploads/" + request.getParameter("eventid") + ".png";
+      File destination = new File(filepath); // something like C:/Users/tom/Documents/nameBasedOnSomeId.png
       ImageIO.write(src, "png", destination);
       //Save the id you have used to create the file name in the DB. You can retrieve the image in future with the ID.
     }
@@ -1006,6 +1014,7 @@ public class EvenaController {
   protected ModelAndView upload(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
     ModelAndView model = new ModelAndView("upload");
+    model.addObject("eventid",request.getParameter("eventid"));
     return model;
   }
 }

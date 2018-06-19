@@ -65,28 +65,6 @@
     </div>
 </div>
 
-
-<!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-collapse w3-white" style="z-index:3;width:300px;" id="mySidebar"><br>
-    <div class="w3-container w3-row">
-        <div class="w3-col s8 w3-bar">
-            <span>Welcome, <strong>User</strong></span><br>
-            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
-            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
-        </div>
-    </div>
-    <hr>
-    <div class="w3-bar-block">
-        <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black"  title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw"></i> Profile</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i> Events You Organized</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-pencil fa-fw"></i> Events You Joined</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i> Announcement</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i> Past Events</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i> Settings</a><br><br>
-    </div>
-</nav>
-
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
 
@@ -119,9 +97,9 @@
                     </form>
                 </td>
                 <td>
-                    <form action="${pageContext.request.contextPath}/upload" style="max-width:100px;margin:auto"
+                    <form action="${pageContext.request.contextPath}/upload" style="max-width:200px;margin:auto"
                           method="GET">
-                        <button type="submit" name="upload" value=${event.id} class="btn-a">Upload Icon</button>
+                        <button type="submit" name="eventid" value=${event.id} class="btn-a">Upload Icon</button>
                     </form>
                 </td>
                 <td>
