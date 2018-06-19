@@ -1081,7 +1081,7 @@ public class EvenaController {
       ImageIO.write(src, "png", destination);
       //Save the id you have used to create the file name in the DB. You can retrieve the image in future with the ID.
     }
-    return "testing";
+    return "upload";
   }
 
   @RequestMapping(value = "/upload")
