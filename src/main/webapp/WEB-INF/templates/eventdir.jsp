@@ -111,27 +111,6 @@
     </div>
 </div>
 
-<!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
-    <div class="w3-container w3-row">
-        <div class="w3-col s8 w3-bar">
-            <span>Welcome, <strong>User</strong></span><br>
-            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
-            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
-        </div>
-    </div>
-    <hr>
-    <div class="w3-bar-block">
-        <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black"
-           onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw"></i> Profile</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i> Events You Organized</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-pencil fa-fw"></i> Events You Joined</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i> Announcement</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i> Past Events</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i> Settings</a><br><br>
-    </div>
-</nav>
 
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
         <h1 class="w3-xxxlarge"><b>Manage Event: ${name}</b></h1>
@@ -218,38 +197,7 @@
     </div>
 
     <div id="Parti" class="w3-container manage">
-        <table id="participants" class="tablesorter w3-table-all w3-hoverable w3-centered w3-striped" width="50%"  align="center">
-            <thead>
-                <tr style="background-color: #EE224A" class="w3-text-white">
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Age</th>
-                    <th>Gender</th>
-                    <th>Special Info</th>
-                    <th>Manage</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach items="${p_list.participants}" var="p" varStatus="status">
-                    <tr>
-                        <td>${p.id}</td>
-                        <td>${p.name}</td>
-                        <td>${p.email}</td>
-                        <td>${p.phone}</td>
-                        <td>${p.age}</td>
-                        <td>${p.gender}</td>
-                        <td>${p.specinfo}</td>
-                        <td>
-                            <form action="${pageContext.request.contextPath}/eventdir" style="max-width:100px;margin:auto"
-                                  method="GET">
-                                <button type="submit" name="delete" value=${p.id} class="btn-a">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                </c:forEach>
-            </tbody>
+        <table id="participants" class="w3-table-all w3-hoverable w3-centered w3-striped"width="50%"  align="center">
         </table>
     </div>
 
@@ -279,5 +227,35 @@
 
 
 </div>
+
+<script>
+    var str = ${reg_form_format};
+    var res = str.split(";");
+    myFunction1(res);
+    function myFunction1(res) {
+        var table = document.getElementById("participants");
+        var header = table.createTHead();
+        var row = header.insertRow(0);
+        for (i = res.length-1; i >= 0; i--) {
+            var cell = row.insertCell(0);
+            cell.innerHTML = res[i];
+        }
+    }
+
+</script>
+<c:forEach items="${data.participants}" var="p" varStatus="status">
+    <script>
+        str = ${p.data};
+        res = str.split(";");
+        var table = document.getElementById("participants");
+        var row = table.insertRow(1);
+        var i;
+        for (i = res.length-1; i >= 0; i--) {
+            var cell = row.insertCell(0);
+            cell.innerHTML = res[i];
+        }
+    </script>
+</c:forEach>
+
 </body>
 </html>

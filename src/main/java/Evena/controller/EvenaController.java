@@ -161,10 +161,14 @@ public class EvenaController {
         //check if username exist and if it does, if the password matches
         if(result.next()){
             if(!result.getString("password").equals(password)){
-                return new ModelAndView("main");
+                ModelAndView model1 = new ModelAndView("signin");
+                model1.addObject("alert","\"Wrong Password\"");
+                return model1;
             }
         } else{
-            return new ModelAndView("main");
+            ModelAndView model1 = new ModelAndView("signin");
+            model1.addObject("alert","\"Invalid username\"");
+            return model1;
         }
 
         if(action.equals("create")){
@@ -358,25 +362,26 @@ public class EvenaController {
     String eventID = request.getParameter("eventid");
     model.addObject("id",eventID);
       Connection conn = DataServiceAPI.connect();
-      SelectClause s
-              = new SelectClause()
-              .addC_name("eventName,reg_form_format");
-      WhereClause w
-              = new WhereClause()
-              .addWc_Name("eventID")
-              .addwOp("=")
-              .addWVal1(eventID);
-      String sql = new SelectQueryBuilder()
-              .addselectClauses(s)
-              .addFromClause("events")
-              .addWhereList(w)
-              .build();
+//      SelectClause s
+//              = new SelectClause()
+//              .addC_name("eventname")
+//              .addC_name("reg_form_format");
+//      WhereClause w
+//              = new WhereClause()
+//              .addWc_Name("eventid")
+//              .addwOp("=")
+//              .addWVal1(eventID);
+//      String sql = new SelectQueryBuilder()
+//              .addselectClauses(s)
+//              .addFromClause("events")
+//              .addWhereList(w)
+//              .build();
 
-//      String sql =  "Select eventName,reg_form_format From events Where eventID = '" + eventID + "' ";
+      String sql =  "Select eventname,reg_form_format From events Where eventid = '" + eventID + "' ";
       PreparedStatement pstmt = conn.prepareStatement(sql);
       ResultSet result = pstmt.executeQuery();
       if(result.next()) {
-        model.addObject("name",result.getString("eventName"));
+        model.addObject("name",result.getString("eventname"));
         if(result.getString("reg_form_format")!=null) {
             model.addObject("reg_form_format", "\"" + result.getString("reg_form_format") + "\"");
         }
@@ -391,14 +396,12 @@ public class EvenaController {
     @RequestMapping(value = "/register_done")
     protected ModelAndView register_done(HttpServletRequest request) throws Exception {
 
-        System.out.println("wp");
         ModelAndView model = new ModelAndView("main");
         String eventID = request.getParameter("join");
         String data = "";
         int i = 0;
         String temp = request.getParameter("member" + Integer.toString(i));
         while(temp!=null){
-            System.out.println("wp1");
             if(i == 0){
                 data = data.concat(temp);
             }
@@ -409,67 +412,27 @@ public class EvenaController {
             temp = request.getParameter("member" + Integer.toString(i));
         }
 
-            int p_id = ThreadLocalRandom.current().nextInt(1, 255);
-            Connection conn = DataServiceAPI.connect();
-
-        SelectClause s
-                = new SelectClause()
-                .addC_name("participantID");
-        WhereClause w
-                = new WhereClause()
-                .addWc_Name("participantID")
-                .addwOp("=")
-                .addWVal1(String.valueOf(p_id));
-        String sql = new SelectQueryBuilder()
-                .addselectClauses(s)
-                .addFromClause("participants")
-                .addWhereList(w)
-                .build();
-
-//            String sql =  "Select participantID From participants Where participantID = '" + p_id + "' ";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            ResultSet result = pstmt.executeQuery();
-            while (result.next()) {
-                p_id = ThreadLocalRandom.current().nextInt(1, 255);
+        int p_id = ThreadLocalRandom.current().nextInt(1, 255);
+        Connection conn = DataServiceAPI.connect();
 
 
-                w
-                        = new WhereClause()
-                        .addWc_Name("participantID")
-                        .addwOp("=")
-                        .addWVal1(String.valueOf(p_id));
-                sql = new SelectQueryBuilder()
-                        .addselectClauses(s)
-                        .addFromClause("participants")
-                        .addWhereList(w)
-                        .build();
 
-//                sql =  "Select participantID From participants Where participantID = '" + p_id + "' ";
-                pstmt = conn.prepareStatement(sql);
-                result = pstmt.executeQuery();
-            }
-            sql = new InsertQueryBuilder()
-                    .addT_name("participants")
-                    .addCols("participantID")
-                    .addCols("participantName")
-                    .addVals(String.valueOf(p_id))
-                    .addVals(data)
-                    .build();
-//            sql = "Insert Into participants( participantID, participantName) Values (" + p_id +" , '" + data + "')";
+        String sql =  "Select participantid From participants Where participantid = '" + p_id + "' ";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        ResultSet result = pstmt.executeQuery();
+        while (result.next()) {
+            p_id = ThreadLocalRandom.current().nextInt(1, 255);
+            sql =  "Select participantid From participants Where participantid = '" + p_id + "' ";
             pstmt = conn.prepareStatement(sql);
-            pstmt.executeUpdate();
-            sql = new InsertQueryBuilder()
-                    .addT_name("events_Participants")
-                    .addCols("eventID")
-                    .addCols("participantID")
-                    .addVals(String.valueOf(eventID))
-                    .addVals(String.valueOf(p_id))
-                    .build();
-//            sql = "Insert Into events_Participants(eventID,participantID) Values (" + eventID +" , '" + p_id + "')";
-            pstmt = conn.prepareStatement(sql);
-            pstmt.executeUpdate();
-            pstmt.close();
+            result = pstmt.executeQuery();
+        }
 
+        sql = "Insert Into participants( participantid, participantdata) Values (" + p_id +" , '" + data + "')";
+        pstmt = conn.prepareStatement(sql);
+        pstmt.executeUpdate();
+        pstmt.close();
+
+        model.addObject("alert","You have successfully join the event");
         return model;
     }
 
@@ -537,61 +500,34 @@ public class EvenaController {
 
     //partilist
     try {
-      Connection conn = DataServiceAPI.connect();
+        Connection conn = DataServiceAPI.connect();
 
-        SelectClause s
-                = new SelectClause()
-                .addC_name("participantID");
-        WhereClause w
-                = new WhereClause()
-                .addWc_Name("eventID")
-                .addwOp("=")
-                .addWVal1(request.getParameter("event"));
-        String sql = new SelectQueryBuilder()
-                .addselectClauses(s)
-                .addFromClause("events_Participants")
-                .addWhereList(w)
-                .build();
-//      String sql =
-//          "Select participantID From events_Participants Where eventID = '"
-//              + request.getParameter("event") + "'";
-      PreparedStatement pstmt = conn.prepareStatement(sql);
-      ResultSet result = pstmt.executeQuery();
-      ParticipantList p_list = new ParticipantList();
-      List<Participant> list = new ArrayList<>();
-      while (result.next()) {
+        //select list of participants
 
-          s
-                  = new SelectClause()
-                  .addC_name("participantName, email, phone, age, gender, specinfo");
-          w
-                  = new WhereClause()
-                  .addWc_Name("participantID")
-                  .addwOp("=")
-                  .addWVal1(result.getString("participantID"));
-          sql = new SelectQueryBuilder()
-                  .addselectClauses(s)
-                  .addFromClause("participants")
-                  .addWhereList(w)
-                  .build();
-//        sql =
-//            "Select participantName, email, phone, age, gender, specinfo From participants Where participantID = '"
-//                + result.getString("participantID") + "'";
+        String sql = "SELECT \"participantid\" , \"participantdata\" FROM participants WHERE \"eventid\" =" + request.getParameter("event");
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        ResultSet result = pstmt.executeQuery();
+        List<Dynamic_partic> list = new ArrayList<>();
+        while(result.next()){
+            Dynamic_partic d = new Dynamic_partic(result.getString("participantid"),"\"" + result.getString("participantdata" )+"\"");
+            list.add(d);
+        }
+        Dynamic_partic_list d_list = new Dynamic_partic_list();
+        d_list.setParticipants(list);
+        model.addObject("data",d_list);
+
+        sql =  "Select reg_form_format From events Where eventID = '" + request.getParameter("event") + "' ";
         pstmt = conn.prepareStatement(sql);
-        ResultSet p_result = pstmt.executeQuery();
-        p_result.next();
-        Participant p = new Participant(result.getString("participantID"),
-            p_result.getString("participantName"),
-            p_result.getString("email"),
-            p_result.getString("phone"),
-            p_result.getString("age"),
-            p_result.getString("gender"),
-            p_result.getString("specinfo"));
-        list.add(p);
-      }
-      p_list.setParticipants(list);
-      pstmt.close();
-      model.addObject("p_list", p_list);
+        result = pstmt.executeQuery();
+        if(result.next()) {
+            if(result.getString("reg_form_format")!=null) {
+                model.addObject("reg_form_format", "\"" + result.getString("reg_form_format") + "\"");
+            }
+            else{
+                model.addObject("reg_form_format", "\"name\"");
+            }
+        }
+        pstmt.close();
 
     } catch (Exception e) {
       System.out.println(e.getMessage());
@@ -650,7 +586,7 @@ public class EvenaController {
 
         WhereClause w
                 = new WhereClause()
-                .addWc_Name("eventID")
+                .addWc_Name("eventid")
                 .addwOp("=")
                 .addWVal1(String.valueOf(id));
         sql = new SelectQueryBuilder()

@@ -73,6 +73,16 @@
     </div>
 </div>
 
+<c:choose>
+    <c:when test = "${empty alert}">
+    </c:when>
+    <c:otherwise>
+        <script>
+            alert(${alert});
+        </script>
+    </c:otherwise>
+</c:choose>
+
 <!-- Footer -->
 <footer class="w3-container w3-light-grey w3-center w3-padding-48 w3-small">
     <p>Webapp-Evena @2018</p>

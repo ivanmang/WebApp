@@ -124,12 +124,6 @@
                         <button type="submit" name="delete" value=${event.id} class="btn-a">Delete</button>
                     </form>
                 </td>
-                <td>
-                    <form action="${pageContext.request.contextPath}/d_partilist" style="max-width:100px;margin:auto"
-                          method="GET">
-                        <button type="submit" name="id" value=${event.id} class="btn-a">Dynamic Parti List</button>
-                    </form>
-                </td>
             </tr>
         </c:forEach>
     </table>
