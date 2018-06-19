@@ -992,10 +992,11 @@ public class EvenaController {
 
   @RequestMapping(value = "/upload", method = RequestMethod.POST)
   public String handleFormUpload(
-      @RequestParam("file") MultipartFile file) throws IOException {
+      @RequestParam("file") MultipartFile file, @RequestParam("eventid") String id) throws IOException {
     if (!file.isEmpty()) {
       BufferedImage src = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
-      File destination = new File("/opt/uploads/test.png"); // something like C:/Users/tom/Documents/nameBasedOnSomeId.png
+      String filepath = "/opt/uploads/" + id + ".png";
+      File destination = new File(filepath); // something like C:/Users/tom/Documents/nameBasedOnSomeId.png
       ImageIO.write(src, "png", destination);
       //Save the id you have used to create the file name in the DB. You can retrieve the image in future with the ID.
     }
