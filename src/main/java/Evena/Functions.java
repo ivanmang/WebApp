@@ -2,7 +2,15 @@ package Evena;
 
 import Evena.DataService.DataServiceAPI;
 
+import java.awt.FlowLayout;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 public class Functions {
 
@@ -39,9 +47,6 @@ public class Functions {
 
 
   public static void main(String[] args) {
-//    Functions basic = new Functions(args);
-//    int idResponse = basic.runSelect();
-//    System.out.println("Selected: " + idResponse);
   }
 
   public void printUsage() {
