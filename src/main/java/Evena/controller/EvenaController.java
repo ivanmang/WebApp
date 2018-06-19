@@ -176,20 +176,20 @@ public class EvenaController {
             List<Event> events = new ArrayList<>();
             EventList eventList = new EventList();
 
-            s
-                    = new SelectClause()
-                    .addC_name("*");
+//            s
+//                    = new SelectClause()
+//                    .addC_name("*");
             w
                     = new WhereClause()
                     .addWc_Name("username")
                     .addwOp("=")
                     .addWVal1(username);
             sql = new SelectQueryBuilder()
-                    .addselectClauses(s)
+//                    .addselectClauses(s)
                     .addFromClause("events")
                     .addWhereList(w)
                     .build();
-
+            System.out.println(sql);
             pstmt = conn.prepareStatement(sql);
             result = pstmt.executeQuery();
 

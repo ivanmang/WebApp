@@ -187,25 +187,30 @@
             <div class="input-container">
                 <div>
                 <br />
-                Add the fields of the participants register form
+                Add fields for register form
                 <input class="input-field" type="text" id="member" name="member" value=""><br />
                 <a href="#" id="filldetails" onclick="addFields()">Add Field</a>
+                    <a href="#" id="defaultField" onclick="defaultField()">Add Default Field</a>
                 </div>
+
             </div>
 
             <div>
                 <div>
                 <div id="field_container"/>
+                    <h5>Preview</h5>
 
                 </div>
             </div>
+            <p>
             <button type="submit" id="create" name = "create" value = "" class="btn">Done</button>
+            </p>
         </form>
     </div>
 </div>
 
 <script type='text/javascript'>
-    var number = 1
+    var number = 1;
     function addFields(){
         var s = document.getElementById("create");
         if (number===1) {
@@ -218,12 +223,53 @@
         var container = document.getElementById("field_container");
         // Clear previous contents of the container
         // Append a node with a random text
-        container.appendChild(document.createTextNode("Field "+number + " : " + document.getElementById("member").value));
-        // Append a line break
-        container.appendChild(document.createElement("br"));
+        var field = document.createElement("fieldset");
+        field.appendChild(document.createTextNode(document.getElementById("member").value + " : " ));
+        field.appendChild(document.createElement("input"));
+        field.appendChild(document.createTextNode("    "));
+        var link = document.createElement("a");
+        link.setAttribute('href',"#");
+        link.setAttribute('onclick',"removeField("+number+")");
+        link.appendChild(document.createTextNode("Remove"));
+        field.appendChild(link);
+        container.appendChild(field);
         number = number + 1;
 
     }
+
+    function defaultField(){
+        var fields = [ "Name" , "Age" , "Gender" , "Email"]
+        for (var i = 0; i < fields.length; i++) {
+            var s = document.getElementById("member");
+            s.value = fields[i];
+            addFields();
+        }
+        s.value="";
+    }
+
+        function removeField(remove) {
+            var s = document.getElementById("create");
+            var res = s.value.split(";");
+            s.value="";
+            for (var i = 0; i < res.length; i++) {
+                if(i !== (remove-1)){
+                    if(s.value.length!==0){
+                        s.value+=";";
+                    }
+                    s.value +=res[i];
+                }
+
+            }
+            number -=1;
+            var parent = document.getElementById("field_container");
+            var resset = parent.getElementsByTagName("fieldset");
+            var toremove = resset[remove-1];
+            // parent.appendChild(document.createTextNode("number" + remove));
+            // parent.appendChild(document.createTextNode("s.value" + s.value));
+            parent.removeChild(toremove);
+        }
+
+
 </script>
 
 <!-- Footer -->
