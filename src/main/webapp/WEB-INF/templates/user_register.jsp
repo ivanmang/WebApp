@@ -10,7 +10,7 @@
 <style>
     .bgimg {
         background-size: auto;
-        background: url("${pageContext.request.contextPath}/resources/images/signin.png") no-repeat center;
+        background: url("${pageContext.request.contextPath}/resources/images/register.png") no-repeat center;
         min-height: 45%;
     }
 
