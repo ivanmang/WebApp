@@ -1084,4 +1084,10 @@ public class EvenaController {
     return "testing";
   }
 
+  @RequestMapping(value = "/upload")
+  protected ModelAndView upload(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    ModelAndView model = new ModelAndView("upload");
+    return model;
+  }
 }
