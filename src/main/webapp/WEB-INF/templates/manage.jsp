@@ -119,6 +119,12 @@
                     </form>
                 </td>
                 <td>
+                    <form action="${pageContext.request.contextPath}/upload" style="max-width:100px;margin:auto"
+                          method="GET">
+                        <button type="submit" name="upload" value=${event.id} class="btn-a">Upload Icon</button>
+                    </form>
+                </td>
+                <td>
                     <form action="${pageContext.request.contextPath}/manage" style="max-width:100px;margin:auto"
                           method="GET">
                         <button type="submit" name="delete" value=${event.id} class="btn-a">Delete</button>

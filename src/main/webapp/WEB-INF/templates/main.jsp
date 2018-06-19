@@ -77,36 +77,42 @@ body {font-family:"Lato", sans-serif;}
 
     <c:choose>
       <c:when test = "${empty username}">
-        <form action="${pageContext.request.contextPath}/user_register" method="GET">
+
           <div class="dropdown">
+            <form action="${pageContext.request.contextPath}/user_register" method="GET">
             <button class="dropbtn" >Register
               <i class="fa fa-user-circle"></i>
             </button>
+            </form>
           </div>
-        </form>
-        <form action="${pageContext.request.contextPath}/signin" method="GET">
+
         <div class="dropdown">
+        <form action="${pageContext.request.contextPath}/signin" method="GET">
           <button class="dropbtn" >Sign in
-            <i class="fa fa-user-circle"></i>
+            <i class="fa fa-pencil"></i>
           </button>
+        </form>
         </div>
-      </form>
+
       </c:when>
       <c:when test = "${username == 'out'}">
-        <form action="${pageContext.request.contextPath}/user_register" method="GET">
+
           <div class="dropdown">
+            <form action="${pageContext.request.contextPath}/user_register" method="GET">
             <button class="dropbtn" >Register
               <i class="fa fa-user-circle"></i>
             </button>
+            </form>
           </div>
-        </form>
-        <form action="${pageContext.request.contextPath}/signin" method="GET">
+
         <div class="dropdown">
+          <form action="${pageContext.request.contextPath}/signin" method="GET">
           <button class="dropbtn" >Sign in
-            <i class="fa fa-user-circle"></i>
+            <i class="fa fa-pencil"></i>
           </button>
+          </form>
         </div>
-      </form>
+
       </c:when>
       <c:otherwise>
         <div class="dropdown" id="dropDown">
