@@ -83,19 +83,19 @@ public class DataServiceAPI {
   public void addResultSetToEventList(ResultSet result, List<Event> events)
       throws SQLException {
     while (result.next()) {
-      String date = result.getString("eventDate");
+      String date = result.getString("eventdate");
       if (date == null) {
         date = "NA";
       }
-      String location = result.getString("eventLocation");
+      String location = result.getString("eventlocation");
       if (location == null) {
         location = "NA";
       }
-      String startTime = result.getString("eventStart");
+      String startTime = result.getString("eventstart");
       if (startTime == null) {
         startTime = "NA";
       }
-      String endTime = result.getString("eventEnd");
+      String endTime = result.getString("eventend");
       if (endTime == null) {
         endTime = "NA";
       }
@@ -110,10 +110,12 @@ public class DataServiceAPI {
       List<Integer> tags = new ArrayList<>();
       if (tagids.length() != 0) {
         for (String str : tagids.split(",")) {
-          tags.add(Integer.valueOf(str));
+          if(!str.equals("null")) {
+            tags.add(Integer.valueOf(str));
+          }
         }
       }
-      Event event = new Event(String.valueOf(result.getInt("eventID")),
+      Event event = new Event(String.valueOf(result.getInt("eventid")),
           result.getString("eventName"), date, startTime,endTime, location, about,
           tags);
       events.add(event);

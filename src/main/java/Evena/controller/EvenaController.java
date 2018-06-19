@@ -895,7 +895,7 @@ public class EvenaController {
 
         WhereClause w
                 = new WhereClause()
-                .addWc_Name("eventID")
+                .addWc_Name("eventid")
                 .addwOp("=")
                 .addWVal1(event_name);
         String sql = new SelectQueryBuilder()
@@ -907,11 +907,11 @@ public class EvenaController {
       ResultSet result = pstmt.executeQuery();
       if (result.next()) {
         model.addObject("id", event_name);
-        model.addObject("name", result.getString("eventName"));
-        model.addObject("date", result.getString("eventDate"));
-        model.addObject("startTime", result.getString("eventStart"));
-        model.addObject("endTime",result.getString("eventEnd"));
-        model.addObject("location",result.getString("eventLocation"));
+        model.addObject("name", result.getString("eventname"));
+        model.addObject("date", result.getString("eventdate"));
+        model.addObject("startTime", result.getString("eventstart"));
+        model.addObject("endTime",result.getString("eventend"));
+        model.addObject("location",result.getString("eventlocation"));
         model.addObject("about", result.getString("info"));
       }
       pstmt.close();
