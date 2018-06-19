@@ -130,8 +130,14 @@
   <div class="w3-bar-block">
     <a href="${pageContext.request.contextPath}/index" class="w3-bar-item w3-button">Home  <i class="fa fa-home"></i></a>
       <form action="${pageContext.request.contextPath}/browse" style="max-width:500px;margin:auto" method="GET">
-          <button type="submit" name="music" class="w3-bar-item w3-button" value="on">Music Events <i class="fa fa-music"></i> </button>
-          <button type="submit" name="sport" class="w3-bar-item w3-button" value="on">Sports Events <i class="fa fa-child"></i> </button>
+          <button type="submit" name="academic" class="w3-bar-item w3-button" value="on">Academic Related <i class="fa fa-graduation-cap"></i> </button>
+          <button type="submit" name="music" class="w3-bar-item w3-button" value="on">Arts & Music <i class="fa fa-music"></i> </button>
+          <button type="submit" name="charity" class="w3-bar-item w3-button" value="on">Charitable <i class="fa fa-signing"></i> </button>
+          <button type="submit" name="cultural" class="w3-bar-item w3-button" value="on">Cultural <i class="fa fa-globe"></i> </button>
+          <button type="submit" name="indoor" class="w3-bar-item w3-button" value="on">Indoor <i class="fa fa-home"></i> </button>
+          <button type="submit" name="outdoor" class="w3-bar-item w3-button" value="on">Outdoor <i class="fa fa-tree"></i> </button>
+          <button type="submit" name="social" class="w3-bar-item w3-button" value="on">Social <i class="fa fa-handshake-o"></i> </button>
+          <button type="submit" name="sport" class="w3-bar-item w3-button" value="on">Sports <i class="fa fa-soccer-ball-o"></i> </button>
           <button type="submit" name="misc" class="w3-bar-item w3-button" value="on">Other Events <i class="fa fa-sticky-note"></i> </button>
       </form>
 
@@ -160,7 +166,7 @@
     <div class="grid-container">
         <c:forEach items="${eventList.events}" var="event" varStatus="status">
             <div class="display-container">
-        <div class="grid-item"> <img src="${pageContext.request.contextPath}/resources/images/photoinvalid.jpeg" style="width:100%">
+        <div class="grid-item"> <img src="/uploads/${event.id}.png" style="width:100%">
 
         </div>
                 <p>${event.name}<br><b>${event.location}</b><br>${event.date} - ${event.startTime} <br> <b> ${event.endTime}</b> <br>${event.about}</p>

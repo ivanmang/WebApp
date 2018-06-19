@@ -9,8 +9,8 @@
 
 <form method="POST" action="${pageContext.request.contextPath}/upload" enctype="multipart/form-data">
 
-    Please select a file to upload : <input type="file" name="file" />
-    <input type="submit" value="upload" />
+    Please select a file to upload for event ${eventid} : <input type="file" name="file" />
+    <button type="submit" id="upload" name = "eventid" value=${eventid} class="btn">Upload</button>
 
 </form>
 

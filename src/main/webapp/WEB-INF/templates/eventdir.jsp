@@ -53,6 +53,10 @@
         outline: none;
     }
 
+    .manage {
+        display: none;
+    }
+
 
 </style>
 
@@ -112,7 +116,7 @@
 </div>
 
 
-<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+<div class="w3-main" style="margin-top:43px;">
         <h1 class="w3-xxxlarge"><b>Manage Event: ${name}</b></h1>
 
 
@@ -240,6 +244,8 @@
             var cell = row.insertCell(0);
             cell.innerHTML = res[i];
         }
+        cell = row.insertCell(row.length);
+        cell.innerHTML = "Memo";
     }
 
 </script>
@@ -254,6 +260,13 @@
             var cell = row.insertCell(0);
             cell.innerHTML = res[i];
         }
+        cell = row.insertCell(row.length);
+        cell.appendChild(document.createElement("input"));
+        cell.appendChild(document.createTextNode("    "));
+        var link = document.createElement("a");
+        link.setAttribute('href',"#");
+        link.appendChild(document.createTextNode("Edit"));
+        cell.appendChild(link);
     </script>
 </c:forEach>
 
