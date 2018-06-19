@@ -649,19 +649,19 @@ public class EvenaController {
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.executeUpdate();
       }
-      if (request.getParameter("startTime")!=null) {
+      if (!request.getParameter("startTime").equals("")) {
         sql = "UPDATE events SET eventStart = '" + request.getParameter("startTime")
                 + "' WHERE eventID = '" + request.getParameter("update") + "'";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.executeUpdate();
       }
-      if (request.getParameter("endTime")!=null) {
+      if (!request.getParameter("endTime").equals("")) {
         sql = "UPDATE events SET eventEnd = '" + request.getParameter("endTime")
                 + "' WHERE eventID = '" + request.getParameter("update") + "'";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.executeUpdate();
       }
-      if (request.getParameter("location")!=null) {
+      if (!request.getParameter("location").equals("")) {
         sql = "UPDATE events SET eventLocation = '" + request.getParameter("eventLocation")
                 + "' WHERE eventID = '" + request.getParameter("update") + "'";
         PreparedStatement pstmt = conn.prepareStatement(sql);

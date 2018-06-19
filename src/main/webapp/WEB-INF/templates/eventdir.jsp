@@ -182,17 +182,16 @@
 
                     <div class="input-container" style="background-color: #FFC124">
                         <i class="fa fa-clock-o icon"></i>
-                        <input class="input-field" type="time"  name="about" id="endTime">
+                        <input class="input-field" type="time"  name="endTime" id="endTime">
                     </div>
 
                     <div class="input-container" style="background-color: #FFC124">
                         <i class="fa fa-globe icon"></i>
-                        <input class="input-field" type="text"  placeholder="Location" name="about" id="location">
+                        <input class="input-field" type="text"  placeholder="Location" name="location" id="location">
                     </div>
-
                     <div class="input-container" style="background-color: #FFC124">
                         <i class="fa fa-bullhorn icon"></i>
-                        <input class="input-field" type="text"  placeholder="About this event..." name="about" id="about1">
+                        <input class="input-field" type="text"  placeholder="About this event..." name="about" id="about">
                     </div>
                     <input type="hidden" name="event" value = ${id}>
                     <button class="btn" type="submit" name="update" value =${id} >Edit</button>
