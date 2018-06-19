@@ -46,9 +46,76 @@ public class EvenaController {
   private static List<Event> events = new ArrayList<>();
   private DataServiceAPI api = new DataServiceAPI();
 
-    @RequestMapping(value = "/update_memo")
-    protected ModelAndView update_memo(HttpServletRequest request) throws Exception {
+    @RequestMapping(value = "/editmemo")
+    protected ModelAndView editmemo(HttpServletRequest request, @RequestParam String p_id, @RequestParam String memo, @RequestParam String event_id) throws Exception {
         ModelAndView model = new ModelAndView("eventdir");
+        Connection conn = DataServiceAPI.connect();
+        System.out.println(p_id);
+        System.out.println(memo);
+        System.out.println(event_id);
+
+        String sql = "UPDATE participants SET participantmemo = '" + memo
+                + "' WHERE participantid = '" + p_id + "'";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.executeUpdate();
+
+        //eventdir initialize
+
+
+        sql = "SELECT \"participantid\" , \"participantdata\" , \"participantmemo\" FROM participants WHERE \"eventid\" =" + event_id;
+        pstmt = conn.prepareStatement(sql);
+        ResultSet result = pstmt.executeQuery();
+        List<Dynamic_partic> list = new ArrayList<>();
+        while(result.next()){
+            String memo_ = "";
+            if(result.getString("participantmemo")!=null){
+                memo_ = result.getString("participantmemo");
+            }
+            Dynamic_partic d = new Dynamic_partic(result.getString("participantid"),"\"" + result.getString("participantdata" )+"\"" , memo_);
+            list.add(d);
+        }
+        Dynamic_partic_list d_list = new Dynamic_partic_list();
+        d_list.setParticipants(list);
+        model.addObject("data",d_list);
+
+        sql =  "Select reg_form_format From events Where eventID = '" + event_id + "' ";
+        pstmt = conn.prepareStatement(sql);
+        result = pstmt.executeQuery();
+        if(result.next()) {
+            if(result.getString("reg_form_format")!=null) {
+                model.addObject("reg_form_format", "\"" + result.getString("reg_form_format") + "\"");
+            }
+            else{
+                model.addObject("reg_form_format", "\"name\"");
+            }
+        }
+
+
+    //manageinfo
+
+        WhereClause w
+                = new WhereClause()
+                .addWc_Name("eventid")
+                .addwOp("=")
+                .addWVal1(event_id);
+        sql = new SelectQueryBuilder()
+                .addFromClause("events")
+                .addWhereList(w)
+                .build();
+//      sql = "Select * From events Where eventID = '" + id + "' ";
+        pstmt = conn.prepareStatement(sql);
+        result = pstmt.executeQuery();
+        if (result.next()) {
+            model.addObject("id", result.getString("eventID"));
+            model.addObject("name", result.getString("eventName"));
+            model.addObject("date", result.getString("eventDate"));
+            model.addObject("startTime",result.getString("eventStart"));
+            model.addObject("endTime",result.getString("eventEnd"));
+            model.addObject("location",result.getString("eventLocation"));
+            model.addObject("about", result.getString("info"));
+        }
+        pstmt.close();
+
         return model;
     }
 
@@ -282,87 +349,87 @@ public class EvenaController {
     }
 
 
-    @RequestMapping(value = "/d_partilist")
-    protected  ModelAndView dynamic_register(HttpServletRequest request) throws Exception{
-        ModelAndView model = new ModelAndView("d_partilist");
-        Connection conn = DataServiceAPI.connect();
-
-        //select list of participants
-
-        SelectClause s
-                = new SelectClause()
-                .addC_name("participantID");
-        WhereClause w
-                = new WhereClause()
-                .addWc_Name("eventID")
-                .addwOp("=")
-                .addWVal1(request.getParameter("id"));
-        String sql = new SelectQueryBuilder()
-                .addselectClauses(s)
-                .addFromClause("events_Participants")
-                .addWhereList(w)
-                .build();
-
-        PreparedStatement pstmt = conn.prepareStatement(sql);
-        ResultSet result = pstmt.executeQuery();
-        List<Dynamic_partic> list = new ArrayList<>();
-        while(result.next()){
-
-            s
-                    = new SelectClause()
-                    .addC_name("participantName");
-            w
-                    = new WhereClause()
-                    .addWc_Name("eventID")
-                    .addwOp("=")
-                    .addWVal1(result.getString("participantID"));
-            sql = new SelectQueryBuilder()
-                    .addselectClauses(s)
-                    .addFromClause("participantID")
-                    .addWhereList(w)
-                    .build();
-
-//            sql =  "Select participantName From participants Where participantID = '" + result.getString("participantID") + "'" ;
-            pstmt = conn.prepareStatement(sql);
-            ResultSet p_result = pstmt.executeQuery();
-            p_result.next();
-            Dynamic_partic d = new Dynamic_partic(result.getString("participantID"),"\"" + p_result.getString("participantName" )+"\"");
-            list.add(d);
-        }
-        Dynamic_partic_list d_list = new Dynamic_partic_list();
-        d_list.setParticipants(list);
-        model.addObject("data",d_list);
-
-        //extract the format of the data from events
-
-        s
-                = new SelectClause()
-                .addC_name("reg_form_format");
-        w
-                = new WhereClause()
-                .addWc_Name("eventID")
-                .addwOp("=")
-                .addWVal1(request.getParameter("id"));
-        sql = new SelectQueryBuilder()
-                .addselectClauses(s)
-                .addFromClause("events")
-                .addWhereList(w)
-                .build();
-
-//        sql =  "Select reg_form_format From events Where eventID = '" + request.getParameter("id") + "' ";
-        pstmt = conn.prepareStatement(sql);
-        result = pstmt.executeQuery();
-        if(result.next()) {
-            if(result.getString("reg_form_format")!=null) {
-                model.addObject("reg_form_format", "\"" + result.getString("reg_form_format") + "\"");
-            }
-            else{
-                model.addObject("reg_form_format", "\"name\"");
-            }
-        }
-        pstmt.close();
-        return model;
-    }
+//    @RequestMapping(value = "/d_partilist")
+//    protected  ModelAndView dynamic_register(HttpServletRequest request) throws Exception{
+//        ModelAndView model = new ModelAndView("d_partilist");
+//        Connection conn = DataServiceAPI.connect();
+//
+//        //select list of participants
+//
+//        SelectClause s
+//                = new SelectClause()
+//                .addC_name("participantID");
+//        WhereClause w
+//                = new WhereClause()
+//                .addWc_Name("eventID")
+//                .addwOp("=")
+//                .addWVal1(request.getParameter("id"));
+//        String sql = new SelectQueryBuilder()
+//                .addselectClauses(s)
+//                .addFromClause("events_Participants")
+//                .addWhereList(w)
+//                .build();
+//
+//        PreparedStatement pstmt = conn.prepareStatement(sql);
+//        ResultSet result = pstmt.executeQuery();
+//        List<Dynamic_partic> list = new ArrayList<>();
+//        while(result.next()){
+//
+//            s
+//                    = new SelectClause()
+//                    .addC_name("participantName");
+//            w
+//                    = new WhereClause()
+//                    .addWc_Name("eventID")
+//                    .addwOp("=")
+//                    .addWVal1(result.getString("participantID"));
+//            sql = new SelectQueryBuilder()
+//                    .addselectClauses(s)
+//                    .addFromClause("participantID")
+//                    .addWhereList(w)
+//                    .build();
+//
+////            sql =  "Select participantName From participants Where participantID = '" + result.getString("participantID") + "'" ;
+//            pstmt = conn.prepareStatement(sql);
+//            ResultSet p_result = pstmt.executeQuery();
+//            p_result.next();
+//            Dynamic_partic d = new Dynamic_partic(result.getString("participantID"),"\"" + p_result.getString("participantName" )+"\"");
+//            list.add(d);
+//        }
+//        Dynamic_partic_list d_list = new Dynamic_partic_list();
+//        d_list.setParticipants(list);
+//        model.addObject("data",d_list);
+//
+//        //extract the format of the data from events
+//
+//        s
+//                = new SelectClause()
+//                .addC_name("reg_form_format");
+//        w
+//                = new WhereClause()
+//                .addWc_Name("eventID")
+//                .addwOp("=")
+//                .addWVal1(request.getParameter("id"));
+//        sql = new SelectQueryBuilder()
+//                .addselectClauses(s)
+//                .addFromClause("events")
+//                .addWhereList(w)
+//                .build();
+//
+////        sql =  "Select reg_form_format From events Where eventID = '" + request.getParameter("id") + "' ";
+//        pstmt = conn.prepareStatement(sql);
+//        result = pstmt.executeQuery();
+//        if(result.next()) {
+//            if(result.getString("reg_form_format")!=null) {
+//                model.addObject("reg_form_format", "\"" + result.getString("reg_form_format") + "\"");
+//            }
+//            else{
+//                model.addObject("reg_form_format", "\"name\"");
+//            }
+//        }
+//        pstmt.close();
+//        return model;
+//    }
 
   @RequestMapping(value = "/register")
   protected ModelAndView register(HttpServletRequest request) throws Exception {
@@ -512,12 +579,16 @@ public class EvenaController {
 
         //select list of participants
 
-        String sql = "SELECT \"participantid\" , \"participantdata\" FROM participants WHERE \"eventid\" =" + request.getParameter("event");
+        String sql = "SELECT \"participantid\" , \"participantdata\",\"participantmemo\" FROM participants WHERE \"eventid\" =" + request.getParameter("event");
         PreparedStatement pstmt = conn.prepareStatement(sql);
         ResultSet result = pstmt.executeQuery();
         List<Dynamic_partic> list = new ArrayList<>();
         while(result.next()){
-            Dynamic_partic d = new Dynamic_partic(result.getString("participantid"),"\"" + result.getString("participantdata" )+"\"");
+            String memo = "";
+            if(result.getString("participantmemo")!=null){
+                memo = result.getString("participantmemo");
+            }
+            Dynamic_partic d = new Dynamic_partic(result.getString("participantid"),"\"" + result.getString("participantdata" )+"\"", memo );
             list.add(d);
         }
         Dynamic_partic_list d_list = new Dynamic_partic_list();

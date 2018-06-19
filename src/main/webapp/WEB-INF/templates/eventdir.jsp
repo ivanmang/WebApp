@@ -246,6 +246,7 @@
         }
         cell = row.insertCell(row.length);
         cell.innerHTML = "Memo";
+        cell = row.insertCell(row.length);
     }
 
 </script>
@@ -261,12 +262,30 @@
             cell.innerHTML = res[i];
         }
         cell = row.insertCell(row.length);
-        cell.appendChild(document.createElement("input"));
-        cell.appendChild(document.createTextNode("    "));
-        var link = document.createElement("a");
-        link.setAttribute('href',"#");
-        link.appendChild(document.createTextNode("Edit"));
-        cell.appendChild(link);
+        var field = document.createElement("fieldset");
+        var form = document.createElement("form");
+        form.setAttribute('action',"${pageContext.request.contextPath}/editmemo");
+        form.setAttribute('method',"POST");
+        var input = document.createElement("input");
+        input.setAttribute('class',"input-field");
+        input.setAttribute('type',"text");
+        input.setAttribute('value',"${p.memo}");
+        input.setAttribute('name',"memo");
+        form.appendChild(input);
+        var input_ = document.createElement("input");
+        input_.setAttribute('class',"input-field");
+        input_.setAttribute('type',"hidden");
+        input_.setAttribute('name',"event_id");
+        input_.setAttribute('value',${id});
+        form.appendChild(input_);
+        var button = document.createElement("button");
+        button.setAttribute('type',"submit");
+        button.setAttribute('name',"p_id");
+        button.setAttribute('value',"${p.id}");
+        button.appendChild(document.createTextNode("Edit"));
+        form.appendChild(button);
+        field.appendChild(form);
+        cell.appendChild(field);
     </script>
 </c:forEach>
 
