@@ -178,7 +178,7 @@ body {font-family:"Lato", sans-serif;}
 
         <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
           <div class="w3-third w3-margin-bottom">
-            <img src="${pageContext.request.contextPath}/resources/images/maincreate.jpg" alt="Create" style="width:100%" class="w3-hover-opacity">
+            <img src="/uploads/test.png" alt="Create" style="width:100%" class="w3-hover-opacity">
             <div class="w3-container w3-white">
               <p><b>Create a event</b></p>
               <p>You can create a event and share it to others</p>
