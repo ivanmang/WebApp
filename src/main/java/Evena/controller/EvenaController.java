@@ -440,7 +440,7 @@ public class EvenaController {
         pstmt.executeUpdate();
         pstmt.close();
 
-        model.addObject("alert","You have successfully join the event");
+        model.addObject("alert","\"You have successfully join the event\"");
         return model;
     }
 
