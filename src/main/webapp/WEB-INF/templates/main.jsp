@@ -77,6 +77,13 @@ body {font-family:"Lato", sans-serif;}
 
     <c:choose>
       <c:when test = "${empty username}">
+        <form action="${pageContext.request.contextPath}/user_register" method="GET">
+          <div class="dropdown">
+            <button class="dropbtn" >Register
+              <i class="fa fa-user-circle"></i>
+            </button>
+          </div>
+        </form>
         <form action="${pageContext.request.contextPath}/signin" method="GET">
         <div class="dropdown">
           <button class="dropbtn" >Sign in
@@ -86,6 +93,13 @@ body {font-family:"Lato", sans-serif;}
       </form>
       </c:when>
       <c:when test = "${username == 'out'}">
+        <form action="${pageContext.request.contextPath}/user_register" method="GET">
+          <div class="dropdown">
+            <button class="dropbtn" >Register
+              <i class="fa fa-user-circle"></i>
+            </button>
+          </div>
+        </form>
         <form action="${pageContext.request.contextPath}/signin" method="GET">
         <div class="dropdown">
           <button class="dropbtn" >Sign in
